@@ -16,9 +16,8 @@ ini_set('display_errors','On');
     <title>Shop</title>
   </head>
   <body>
-    <div class="container">
       <?php include __DIR__.'/header.php'?>
-
+    <div class="container">
         <section class="container">
             <div class="row">
 
