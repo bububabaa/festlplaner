@@ -2,7 +2,7 @@
 
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item">
-      <h1 style="color:white">Festlplaner</h1>
+      <a style="font-size: 30px; font-weight: bold; color:white;" href="index.php">Festlplaner</a>
 </li>
 
 <div style="margin: 0 auto;">
