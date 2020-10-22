@@ -17,7 +17,7 @@
 
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item">
-      <a style="font-size: 30px; font-weight: bold; color:white;" href="index.php">Festlplaner</a>
+      <a style="font-size: 30px; font-weight: bold; color:white;" href="index.php" aria-disabled="true">Festlplaner</a>
 </li>
 
 <div style="margin: 0 auto;">
@@ -31,7 +31,7 @@
 </li>
 </div>
   <li class="nav-item">
-    <a class="nav-link" href="profil.php" aria-disabled="true">Profil</a>
-</li>
+    <a href="profil.php" aria-disabled="true" style="font-size: 30px; font-weight: bold;" href="profil.php">Profil</a>
+    </li>
 </ul>
 </header>
