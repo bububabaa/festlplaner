@@ -9,7 +9,6 @@
   cursor: pointer;
 }
 
-/* Darker background on mouse-over */
 .btn:hover {
   background-color: RoyalBlue;
 }
@@ -24,7 +23,7 @@
 <li class="nav-item">
       <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          <link rel="stylesheet" href="assets/img/search_icon.png">
+          <link rel="stylesheet" img="assets/img/search_icon.png">
     </form>
     <button class="my-2 my-sm-0" class="search-icon"> </button>
 
