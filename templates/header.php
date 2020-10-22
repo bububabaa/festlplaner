@@ -36,7 +36,7 @@
 <li class="nav-item">
       <form class="form-inline">
         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <a href="" class=" my-2 my-sm-0  type="submit"" ><img class="imgsuchen margin: 0 auto;" src="assets/img/search_icon.png"/></a>
+        <a href="" class=" my-2 my-sm-0" type="submit"><img class="imgsuchen margin: 0 auto;" src="assets/img/search_icon.png"/></a>
 
 
     </form>
