@@ -1,4 +1,19 @@
 <header class="jumbotron">
+<style>
+.btn {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Darker background on mouse-over */
+.btn:hover {
+  background-color: RoyalBlue;
+}
+</style>
 
 <ul class="nav nav-pills nav-fill">
   <li class="nav-item">
@@ -9,11 +24,12 @@
 <li class="nav-item">
       <form class="form-inline">
     <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <link rel="stylesheet" href="assets/img/search_icon.png">
     </form>
+    <button class="my-2 my-sm-0" class="search-icon"> </button>
+
 </li>
 </div>
-huso
   <li class="nav-item">
     <a class="nav-link" href="profil.php" aria-disabled="true">Profil</a>
 </li>
