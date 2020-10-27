@@ -12,8 +12,8 @@
 }
 
 .imgsuchen {
- width: 30px;
- height: 30px;
+ width: 35px;
+ height: 35px;
 }
 
 .btn:hover {
@@ -43,7 +43,7 @@
 </li>
 </div>
   <li class="nav-item">
-    <a href="profil.php" aria-disabled="true" style="font-size: 30px; font-weight: bold;" href="profil.php">Profil</a>
+    <a href="profil.php" aria-disabled="true" style="font-size: 30px; font-weight: bold;color:white;" href="profil.php">Profil</a>
     </li>
 </ul>
 </header>
