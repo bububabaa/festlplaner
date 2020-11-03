@@ -103,7 +103,7 @@
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#">Home</a>
-        <a href="#">Kalender</a>
+        <a href="kalender.php">Kalender</a>
         <a href="#">Galerie</a>
         <a href="#">Karte</a>
         <button class="dropdown-btn">Abos
