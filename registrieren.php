@@ -1,153 +1,173 @@
 <!DOCTYPE html>
 <html>
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+    }
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
-  width: 100%;
-  padding: 15px;
-  margin: 5px 0 22px 0;
-  display: inline-block;
-  border: none;
-  background: #f1f1f1;
-}
+    * {
+        box-sizing: border-box;
+    }
 
-/* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=password]:focus {
-  background-color: #ddd;
-  outline: none;
-}
+    /* Full-width input fields */
+    input[type=text],
+    input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
 
-/* Set a style for all buttons */
-button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  cursor: pointer;
-  width: 100%;
-  opacity: 0.9;
-}
+    /* Add a background color when the inputs get focus */
+    input[type=text]:focus,
+    input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
 
-button:hover {
-  opacity:1;
-}
+    /* Set a style for all buttons */
+    button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
 
-/* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
+    button:hover {
+        opacity: 1;
+    }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 50%;
-}
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        padding: 14px 20px;
+        background-color: #f44336;
+    }
 
-/* Add padding to container elements */
-.container {
-  padding: 16px;
-}
+    /* Float cancel and signup buttons and add an equal width */
+    .cancelbtn,
+    .signupbtn {
+        float: left;
+        width: 50%;
+    }
 
-/* The Modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: #ffffff;
-  padding-top: 50px;
-}
+    /* Add padding to container elements */
+    .container {
+        padding: 16px;
+    }
 
-/* Modal Content/Box */
-.modal-content {
-  background-color: #fefefe;
-  margin: 5% auto 15% auto; /* 5% from the top, 15% from the bottom and centered */
-  border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
-}
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: #ffffff;
+        padding-top: 50px;
+    }
 
-/* Style the horizontal ruler */
-hr {
-  border: 1px solid #f1f1f1;
-  margin-bottom: 25px;
-}
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 80%;
+        /* Could be more or less, depending on screen size */
+    }
 
-/* The Close Button (x) */
-.close {
-  position: absolute;
-  right: 35px;
-  top: 15px;
-  font-size: 40px;
-  font-weight: bold;
-  color: #454545;
-}
+    /* Style the horizontal ruler */
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
 
-.close:hover,
-.close:focus {
-  color: #f44336;
-  cursor: pointer;
-}
+    /* The Close Button (x) */
+    .close {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+        font-size: 40px;
+        font-weight: bold;
+        color: #454545;
+    }
 
-/* Clear floats */
-.clearfix::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+        cursor: pointer;
+    }
 
-/* Change styles for cancel button and signup button on extra small screens */
-@media screen and (max-width: 300px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-  }
-}
+    /* Clear floats */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    /* Change styles for cancel button and signup button on extra small screens */
+    @media screen and (max-width: 300px) {
+
+        .cancelbtn,
+        .signupbtn {
+            width: 100%;
+        }
+    }
 </style>
+
 <body>
-<p>Sie haben noch keinen Account? <a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Registrieren</a>.</p>
+    <p>Sie haben noch keinen Account? <a onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Registrieren</a>.</p>
 
-<div id="id01" class="modal">
-  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
-  <form class="modal-content" action="/action_page.php">
-    <div class="container">
-      <h1>Registrieren</h1>
-      <p></p>
-      <hr>
-      <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="Email eingeben" name="email" required>
+    <div id="id01" class="modal">
+        <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+        <form class="modal-content" action="/action_page.php">
+            <div class="container">
+                <h1>Registrieren</h1>
+                <p></p>
+                <hr>
+                <label for="email"><b>Email</b></label>
+                <input type="text" placeholder="Email eingeben" name="email" required>
 
-      <label for="psw"><b>Passwort</b></label>
-      <input type="password" placeholder="Passwort eingeben" name="psw" required>
+                <label for="psw"><b>Passwort</b></label>
+                <input type="password" placeholder="Passwort eingeben" name="psw" required>
 
-      <label for="psw-repeat"><b>Passwort bestätigen</b></label>
-      <input type="password" placeholder="Passwort bestätigen" name="psw-repeat" required>
+                <label for="psw-repeat"><b>Passwort bestätigen</b></label>
+                <input type="password" placeholder="Passwort bestätigen" name="psw-repeat" required>
 
-      <label>
-        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-      </label>
+                <label>
+                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+                </label>
 
-      <p><a href="#" style="color:dodgerblue"></a></p>
+                <p><a href="#" style="color:dodgerblue"></a></p>
 
-      <div class="clearfix">
-        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Abbrechen</button>
-        <button type="submit" class="signupbtn">Resistrieren</button>
-      </div>
+                <div class="clearfix">
+                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Abbrechen</button>
+                    <button type="submit" class="signupbtn">Resistrieren</button>
+                </div>
+            </div>
+        </form>
     </div>
-  </form>
-</div>
 
-<script>
-// Get the modal
-var modal = document.getElementById('id01');
-</script>
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+    </script>
 
 </body>
+
 </html>
