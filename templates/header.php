@@ -148,7 +148,7 @@ for (i = 0; i < dropdown.length; i++) {
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
-<script>
+    <script>
     const options = {
   bottom: '64px', // default: '32px'
   left: 'unset', // default: '32px'
@@ -167,9 +167,6 @@ for (i = 0; i < dropdown.length; i++) {
       darkmode.showWidget();
   }
   window.addEventListener('load', addDarkmodeWidget);
+        <!-- Use any element to open the sidenav -->
 </script>
-
-    <!-- Use any element to open the sidenav -->
-
-
 </header>
