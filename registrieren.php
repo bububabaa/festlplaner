@@ -162,12 +162,9 @@
             </div>
         </form>
     </div>
-
     <script>
         // Get the modal
         var modal = document.getElementById('id01');
     </script>
-
 </body>
-
 </html>
