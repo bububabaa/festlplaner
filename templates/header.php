@@ -174,7 +174,9 @@
             const darkmode = new Darkmode(options);
             darkmode.showWidget();
         }
-        window.addEventListener('load', addDarkmodeWidget); <
-        !--Use any element to open the sidenav-- >
+        window.addEventListener('load', addDarkmodeWidget);
     </script>
+
+    <!-- Use any element to open the sidenav -->
+
 </header>
