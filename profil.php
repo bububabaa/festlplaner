@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
 <style>
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-    }
-
     * {
         box-sizing: border-box;
     }
@@ -249,9 +245,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!DOCTYPE html>
 <html lang="de">
-
-<body>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
     <style type="text/css">
         body {
             font: 14px sans-serif;
@@ -259,10 +253,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         .wrapper {
             width: 500px;
-            padding: 30px;
+            padding: 60px;
         }
     </style>
-
+<body>
     <div class="wrapper">
         <h2>Anmelden</h2>
         <p></p>
@@ -290,3 +284,4 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     </div>
 </body>
 </html>
+
