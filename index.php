@@ -13,11 +13,6 @@
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
-    <!--
-Ramayana CSS Template
-https://templatemo.com/tm-529-ramayana
--->
-
     <!-- Additional CSS Files -->
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-style.css">
@@ -37,10 +32,11 @@ https://templatemo.com/tm-529-ramayana
                 <!-- Header -->
                 <header id="header">
                     <div class="logo">
-                        <a href="index.html">Festlplaner</a>
+                        <a href="index.php">Festlplaner</a>
                     </div>
                 </header>
 
+                <!--ab hier Code einfügen-->
                 <!-- Banner -->
                 <section class="main-banner">
                     <div class="container-fluid">
@@ -171,6 +167,7 @@ https://templatemo.com/tm-529-ramayana
                         </div>
                     </div>
                 </section>
+        <!--bis hier Code einfügen-->
 
             </div>
         </div>
@@ -190,9 +187,9 @@ https://templatemo.com/tm-529-ramayana
                 <!-- Menu -->
                 <nav id="menu">
                     <ul>
-                        <li><a href="index.html">Homepage</a></li>
-                        <li><a href="simple_page.html">Simple Page</a></li>
-                        <li><a href="shortcodes.html">Shortcodes</a></li>
+                        <li><a href="index.php">Homepage</a></li>
+                        <li><a href="profil.php">Profil</a></li>
+                        <li><a href="shortcodes.php">Shortcodes</a></li>
                         <li><a href="kalender.php">Kalender</a></li>
                         <li><a href="galerie.php">Galerie</a></li>
                         <li><a href="karte.php">Karte</a></li>
@@ -207,33 +204,6 @@ https://templatemo.com/tm-529-ramayana
                         <li><a href="https://www.google.com">External Link</a></li>
                     </ul>
                 </nav>
-
-                <!-- Featured Posts -->
-                <div class="featured-posts">
-                    <div class="heading">
-                        <h2>Featured Posts</h2>
-                    </div>
-                    <div class="owl-carousel owl-theme">
-                        <a href="#">
-                            <div class="featured-item">
-                                <img src="assets/images/featured_post_01.jpg" alt="featured one">
-                                <p>Aliquam egestas convallis eros sed gravida. Curabitur consequat sit.</p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="featured-item">
-                                <img src="assets/images/featured_post_01.jpg" alt="featured two">
-                                <p>Donec a scelerisque massa. Aliquam non iaculis quam. Duis arcu turpis.</p>
-                            </div>
-                        </a>
-                        <a href="#">
-                            <div class="featured-item">
-                                <img src="assets/images/featured_post_01.jpg" alt="featured three">
-                                <p>Suspendisse ac convallis urna, vitae luctus ante. Donec sit amet.</p>
-                            </div>
-                        </a>
-                    </div>
-                </div>
 
                 <!-- Footer -->
                 <footer id="footer">
@@ -257,5 +227,4 @@ https://templatemo.com/tm-529-ramayana
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
 </body>
-
 </html>
