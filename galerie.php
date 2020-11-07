@@ -89,7 +89,7 @@
                                 <li><a href="#">Abo 3</a></li>
                             </ul>
                         </li>
-                        <li><a href="https://www.google.com">External Link</a></li>
+                        <li><a target="_blank" href="https://www.shisha-world.com/">externer Link</a></li>
                     </ul>
                 </nav>
 

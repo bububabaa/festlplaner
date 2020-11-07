@@ -163,7 +163,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                             <form id="eingaben"; action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                             <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                                                 <label>E-Mail</label>
-                                                <input type="text" id="logmail" placeholder="Enter Email" name="email" required value="<?php echo $username; ?>">
+                                                <input type="text" id="logmail" placeholder="E-Mail eingeben" name="email" required value="<?php echo $username; ?>">
                                                 <span class="help-block"><?php echo $username_err; ?></span>
                                             </div>
                                             <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
@@ -220,7 +220,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <li><a href="#">Abo 3</a></li>
                             </ul>
 
-                        <li><a href="https://www.google.com">External Link</a></li>
+                        <li><a target="_blank" href="https://www.shisha-world.com/">externer Link</a></li>
                     </ul>
                 </nav>
 
