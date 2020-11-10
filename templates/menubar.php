@@ -57,7 +57,6 @@
 
 
         </section>
-
         <!--bis hier Code einfügen-->
 
         <!-- Sidebar -->
@@ -76,7 +75,7 @@
                 <nav id="menu">
                     <ul>
                         <li><a href="index.php">Homepage</a></li>
-                        <li><a href="login.php">Login/Registrieren</a></li>
+                        <li><a href="login.php">Login</a></li>
                         <li><a href="shortcodes.php">Shortcodes</a></li>
                         <li><a href="kalender.php">Kalender</a></li>
                         <li><a href="galerie.php">Galerie</a></li>

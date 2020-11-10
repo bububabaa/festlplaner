@@ -14,6 +14,12 @@
         border: none;
         background: #f1f1f1;
     }
+
+    input[type=text]#logmail:focus,
+    input[type=password]#logpass:focus{
+        background-color: #e1e1e1;
+        outline: none;
+    }
 </style>
 
 <?php
@@ -207,7 +213,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <nav id="menu">
                     <ul>
                         <li><a href="index.php">Homepage</a></li>
-                        <li><a href="login.php">Login/Registrieren</a></li>
+                        <li><a href="login.php">Login</a></li>
                         <li><a href="shortcodes.php">Shortcodes</a></li>
                         <li><a href="kalender.php">Kalender</a></li>
                         <li><a href="galerie.php">Galerie</a></li>

@@ -12,6 +12,9 @@
 
     /* Full-width input fields */
     input[type=text]#regmail,
+    input[type=text]#regvor,
+    input[type=text]#regnach,
+    input[type=date]#reggebdat,
     input[type=password]#regpass,
     input[type=password]#regpassagain{
         width: 100%;
@@ -23,9 +26,13 @@
     }
 
     /* Add a background color when the inputs get focus */
-    input[type=text]:focus,
-    input[type=password]:focus {
-        background-color: #ddd;
+    input[type=text]#regmail:focus,
+    input[type=text]#regvor:focus,
+    input[type=text]#regnach:focus,
+    input[type=date]#reggebdat:focus,
+    input[type=password]#regpass:focus,
+    input[type=password]#regpassagain:focus{
+        background-color: #e1e1e1;
         outline: none;
     }
 
@@ -145,15 +152,20 @@
                 <label for="email"><b>Email</b></label>
                 <input type="text" id="regmail" placeholder="Email eingeben" name="email" required>
 
+                <label for="vorname"><b>Vorname</b></label>
+                <input type="text" id="regvor" placeholder="Vornamen eingeben" name="vorname" required>
+
+                <label for="nachname"><b>Nachname</b></label>
+                <input type="text" id="regnach" placeholder="Nachnamen eingeben" name="nachname" required>
+
+                <label for="geburtsdatum"><b>Geburtsdatum</b></label>
+                <input type="date" id="reggebdat" placeholder="Geburtsdatum eingeben" name="gebdat" required>
+
                 <label for="psw"><b>Passwort</b></label>
                 <input type="password" id="regpass" placeholder="Passwort eingeben" name="psw" required>
 
                 <label for="psw-repeat"><b>Passwort bestätigen</b></label>
                 <input type="password" id="regpassagain" placeholder="Passwort bestätigen" name="psw-repeat" required>
-
-                <label>
-                    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-                </label>
 
                 <p><a href="#" style="color:dodgerblue"></a></p>
 
