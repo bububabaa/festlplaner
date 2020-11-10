@@ -171,7 +171,7 @@
 
                 <div class="clearfix">
                     <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Abbrechen</button>
-                    <button type="submit" class="signupbtn">Resistrieren</button>
+                    <button type="submit" class="signupbtn">Registrieren</button>
                 </div>
             </div>
         </form>
