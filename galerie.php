@@ -51,11 +51,6 @@
 
 
 
-
-
-
-
-
         </section>
 
         <!--bis hier Code einfügen-->
@@ -76,7 +71,7 @@
                 <nav id="menu">
                     <ul>
                         <li><a href="index.php">Homepage</a></li>
-                        <li><a href="login.php">Login/Registrieren</a></li>
+                        <li><a href="login.php">Login</a></li>
                         <li><a href="shortcodes.php">Shortcodes</a></li>
                         <li><a href="kalender.php">Kalender</a></li>
                         <li><a href="galerie.php">Galerie</a></li>
@@ -90,10 +85,12 @@
                             </ul>
                         </li>
                         <li><a target="_blank" href="https://www.shisha-world.com/">externer Link</a></li>
+                           <li><a href="ueberuns.php">Über uns</a></li>
                     </ul>
+
                 </nav>
 
-              <!-- Footer -->
+                <!-- Footer -->
                 <footer id="footer">
                     <p class="copyright">Copyright &copy; 2021 Festlplaner &amp; Co. KG
                         <br>Erstellt von <a rel="nofollow" href="">Uns</a>
@@ -116,4 +113,5 @@
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
 </body>
+
 </html>
