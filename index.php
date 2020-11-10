@@ -167,7 +167,7 @@
                         </div>
                     </div>
                 </section>
-        <!--bis hier Code einfügen-->
+                <!--bis hier Code einfügen-->
 
             </div>
         </div>
@@ -202,6 +202,7 @@
                             </ul>
 
                         <li><a target="_blank" href="https://www.shisha-world.com/">externer Link</a></li>
+                         <li><a href="ueberuns.php">Über uns</a></li>
                     </ul>
                 </nav>
 
@@ -227,4 +228,5 @@
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
 </body>
+
 </html>

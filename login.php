@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <style>
-    #eingaben{
+    #eingaben {
         width: 600px;
     }
 
     input[type=text]#logmail,
-    input[type=password]#logpass{
+    input[type=password]#logpass {
         width: 100%;
         padding: 15px;
         margin: 5px 0 22px 0;
@@ -158,29 +158,29 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                 </header>
 
-        <!--ab hier Code einfügen-->
-        <section class="main-banner">
+                <!--ab hier Code einfügen-->
+                <section class="main-banner">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-                                            <form id="eingaben"; action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                            <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                                                <label>E-Mail</label>
-                                                <input type="text" id="logmail" placeholder="E-Mail eingeben" name="email" required value="<?php echo $username; ?>">
-                                                <span class="help-block"><?php echo $username_err; ?></span>
-                                            </div>
-                                            <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                                                <label>Passwort</label>
-                                                <input type="password" id="logpass" placeholder="Passwort" name="psw" required value="<?php echo $password; ?>">
-                                                <span class="help-block"><?php echo $password_err; ?></span>
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-primary" value="Anmelden">
-                                                <input type="reset" class="btn btn-default" value="Felder leeren">
-                                            </div>
+                                            <form id="eingaben" ; action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                                <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                                                    <label>E-Mail</label>
+                                                    <input type="text" id="logmail" placeholder="E-Mail eingeben" name="email" required value="<?php echo $username; ?>">
+                                                    <span class="help-block"><?php echo $username_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Passwort</label>
+                                                    <input type="password" id="logpass" placeholder="Passwort" name="psw" required value="<?php echo $password; ?>">
+                                                    <span class="help-block"><?php echo $password_err; ?></span>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" class="btn btn-primary" value="Anmelden">
+                                                    <input type="reset" class="btn btn-default" value="Felder leeren">
+                                                </div>
                                                 <?php
                                                 error_reporting(-1);
                                                 ini_set('display_errors','On');
@@ -193,7 +193,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                     </div>
                 </section>
-        <!--bis hier Code einfügen-->
+                <!--bis hier Code einfügen-->
 
             </div>
         </div>
@@ -227,6 +227,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             </ul>
 
                         <li><a target="_blank" href="https://www.shisha-world.com/">externer Link</a></li>
+                           <li><a href="ueberuns.php">Über uns</a></li>
                     </ul>
                 </nav>
 
@@ -252,4 +253,5 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
 </body>
+
 </html>
