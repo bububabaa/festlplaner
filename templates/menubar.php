@@ -36,8 +36,7 @@
                     </div>
                 </header>
 
-            </div>
-        </div>
+
 
         <!--ab hier Code einfügen-->
         <section>
@@ -58,7 +57,8 @@
 
         </section>
         <!--bis hier Code einfügen-->
-
+        </div>
+        </div>
         <!-- Sidebar -->
         <div id="sidebar">
 

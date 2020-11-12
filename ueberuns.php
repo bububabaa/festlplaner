@@ -107,11 +107,17 @@ html {
                     </div>
                 </header>
 
-            </div>
-        </div>
+
 
         <!--ab hier Code einfügen-->
-        <section>
+         <section class="main-banner">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="banner-caption">
+                                            <form>
 <h2 style="text-align:center">Our Team</h2>
 <div class="row">
   <div class="column">
@@ -149,13 +155,23 @@ html {
         <p>Some text that describes me lorem ipsum ipsum lorem.</p>
         <p>john@example.com</p>
         <p><button class="button">Contact</button></p>
+     </div>
       </div>
     </div>
-  </div>
-</div>
-        </section>
-        <!--bis hier Code einfügen-->
 
+                            </div>
+                               </form>
+                        </div>
+                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+             </div>
+                </section>
+        <!--bis hier Code einfügen-->
+        </div>
+        </div>
         <!-- Sidebar -->
         <div id="sidebar">
 
