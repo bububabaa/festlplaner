@@ -19,75 +19,78 @@
     <link rel="stylesheet" href="assets/css/owl.css">
 
     <style>
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  margin: 0;
-}
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
 
-html {
-  box-sizing: border-box;
-}
+        html {
+            box-sizing: border-box;
+        }
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
 
-.column {
-  float: left;
-  width: 33.3%;
-  margin-bottom: 16px;
-  padding: 0 8px;
-}
+        .column {
+            float: left;
+            width: 33.3%;
+            margin-bottom: 16px;
+            padding: 0 8px;
+        }
 
-.card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  margin: 8px;
-}
+        .card {
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+            margin: 8px;
+        }
 
-.about-section {
-  padding: 50px;
-  text-align: center;
-  background-color: #474e5d;
-  color: white;
-}
+        .about-section {
+            padding: 50px;
+            text-align: center;
+            background-color: #474e5d;
+            color: white;
+        }
 
-.container {
-  padding: 0 16px;
-}
+        .container {
+            padding: 0 16px;
+        }
 
-.container::after, .row::after {
-  content: "";
-  clear: both;
-  display: table;
-}
+        .container::after,
+        .row::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
 
-.title {
-  color: grey;
-}
+        .title {
+            color: grey;
+        }
 
-.button {
-  border: none;
-  outline: 0;
-  display: inline-block;
-  padding: 8px;
-  color: white;
-  background-color: #000;
-  text-align: center;
-  cursor: pointer;
-  width: 100%;
-}
+        .button {
+            border: none;
+            outline: 0;
+            display: inline-block;
+            padding: 8px;
+            color: white;
+            background-color: #000;
+            text-align: center;
+            cursor: pointer;
+            width: 100%;
+        }
 
-.button:hover {
-  background-color: #555;
-}
+        .button:hover {
+            background-color: #555;
+        }
 
-@media screen and (max-width: 650px) {
-  .column {
-    width: 100%;
-    display: block;
-  }
-}
-</style>
+        @media screen and (max-width: 650px) {
+            .column {
+                width: 100%;
+                display: block;
+            }
+        }
+    </style>
 
 </head>
 
@@ -109,8 +112,8 @@ html {
 
 
 
-        <!--ab hier Code einfügen-->
-         <section class="main-banner">
+                <!--ab hier Code einfügen-->
+                <section class="main-banner">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
@@ -118,59 +121,59 @@ html {
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <form>
-<h2 style="text-align:center">Unser Team</h2>
-<div class="row">
-  <div class="column">
-    <div class="card">
-      <img src="/w3images/team1.jpg" alt="Mehmet" style="width:100%">
-      <div class="container">
-        <h2>Mehmet Ali Dönmez</h2>
-        <p class="title">Projektleiter</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>jane@example.com</p>
-        <p><button class="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
+                                                <h2 style="text-align:center">Unser Team</h2>
+                                                <div class="row">
+                                                    <div class="column">
+                                                        <div class="card">
+                                                            <img src="/w3images/team1.jpg" alt="Mehmet" style="width:100%">
+                                                            <div class="container">
+                                                                <h2>Mehmet Ali Dönmez</h2>
+                                                                <p class="title">Projektleiter</p>
+                                                                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                                                                <p>jane@example.com</p>
+                                                                <p><button class="button">Contact</button></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-  <div class="column">
-    <div class="card">
-      <img src="assets/images/finn_bild.jpeg" alt="Finn" style="width:100%">
-      <div class="container">
-        <h2>Finnick Homa</h2>
-        <p class="title">Teammitglied</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>mike@example.com</p>
-        <p><button class="button">Contact</button></p>
-      </div>
-    </div>
-  </div>
+                                                    <div class="column">
+                                                        <div class="card">
+                                                            <img src="assets/images/finn_bild.jpeg" alt="Finn" style="width:100%">
+                                                            <div class="container">
+                                                                <h2>Finnick Homa</h2>
+                                                                <p class="title">Teammitglied</p>
+                                                                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                                                                <p>mike@example.com</p>
+                                                                <p><button class="button">Contact</button></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-  <div class="column">
-    <div class="card">
-      <img src="/w3images/team3.jpg" alt="René" style="width:100%">
-      <div class="container">
-        <h2>René Wolf</h2>
-        <p class="title">Teammitglied</p>
-        <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-        <p>john@example.com</p>
-        <p><button class="button">Contact</button></p>
-     </div>
-      </div>
-    </div>
+                                                    <div class="column">
+                                                        <div class="card">
+                                                            <img src="/w3images/team3.jpg" alt="René" style="width:100%">
+                                                            <div class="container">
+                                                                <h2>René Wolf</h2>
+                                                                <p class="title">Teammitglied</p>
+                                                                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                                                                <p>john@example.com</p>
+                                                                <p><button class="button">Contact</button></p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
 
-                            </div>
-                               </form>
-                        </div>
-                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-             </div>
+                    </div>
                 </section>
-        <!--bis hier Code einfügen-->
-        </div>
+                <!--bis hier Code einfügen-->
+            </div>
         </div>
         <!-- Sidebar -->
         <div id="sidebar">

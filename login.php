@@ -16,7 +16,7 @@
     }
 
     input[type=text]#logmail:focus,
-    input[type=password]#logpass:focus{
+    input[type=password]#logpass:focus {
         background-color: #e1e1e1;
         outline: none;
     }
@@ -227,7 +227,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             </ul>
 
                         <li><a target="_blank" href="https://www.shisha-world.com/">externer Link</a></li>
-                           <li><a href="ueberuns.php">Über uns</a></li>
+                        <li><a href="ueberuns.php">Über uns</a></li>
                     </ul>
                 </nav>
 

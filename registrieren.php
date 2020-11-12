@@ -5,7 +5,7 @@
         box-sizing: border-box;
     }
 
-    #registrieren{
+    #registrieren {
         color: dodgerblue;
         text-decoration: underline;
     }
@@ -16,7 +16,7 @@
     input[type=text]#regnach,
     input[type=date]#reggebdat,
     input[type=password]#regpass,
-    input[type=password]#regpassagain{
+    input[type=password]#regpassagain {
         width: 100%;
         padding: 15px;
         margin: 5px 0 22px 0;
@@ -31,7 +31,7 @@
     input[type=text]#regnach:focus,
     input[type=date]#reggebdat:focus,
     input[type=password]#regpass:focus,
-    input[type=password]#regpassagain:focus{
+    input[type=password]#regpassagain:focus {
         background-color: #e1e1e1;
         outline: none;
     }
@@ -181,4 +181,5 @@
         var modal = document.getElementById('id01');
     </script>
 </body>
+
 </html>
