@@ -166,6 +166,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
+                                            <h1>Login</h1>
+                                            <p></p>
                                             <form id="eingaben" ; action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                                                     <label>E-Mail</label>
@@ -178,9 +180,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     <span class="help-block"><?php echo $password_err; ?></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="submit" class="btn btn-primary" value="Anmelden">
-                                                    <input type="reset" class="btn btn-default" value="Felder leeren">
+                                                    <input type="submit" id="anmelden" class="btn btn-primary" value="Anmelden">
+                                                    <input type="reset" id="anmeldenReset" class="btn btn-default" value="Felder leeren">
                                                 </div>
+
+                                                <p>Sie haben noch keinen Account? <a id="registrieren" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Registrieren</a>.</p>
+
                                                 <?php
                                                 error_reporting(-1);
                                                 ini_set('display_errors','On');

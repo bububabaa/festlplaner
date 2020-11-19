@@ -25,6 +25,10 @@
         background: #f1f1f1;
     }
 
+    div[id=YesNo] {
+        width: 10%;
+    }
+
     /* Add a background color when the inputs get focus */
     input[type=text]#regmail:focus,
     input[type=text]#regvor:focus,
@@ -38,7 +42,7 @@
 
     /* Set a style for all buttons */
     button {
-        background-color: #4CAF50;
+        background-color: #535ba0;
         color: white;
         padding: 14px 20px;
         margin: 8px 0;
@@ -55,7 +59,8 @@
     /* Extra styles for the cancel button */
     .cancelbtn {
         padding: 14px 20px;
-        background-color: #f44336;
+        color: black;
+        background-color: transparent;
     }
 
     /* Float cancel and signup buttons and add an equal width */
@@ -140,13 +145,15 @@
 </style>
 
 <body>
-    <p>Sie haben noch keinen Account? <a id="registrieren" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Registrieren</a>.</p>
-
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
         <form class="modal-content" action="/action_page.php">
             <div class="container">
                 <h1>Registrieren</h1>
+                <div id="YesNo">
+                    <input type="checkbox" id="anbieterYesNo" name="anbieterYesNo" value="Anbieter">
+                    <label for="anbieterYesNo">Anbieter</label>
+                </div>
                 <p></p>
                 <hr>
                 <label for="email"><b>Email</b></label>
