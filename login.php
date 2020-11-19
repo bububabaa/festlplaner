@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <style>
-    #eingaben {
+    #eingaben{
         width: 600px;
     }
 
     input[type=text]#logmail,
-    input[type=password]#logpass {
+    input[type=password]#logpass{
         width: 100%;
         padding: 15px;
         margin: 5px 0 22px 0;
@@ -14,109 +14,97 @@
         border: none;
         background: #f1f1f1;
     }
-
-    input[type=text]#logmail:focus,
-    input[type=password]#logpass:focus {
-        background-color: #e1e1e1;
-        outline: none;
-    }
 </style>
 
 <?php
-error_reporting(-1);
-ini_set('display_errors','On');
+// Initialize the session
+session_start();
+
+// Check if the user is already logged in, if yes then redirect him to welcome page
+if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+    header("location: profil.php");
+    exit;
+}
+
 // Include config file
 require_once __DIR__.'/config/database.php';
 
 // Define variables and initialize with empty values
-$username = $password = $confirm_password = "";
-$username_err = $password_err = $confirm_password_err = "";
+$username = $password = "";
+$username_err = $password_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
-    // Validate username
+    // Check if username is empty
     if(empty(trim($_POST["username"]))){
-        $username_err = "Bitte eine Email eingeben";
+        $username_err = "Bitte geben Sie eine Email ein.";
     } else{
-        // Prepare a select statement
-        $sql = "SELECT id FROM users WHERE username = ?";
+        $username = trim($_POST["username"]);
+    }
 
-        if($stmt = mysqli_prepare($link, $sql)){
+    // Check if password is empty
+    if(empty(trim($_POST["password"]))){
+        $password_err = "Bitte geben Sie ein Passwort ein.";
+    } else{
+        $password = trim($_POST["password"]);
+    }
+
+    // Validate credentials
+    if(empty($username_err) && empty($password_err)){
+        // Prepare a select statement
+        $sql = "SELECT BID, Email, Passwort FROM benutzer WHERE Email = :username";
+
+        if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "s", $param_username);
+            $stmt->bindParam(":username", $param_username, PDO::PARAM_STR);
 
             // Set parameters
             $param_username = trim($_POST["username"]);
 
             // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                /* store result */
-                mysqli_stmt_store_result($stmt);
+            if($stmt->execute()){
+                // Check if username exists, if yes then verify password
+                if($stmt->rowCount() == 1){
+                    if($row = $stmt->fetch()){
+                        $id = $row["BID"];
+                        $username = $row["Email"];
+                        $hashed_password = $row["Passwort"];
+                        //echo $username;
+                        //echo $password;
+                        //echo $hashed_password;
+                        //if(password_verify($password, $hashed_password)){
+                        if(strcmp($password, $hashed_password) == 0){
+                            // Password is correct, so start a new session
+                            session_start();
 
-                if(mysqli_stmt_num_rows($stmt) == 1){
-                    $username_err = "Diese Email existiert bereit";
+                            // Store data in session variables
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["id"] = $id;
+                            $_SESSION["username"] = $username;
+
+                            // Redirect user to welcome page
+                            header("location: profil.php");
+                        } else{
+                            // Display an error message if password is not valid
+                            $password_err = "Das Passwort ist inkorrekt.";
+                        }
+                    }
                 } else{
-                    $username = trim($_POST["username"]);
+                    // Display an error message if username doesn't exist
+                    $username_err = "Diese Email ist unbekannt.";
                 }
             } else{
-                echo "Bitte versuchen Sie es später erneut";
+                echo "Oops! Etwas ist schief gelaufen. Bitte probieren Sie es später noch einmal.";
             }
 
             // Close statement
-            mysqli_stmt_close($stmt);
-        }
-    }
-
-    // Validate password
-    if(empty(trim($_POST["password"]))){
-        $password_err = "Bitte ein Passwort eingeben";
-    } elseif(strlen(trim($_POST["password"])) < 6){
-        $password_err = "Passwort muss mindestens 6 Zeichen beinhalten";
-    } else{
-        $password = trim($_POST["password"]);
-    }
-
-    // Validate confirm password
-    if(empty(trim($_POST["confirm_password"]))){
-        $confirm_password_err = "Bitte Passwort bestätigen";
-    } else{
-        $confirm_password = trim($_POST["confirm_password"]);
-        if(empty($password_err) && ($password != $confirm_password)){
-            $confirm_password_err = "Passwörter stimmen nicht überein";
-        }
-    }
-
-    // Check input errors before inserting in database
-    if(empty($username_err) && empty($password_err) && empty($confirm_password_err)){
-
-        // Prepare an insert statement
-        $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-
-        if($stmt = mysqli_prepare($link, $sql)){
-            // Bind variables to the prepared statement as parameters
-            mysqli_stmt_bind_param($stmt, "ss", $param_username, $param_password, $param_confirm_password);
-
-            // Set parameters
-            $param_username = $username;
-            $param_password = password_hash($password, PASSWORD_DEFAULT); // Creates a password hash
-            $param_confirm_password = password_hash($confirm_password, PASSWORD_DEFAULT);
-
-            // Attempt to execute the prepared statement
-            if(mysqli_stmt_execute($stmt)){
-                // Redirect to login page
-                header("location: login.php");
-            } else{
-                echo "Bitte versuchen Sie es später erneut";
-            }
-
-            // Close statement
-            mysqli_stmt_close($stmt);
+            unset($stmt);
         }
     }
 
     // Close connection
-    mysqli_close($link);
+    unset($pdo);
 }
 ?>
 
@@ -141,7 +129,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="assets/css/owl.css">
 
 </head>
-
 <body class="is-preload">
 
     <!-- Wrapper -->
@@ -158,38 +145,37 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                 </header>
 
-                <!--ab hier Code einfügen-->
-                <section class="main-banner">
+        <!--ab hier Code einfügen-->
+        <section class="main-banner">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-                                            <h1>Login</h1>
-                                            <p></p>
-                                            <form id="eingaben" ; action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                        <h2>Login</h2>
+                                            <p>Bitte geben Sie Ihre Benutzerdaten an.</p>
+                                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                                                     <label>E-Mail</label>
-                                                    <input type="text" id="logmail" placeholder="E-Mail eingeben" name="email" required value="<?php echo $username; ?>">
+                                                    <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
                                                     <span class="help-block"><?php echo $username_err; ?></span>
                                                 </div>
                                                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                                                     <label>Passwort</label>
-                                                    <input type="password" id="logpass" placeholder="Passwort" name="psw" required value="<?php echo $password; ?>">
+                                                    <input type="password" name="password" class="form-control">
                                                     <span class="help-block"><?php echo $password_err; ?></span>
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="submit" id="anmelden" class="btn btn-primary" value="Anmelden">
-                                                    <input type="reset" id="anmeldenReset" class="btn btn-default" value="Felder leeren">
+                                                    <input type="submit" class="btn btn-primary" value="Login">
+                                                    <input type="reset" class="btn btn-default" value="Reset">
                                                 </div>
+                                                 <?php
+                                               // error_reporting(-1);
+                                                //ini_set('display_errors','On');
+                                                //require __DIR__.'/registrieren.php'?>
+                                               <p>Haben Sie bereits einen Account? <a href="./registrieren.php" >Registrieren Sie sich jetzt</a>.</p>
 
-                                                <p>Sie haben noch keinen Account? <a id="registrieren" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Registrieren</a>.</p>
-
-                                                <?php
-                                                error_reporting(-1);
-                                                ini_set('display_errors','On');
-                                                require __DIR__.'/registrieren.php'?>
                                             </form>
                                         </div>
                                     </div>
@@ -198,11 +184,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                     </div>
                 </section>
-                <!--bis hier Code einfügen-->
+        <!--bis hier Code einfügen-->
 
             </div>
         </div>
-        <!-- Sidebar -->
+
+    <!-- Sidebar -->
+
         <div id="sidebar">
 
             <div class="inner">
@@ -232,7 +220,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             </ul>
 
                         <li><a target="_blank" href="https://www.shisha-world.com/">externer Link</a></li>
-                        <li><a href="ueberuns.php">Über uns</a></li>
                     </ul>
                 </nav>
 
@@ -245,7 +232,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
             </div>
         </div>
-    </div>
+    </div> <!-- Wrapper -->
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
@@ -257,6 +244,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <script src="assets/js/transition.js"></script>
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
+
 </body>
 
 </html>

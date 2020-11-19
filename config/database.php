@@ -1,5 +1,33 @@
+
 <?php
-$username = "admin";
-$password = "1234";
-$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+/* Database credentials. Assuming you are running MySQL
+server with default setting (user 'root' with no password) */
+/*define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'festlplaner');
+
+/* Attempt to connect to MySQL database */
+/*$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
+
+// Check connection
+if($link === false){
+    die("ERROR: Could not connect. " . mysqli_connect_error());
+}*/
+//--------------------------------------------------------------------------
+/* Database credentials. Assuming you are running MySQL
+server with default setting (user 'root' with no password) */
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_NAME', 'festlplaner');
+
+/* Attempt to connect to MySQL database */
+try{
+    $pdo = new PDO("mysql:host=localhost;dbname=festlplaner" . DB_SERVER . ";dbname=" . DB_NAME, DB_USERNAME, DB_PASSWORD);
+    // Set the PDO error mode to exception
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch(PDOException $e){
+    die("ERROR: Could not connect. " . $e->getMessage());
+}
 ?>
