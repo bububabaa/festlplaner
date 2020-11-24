@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <style>
-    #eingaben{
+    #eingaben {
         width: 600px;
     }
 
     input[type=text]#logmail,
-    input[type=password]#logpass{
+    input[type=password]#logpass {
         width: 100%;
         padding: 15px;
         margin: 5px 0 22px 0;
@@ -129,6 +129,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="assets/css/owl.css">
 
 </head>
+
 <body class="is-preload">
 
     <!-- Wrapper -->
@@ -145,15 +146,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                 </header>
 
-        <!--ab hier Code einfügen-->
-        <section class="main-banner">
+                <!--ab hier Code einfügen-->
+                <section class="main-banner">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-                                        <h2>Login</h2>
+                                            <h2>Login</h2>
                                             <p>Bitte geben Sie Ihre Benutzerdaten an.</p>
                                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
@@ -170,11 +171,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     <input type="submit" class="btn btn-primary" value="Login">
                                                     <input type="reset" class="btn btn-default" value="Reset">
                                                 </div>
-                                                 <?php
+                                                <?php
                                                // error_reporting(-1);
                                                 //ini_set('display_errors','On');
                                                 //require __DIR__.'/registrieren.php'?>
-                                               <p>Haben Sie bereits einen Account? <a href="./registrieren.php" >Registrieren Sie sich jetzt</a>.</p>
+                                                <p>Haben Sie bereits einen Account? <a href="./registrieren.php">Registrieren Sie sich jetzt</a>.</p>
 
                                             </form>
                                         </div>
@@ -184,12 +185,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         </div>
                     </div>
                 </section>
-        <!--bis hier Code einfügen-->
+                <!--bis hier Code einfügen-->
 
             </div>
         </div>
 
-    <!-- Sidebar -->
+        <!-- Sidebar -->
 
         <div id="sidebar">
 

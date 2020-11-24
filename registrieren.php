@@ -145,7 +145,7 @@
 </style>
 
 <body>
-     <p>Sie haben noch keinen Account? <a id="registrieren" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Registrieren</a>.</p>
+    <p>Sie haben noch keinen Account? <a id="registrieren" onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Registrieren</a>.</p>
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
         <form class="modal-content" action="/action_page.php">
