@@ -91,13 +91,13 @@
             }
         }
 
-        #social-media{
-  text-decoration: none;
-  font-size: 25px;
-  color: black;
- text-align: center;
+        #social-media {
+            text-decoration: none;
+            font-size: 25px;
+            color: black;
+            text-align: center;
 
-}
+        }
     </style>
 
 </head>
@@ -140,10 +140,10 @@
                                                                 <p>Zu viel Salz</p>
                                                                 <p>Doenmezme@gmail.com</p>
                                                                 <div style="margin: 24px 0;">
-    <a id="social-media" href="#"><i class="fa fa-twitter"></i></a>
-    <a id="social-media" href="#"><i class="fa fa-facebook"></i></a>
-    <a id="social-media" href="#"><i class="fa fa-instagram"></i></a>
-  </div>
+                                                                    <a id="social-media" href="#"><i class="fa fa-twitter"></i></a>
+                                                                    <a id="social-media" href="https://www.facebook.com/mehmetali.donmez.75436"><i class="fa fa-facebook"></i></a>
+                                                                    <a id="social-media" href="https://www.instagram.com/mehmetaliderbabo/"><i class="fa fa-instagram"></i></a>
+                                                                </div>
                                                                 <p><button class="button">Contact</button></p>
                                                             </div>
                                                         </div>
@@ -157,6 +157,12 @@
                                                                 <p class="title">Teammitglied</p>
                                                                 <p>Zu viel Roblox, zu wenig Among us</p>
                                                                 <p>finnhoma@gmail.com</p>
+
+                                                                <div style="margin: 24px 0;">
+                                                                    <a id="social-media" href="#"><i class="fa fa-twitter"></i></a>
+                                                                    <a id="social-media" href="#"><i class="fa fa-facebook"></i></a>
+                                                                    <a id="social-media" href="https://www.instagram.com/itsfinn_/"><i class="fa fa-instagram"></i></a>
+                                                                </div>
                                                                 <p><button class="button">Contact</button></p>
                                                             </div>
                                                         </div>
@@ -170,6 +176,11 @@
                                                                 <p class="title">Teammitglied</p>
                                                                 <p>Zu viel driften, zu wenig blinken</p>
                                                                 <p>renéwolf@gmail.com</p>
+                                                                <div style="margin: 24px 0;">
+                                                                    <a id="social-media" href="#"><i class="fa fa-twitter"></i></a>
+                                                                    <a id="social-media" href="https://www.facebook.com/rene3107"><i class="fa fa-facebook"></i></a>
+                                                                    <a id="social-media" href="https://www.instagram.com/3107rene/"><i class="fa fa-instagram"></i></a>
+                                                                </div>
                                                                 <p><button class="button">Contact</button></p>
                                                             </div>
                                                         </div>
