@@ -90,6 +90,14 @@
                 display: block;
             }
         }
+
+        #social-media{
+  text-decoration: none;
+  font-size: 25px;
+  color: black;
+ text-align: center;
+
+}
     </style>
 
 </head>
@@ -131,6 +139,11 @@
                                                                 <p class="title">Projektleiter</p>
                                                                 <p>Zu viel Salz</p>
                                                                 <p>Doenmezme@gmail.com</p>
+                                                                <div style="margin: 24px 0;">
+    <a id="social-media" href="#"><i class="fa fa-twitter"></i></a>
+    <a id="social-media" href="#"><i class="fa fa-facebook"></i></a>
+    <a id="social-media" href="#"><i class="fa fa-instagram"></i></a>
+  </div>
                                                                 <p><button class="button">Contact</button></p>
                                                             </div>
                                                         </div>
