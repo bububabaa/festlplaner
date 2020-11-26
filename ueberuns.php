@@ -90,6 +90,14 @@
                 display: block;
             }
         }
+
+        #social-media {
+            text-decoration: none;
+            font-size: 25px;
+            color: black;
+            text-align: center;
+
+        }
     </style>
 
 </head>
@@ -125,12 +133,17 @@
                                                 <div class="row">
                                                     <div class="column">
                                                         <div class="card">
-                                                            <img src="/w3images/team1.jpg" alt="Mehmet" style="width:100%">
+                                                            <img src="assets/images/mehmet_foto.jpg" alt="Mehmet" style="width:100%">
                                                             <div class="container">
-                                                                <h2>Mehmet Ali Dönmez</h2>
+                                                                <h2>Mehmet Dönmez</h2>
                                                                 <p class="title">Projektleiter</p>
-                                                                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                                                                <p>jane@example.com</p>
+                                                                <p>Zu viel Salz</p>
+                                                                <p>Doenmezme@gmail.com</p>
+                                                                <div style="margin: 24px 0;">
+                                                                    <a id="social-media" href="#"><i class="fa fa-twitter"></i></a>
+                                                                    <a id="social-media" href="https://www.facebook.com/mehmetali.donmez.75436"><i class="fa fa-facebook"></i></a>
+                                                                    <a id="social-media" href="https://www.instagram.com/mehmetaliderbabo/"><i class="fa fa-instagram"></i></a>
+                                                                </div>
                                                                 <p><button class="button">Contact</button></p>
                                                             </div>
                                                         </div>
@@ -140,10 +153,16 @@
                                                         <div class="card">
                                                             <img src="assets/images/finn_bild.jpeg" alt="Finn" style="width:100%">
                                                             <div class="container">
-                                                                <h2>Finnick Homa</h2>
+                                                                <h2>Finn Homa</h2>
                                                                 <p class="title">Teammitglied</p>
-                                                                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                                                                <p>mike@example.com</p>
+                                                                <p>Zu viel Roblox, zu wenig Among us</p>
+                                                                <p>finnhoma@gmail.com</p>
+
+                                                                <div style="margin: 24px 0;">
+                                                                    <a id="social-media" href="#"><i class="fa fa-twitter"></i></a>
+                                                                    <a id="social-media" href="#"><i class="fa fa-facebook"></i></a>
+                                                                    <a id="social-media" href="https://www.instagram.com/itsfinn_/"><i class="fa fa-instagram"></i></a>
+                                                                </div>
                                                                 <p><button class="button">Contact</button></p>
                                                             </div>
                                                         </div>
@@ -151,12 +170,17 @@
 
                                                     <div class="column">
                                                         <div class="card">
-                                                            <img src="/w3images/team3.jpg" alt="René" style="width:100%">
+                                                            <img src="assets/images/ren%C3%A9_foto.jpg" alt="René" style="width:100%">
                                                             <div class="container">
                                                                 <h2>René Wolf</h2>
                                                                 <p class="title">Teammitglied</p>
-                                                                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                                                                <p>john@example.com</p>
+                                                                <p>Zu viel driften, zu wenig blinken</p>
+                                                                <p>renéwolf@gmail.com</p>
+                                                                <div style="margin: 24px 0;">
+                                                                    <a id="social-media" href="#"><i class="fa fa-twitter"></i></a>
+                                                                    <a id="social-media" href="https://www.facebook.com/rene3107"><i class="fa fa-facebook"></i></a>
+                                                                    <a id="social-media" href="https://www.instagram.com/3107rene/"><i class="fa fa-instagram"></i></a>
+                                                                </div>
                                                                 <p><button class="button">Contact</button></p>
                                                             </div>
                                                         </div>
