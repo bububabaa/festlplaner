@@ -36,10 +36,14 @@
                     </div>
                 </header>
 
-
-
         <!--ab hier Code einfügen-->
-        <section>
+        <section class="main-banner">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="banner-caption">
 
 
 
@@ -47,15 +51,13 @@
 
 
 
-
-
-
-
-
-
-
-
-        </section>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
         <!--bis hier Code einfügen-->
         </div>
         </div>
