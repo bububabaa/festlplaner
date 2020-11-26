@@ -62,6 +62,14 @@
                                                 <div id='map' style='width: auto; height: 950px;'></div>
 
                                                 <div id="mapmenu">
+                                                    <input
+                                                        id="streets-v11"
+                                                        type="radio"
+                                                        name="rtoggle"
+                                                        value="streets"
+                                                        checked="checked"
+                                                        />
+
                                                     <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked" />
                                                     <label for="streets-v11">streets</label>
                                                     <input id="light-v10" type="radio" name="rtoggle" value="light" />
