@@ -226,7 +226,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <li><a href="#">Abo 3</a></li>
                             </ul>
 
-                        <li><a target="_blank" href="https://www.shisha-world.com/">externer Link</a></li>
+                        <li><a target="_blank" href="https://hakmistelbach.ac.at/">externer Link</a></li>
                         <li><a href="ueberuns.php">Über uns</a></li>
                     </ul>
                 </nav>
