@@ -3,6 +3,13 @@
 
 <style>
     #map {}
+
+    #mapmenu {
+    position: absolute;
+    background: #fff;
+    padding: 10px;
+    font-family: 'Open Sans', sans-serif;
+    }
 </style>
 
 <head>
@@ -53,7 +60,8 @@
                                         <div class="banner-caption">
                                             <form id="map">
                                                 <div id='map' style='width: auto; height: 950px;'></div>
-                                                <div id="menu">
+
+                                                <div id="mapmenu">
                                                     <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked" />
                                                     <label for="streets-v11">streets</label>
                                                     <input id="light-v10" type="radio" name="rtoggle" value="light" />
@@ -65,6 +73,7 @@
                                                     <input id="satellite-v9" type="radio" name="rtoggle" value="satellite" />
                                                     <label for="satellite-v9">satellite</label>
                                                 </div>
+
                                                 <script>
                                                     mapboxgl.accessToken = 'pk.eyJ1IjoiZmVzdGxwbGFuZXJoYWsxIiwiYSI6ImNraHhlbHJxdjBoeWoydm5icnl0cG12dHkifQ.j_lmlCu_KtaqM6J-p15oVQ';
                                                     var map = new mapboxgl.Map({
@@ -73,6 +82,8 @@
                                                         center: [-74.5, 40],
                                                         zoom: 13
                                                     });
+
+                                                    map.addControl(new mapboxgl.NavigationControl());
 
                                                     var layerList = document.getElementById('menu');
                                                     var inputs = layerList.getElementsByTagName('input');
@@ -85,7 +96,6 @@
                                                     for (var i = 0; i < inputs.length; i++) {
                                                         inputs[i].onclick = switchLayer;
                                                     }
-                                                    map.addControl(new mapboxgl.NavigationControl());
                                                 </script>
                                             </form>
                                         </div>
