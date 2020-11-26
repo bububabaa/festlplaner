@@ -46,10 +46,10 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="banner-caption">
-                                                <h4>Wilkommen auf der Seite <em>Festlplaner</em></h4>
-                                                <span>Super Website &amp; dem Planer für jeden Alkoholiker.</span>
+                                                <h4>Wilkkommen auf unserer Seite <em>Festlplaner</em></h4>
+                                                <span>Super Website &amp; Mit den besten Websitedesignern</span>
                                                 <div class="primary-button">
-                                                    <a href="#">Read More</a>
+                                                    <a href="#">Mehr anzeigen</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -68,42 +68,42 @@
                                 <div class="service-item first-item">
                                     <div class="icon"></div>
                                     <h4>Festl 1</h4>
-                                    <p>Super Festl alla</p>
+                                    <p>Super Festl</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item second-item">
                                     <div class="icon"></div>
                                     <h4>Festl 2</h4>
-                                    <p>Super Festl alla</p>
+                                    <p>Super Festl</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item third-item">
                                     <div class="icon"></div>
                                     <h4>Festl 3</h4>
-                                    <p>Super Festl alla</p>
+                                    <p>Super Festl</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item fourth-item">
                                     <div class="icon"></div>
                                     <h4>Festl 4</h4>
-                                    <p>Super Festl alla</p>
+                                    <p>Super Festl</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item fivth-item">
                                     <div class="icon"></div>
                                     <h4>Festl 5</h4>
-                                    <p>Super Festl alla</p>
+                                    <p>Super Festl</p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item sixth-item">
                                     <div class="icon"></div>
                                     <h4>Festl 6</h4>
-                                    <p>Super Festl alla</p>
+                                    <p>Super Festl</p>
                                 </div>
                             </div>
                         </div>
@@ -201,7 +201,7 @@
                                 <li><a href="#">Abo 3</a></li>
                             </ul>
 
-                        <li><a target="_blank" href="https://www.shisha-world.com/">externer Link</a></li>
+                        <li><a target="_blank" href="https://hakmistelbach.ac.at/">externer Link</a></li>
                         <li><a href="ueberuns.php">Über uns</a></li>
                     </ul>
                 </nav>
