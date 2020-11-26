@@ -14,6 +14,12 @@
         border: none;
         background: #f1f1f1;
     }
+
+    input[type=text]#logmail:focus,
+    input[type=password]#logpass:focus {
+        background-color: #e1e1e1;
+        outline: none;
+    }
 </style>
 
 <?php
@@ -156,15 +162,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                         <div class="banner-caption">
                                             <h2>Login</h2>
                                             <p>Bitte geben Sie Ihre Benutzerdaten an.</p>
-                                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                            <form id="eingaben" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                                 <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
                                                     <label>E-Mail</label>
-                                                    <input type="text" name="username" class="form-control" value="<?php echo $username; ?>">
+                                                    <input type="text" id="logmail" name="username" placeholder="E-Mail eingeben" class="form-control" value="<?php echo $username; ?>">
                                                     <span class="help-block"><?php echo $username_err; ?></span>
                                                 </div>
                                                 <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
                                                     <label>Passwort</label>
-                                                    <input type="password" name="password" class="form-control">
+                                                    <input type="password" id="logpass" name="password" placeholder="Passwort" class="form-control">
                                                     <span class="help-block"><?php echo $password_err; ?></span>
                                                 </div>
                                                 <div class="form-group">
