@@ -79,8 +79,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         //echo $username;
                         //echo $password;
                         //echo $hashed_password;
-                        //if(password_verify($password, $hashed_password)){
-                        if(strcmp($password, $hashed_password) == 0){
+                        if(password_verify($password, $hashed_password)){
+                        //if(strcmp($password, $hashed_password) == 0){
                             // Password is correct, so start a new session
                             session_start();
 
