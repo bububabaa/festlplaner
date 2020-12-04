@@ -6,7 +6,14 @@ require_once __DIR__.'/config/database.php';
 $email = $vorname = $nachname = $gebdat = $psw = $confirm_psw = "";
 $bgid="1";
 $email_err = $vorname_err = $nachname_err = $gebdat_err = $bgid_err = $psw_err = $confirm_psw_err = "";
+$verified=FALSE;
 
+// Define variables and initialize with empty values
+$emaila = $name = $plz = $ort = $strasse = $ansprechp = $telefon = $pswa = $confirm_pswa = "";
+$emaila_err = $name_err = $ort_err = $plz_err = $strasse_err = $ansprechp_err = $telefon_err = $pswa_err = $confirm_pswa_err = $verified_err="";
+
+if(isset($_POST['submit1']))
+{
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -128,6 +135,162 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     // Close connection
     unset($pdo);
+}
+}
+
+if(isset($_POST['submit2']))
+{
+
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+
+    // Validate username
+    if(empty(trim($_POST["emaila"]))){
+        $emaila_err = "Bitte geben Sie Ihre Email ein.";
+    } else{
+        // Prepare a select statement
+        $sql = "SELECT AID FROM anbieter WHERE Email = :emaila";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":emaila", $param_email, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_emaila = trim($_POST["emaila"]);
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                if($stmt->rowCount() == 1){
+                    $emaila_err = "Diese Email ist bereits vergeben.";
+                } else{
+                    $emaila = trim($_POST["emaila"]);
+                    //echo $email;
+                }
+            } else{
+                echo "Oops! Etwas ist schief gelaufen. Bitte probieren Sie es später noch einmal.";
+            }
+
+            // Close statement
+            unset($stmt);
+        }
+    }
+    if(empty(trim($_POST["name"]))){
+        $name_err = "Bitte geben Sie Ihren Name ein.";
+    }
+    else{
+        $name = trim($_POST["name"]);
+        //echo $vorname;
+    }
+
+    if(empty(trim($_POST["plz"]))){
+        $plz_err = "Bitte geben Sie Ihre Postleitzahl ein.";
+    }
+    else{
+        $plz = trim($_POST["plz"]);
+        //echo $nachname;
+    }
+
+    if(empty(trim($_POST["ort"]))){
+        $ort_err = "Bitte geben Sie Ihren Ort ein.";
+    }
+    else{
+        $ort = trim($_POST["ort"]);
+        //echo $nachname;
+    }
+
+    if(empty(trim($_POST["strasse"]))){
+        $strasse_err = "Bitte geben Sie Ihre Straße ein.";
+    }
+    else{
+        $strasse = trim($_POST["strasse"]);
+        //echo $nachname;
+    }
+
+    if(empty(trim($_POST["ansprechp"]))){
+        $ansprechp_err = "Bitte geben Sie Ihre Ansprechsperson ein.";
+    }
+    else{
+        $ansprechp = trim($_POST["ansprechp"]);
+        // echo $ansprechp;
+    }
+    if(empty(trim($_POST["telefon"]))){
+        $telefon_err = "Bitte geben Sie Ihre Telefonnummer ein.";
+    }
+    else{
+        $telefon = trim($_POST["telefon"]);
+        // echo $telefon;
+    }
+    // $verified = trim($_POST["verified"]);
+
+    // Validate password
+    if(empty(trim($_POST["pswa"]))){
+        $pswa_err = "Bitte geben Sie ein Passwort ein.";
+    } elseif(strlen(trim($_POST["pswa"])) < 6){
+        $pswa_err = "Das Passwort muss mindestens 6 Zeichen haben.";
+    } else{
+        $psw = trim($_POST["pswa"]);
+       // echo $psw;
+    }
+
+    // Validate confirm password
+    if(empty(trim($_POST["confirm_pswa"]))){
+        $confirm_pswa_err = "Bitte bestätigen Sie Ihr Passwort.";
+    } else{
+        $confirma_psw = trim($_POST["confirm_pswa"]);
+        if(empty($pswa_err) && ($pswa != $confirm_pswa)){
+            $confirm_pswa_err = "Passwort stimmt nicht überein.";
+        }
+    }
+
+    // Check input errors before inserting in database
+    if(empty($emaila_err) && empty($pswa_err) && empty($confirm_pswa_err) && empty($name_err) && empty($plz_err) && empty($ort_err) && empty($strasse_err) && empty($ansprechp_err && empty($telefon_err))){
+
+        // Prepare an insert statement
+        $sql = "INSERT INTO anbieter (Name, PLZ, Ort, Strasse, Ansprechsperson, Telefon, Email, Passwort, Verified) VALUES (:name, :plz, :ort, :strasse, :ansprechp, :telefon, :emaila, :pswa,'".$verified."')";
+
+        // $sql = "INSERT INTO benutzer (Vorname, Nachname, Gebdat, Email, Passwort) VALUES (:vorname, :nachname, :gebdat, :email, :psw)";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":name", $param_name, PDO::PARAM_STR);
+            $stmt->bindParam(":plz", $param_plz, PDO::PARAM_STR);
+            $stmt->bindParam(":ort", $param_ort, PDO::PARAM_STR);
+            $stmt->bindParam(":strasse", $param_strasse, PDO::PARAM_STR);
+            $stmt->bindParam(":ansprechp", $param_ansprechp, PDO::PARAM_STR);
+            $stmt->bindParam(":telefon", $param_telefon, PDO::PARAM_STR);
+            $stmt->bindParam(":emaila", $param_emaila, PDO::PARAM_STR);
+            $stmt->bindParam(":pswa", $param_pswa, PDO::PARAM_STR);
+           // stmt->bindParam(":verified", $param_verified, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_name = $name;
+            $param_plz = $plz;
+            $param_ort = $ort;
+            $param_strasse = $strasse;
+            $param_ansprechp = $ansprechp;
+            $param_telefon = $telefon;
+            $param_email = $emaila;
+           // $param_psw = psw_hash($psw, PASSWORD_DEFAULT); // Creates a password hash
+            $pswa= password_hash($pswa, PASSWORD_DEFAULT); // Creates a password hash
+            $param_pswa = $pswa;
+            $param_verified = $verified;
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                // Redirect to login page
+                header("location: login.php");
+            } else{
+                echo "Etwas ist schief gelaufen. Bitte probieren Sie es später noch einmal.";
+            }
+
+            // Close statement
+            unset($stmt);
+        }
+    }
+
+    // Close connection
+    unset($pdo);
+}
 }
 ?>
 
@@ -275,21 +438,75 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             width: 100%;
         }
     }
+
+
+    /* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
 </style>
 
 <head>
     <meta charset="UTF-8">
-    <title>Sign Up</title>
+    <title>Registrieren</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
     <style type="text/css">
         body{ font: 14px sans-serif; }
         .wrapper{ width: 350px; padding: 20px; }
     </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
+
     <div class="wrapper">
         <h2>Registrieren</h2>
         <p>Bitte füllen Sie diese Felder aus, um sich zu registrieren.</p>
+
+
+<div class="container">
+        <ul class="nav nav-tabs">
+   <li class="active"><a data-toggle="tab" href="#benutzer">Benutzer</a></li>
+             <!--   <li><a data-toggle="tab" href="#benutzer">Benutzer</a></li> -->
+    <li><a data-toggle="tab" href="#anbieter">Anbieter</a></li>
+        </ul>
+
+    <div class="tab-content">
+  <div id="benutzer" class="tab-pane fade in active">
+   <!-- <div id="benutzer" class="tab-pane fade">-->
+      <h3>Benutzer</h3>
+
         <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
             <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
                 <label>Email</label>
@@ -325,11 +542,87 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 <input type="hidden" name="bgid" class="form-control" value="<?php echo $bgid; ?>">
             </div>
             <div class="form-group">
-                <input type="submit" class="btn btn-primary" value="Registrieren">
+                <input type="submit" name="submit1" class="btn btn-primary" value="Registrieren">
+                <input type="reset" class="btn btn-Schon registriertefault" value="Felder leeren">
+            </div>
+            <p>Schon registriert? <a href="login.php">Melden Sie sich hier an</a>.</p>
+
+        </form>
+    </div>
+    <div id="anbieter" class="tab-pane fade">
+       <h3>Anbieter</h3>
+
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
+                <span class="help-block"><?php echo $name_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($plz_err)) ? 'has-error' : ''; ?>">
+                <label>PLZ</label>
+                <input type="text" name="plz" class="form-control" value="<?php echo $plz; ?>">
+                <span class="help-block"><?php echo $plz_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($ort_err)) ? 'has-error' : ''; ?>">
+                <label>Ort</label>
+                <input type="text" name="ort" class="form-control" value="<?php echo $ort; ?>">
+                <span class="help-block"><?php echo $ort_err; ?></span>
+            </div>
+             <div class="form-group <?php echo (!empty($strasse_err)) ? 'has-error' : ''; ?>">
+                <label>Straße und Hausnummer</label>
+                <input type="text" name="strasse" class="form-control" value="<?php echo $strasse; ?>">
+                <span class="help-block"><?php echo $strasse_err; ?></span>
+            </div>
+             <div class="form-group <?php echo (!empty($ansprechp_err)) ? 'has-error' : ''; ?>">
+                <label>Ansprechsperson</label>
+                <input type="text" name="ansprechp" class="form-control" value="<?php echo $ansprechp; ?>">
+                <span class="help-block"><?php echo $ansprechp_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($telefon_err)) ? 'has-error' : ''; ?>">
+                <label>Telefon</label>
+                <input type="text" name="telefon" class="form-control" value="<?php echo $telefon; ?>">
+                <span class="help-block"><?php echo $telefon_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($emaila_err)) ? 'has-error' : ''; ?>">
+                <label>Email</label>
+                <input type="text" name="emaila" class="form-control" value="<?php echo $emaila; ?>">
+                <span class="help-block"><?php echo $emaila_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($pswa_err)) ? 'has-error' : ''; ?>">
+                <label>Passwort</label>
+                <input type="password" name="pswa" class="form-control" value="<?php echo $pswa; ?>">
+                <span class="help-block"><?php echo $pswa_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($confirm_pswa_err)) ? 'has-error' : ''; ?>">
+                <label>Passwort bestätigen</label>
+                <input type="password" name="confirm_pswa" class="form-control" value="<?php echo $confirm_pswa; ?>">
+                <span class="help-block"><?php echo $confirm_pswa_err; ?></span>
+            </div>
+            <div class="form-group <?php echo (!empty($verified_err)) ? 'has-error' : ''; ?>">
+                <input type="checkbox" id="verified" name="verified" value="<?php echo $verified; ?>" unchecked="unchecked" disabled="disabled">
+                <label for="vehicle1"> Verified</label><br>
+                <p>Bitte beachten Sie, dass die Verifizierung nur von einem Administrator durchgeführen werden kann.</p>
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit2" class="btn btn-primary" value="Registrieren">
                 <input type="reset" class="btn btn-Schon registriertefault" value="Felder leeren">
             </div>
             <p>Schon registriert? <a href="login.php">Melden Sie sich hier an</a>.</p>
         </form>
     </div>
+</div>
+</div>
+
+</div> <!-- ende wrapper-->
+
+    <script>
+$(document).ready(function(){
+  $(".nav-tabs a").click(function(){
+    $(this).tab('show');
+  });
+});
+</script>
+
+
 </body>
 </html>
