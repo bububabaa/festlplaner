@@ -493,16 +493,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <div class="wrapper">
         <h2>Registrieren</h2>
         <p>Bitte füllen Sie diese Felder aus, um sich zu registrieren.</p>
-
-
-<div class="container">
+        <div class="container">
         <ul class="nav nav-tabs">
-   <li class="active"><a data-toggle="tab" href="#benutzer">Benutzer</a></li>
+            <li class="active"><a data-toggle="tab" href="#benutzer">Benutzer</a></li>
              <!--   <li><a data-toggle="tab" href="#benutzer">Benutzer</a></li> -->
-    <li><a data-toggle="tab" href="#anbieter">Anbieter</a></li>
+            <li><a data-toggle="tab" href="#anbieter">Anbieter</a></li>
         </ul>
 
-    <div class="tab-content">
+<div class="tab-content">
   <div id="benutzer" class="tab-pane fade in active">
    <!-- <div id="benutzer" class="tab-pane fade">-->
       <h3>Benutzer</h3>
