@@ -2,8 +2,6 @@
 <html lang="de">
 
 <style>
-    #map {}
-
     #mapmenu {
     position: absolute;
     background: #fff;
@@ -32,6 +30,18 @@
     <!-- Mapbox -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+    <link
+        rel="stylesheet"
+        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css"
+        type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
 </head>
 
 <body class="is-preload">
@@ -70,7 +80,6 @@
                                                         checked="checked"
                                                         />
 
-                                                    <input id="streets-v11" type="radio" name="rtoggle" value="streets" checked="checked" />
                                                     <label for="streets-v11">streets</label>
                                                     <input id="light-v10" type="radio" name="rtoggle" value="light" />
                                                     <label for="light-v10">light</label>
@@ -91,7 +100,85 @@
                                                         zoom: 13
                                                     });
 
+
+                                                </script>
+
+                                                <script>
+                                                    mapboxgl.accessToken = 'pk.eyJ1IjoiZmVzdGxwbGFuZXJoYWsxIiwiYSI6ImNraHhlbHJxdjBoeWoydm5icnl0cG12dHkifQ.j_lmlCu_KtaqM6J-p15oVQ';
+
+                                                    map.addControl(
+                                                    new MapboxGeocoder({
+                                                    accessToken: mapboxgl.accessToken,
+                                                    mapboxgl: mapboxgl
+                                                    })
+                                                    );
+                                                </script>
+
+                                                <script>
+                                                var coordinatesGeocoder = function (query) {
+                                                    var matches = query.match(
+                                                    /^[ ]*(?:Lat: )?(-?\d+\.?\d*)[, ]+(?:Lng: )?(-?\d+\.?\d*)[ ]*$/i
+                                                    );
+                                                    if (!matches) {
+                                                    return null;
+                                                    }
+
+                                                    function coordinateFeature(lng, lat) {
+                                                    return {
+                                                    center: [lng, lat],
+                                                    geometry: {
+                                                    type: 'Point',
+                                                    coordinates: [lng, lat]
+                                                    },
+                                                    place_name: 'Lat: ' + lat + ' Lng: ' + lng,
+                                                    place_type: ['coordinate'],
+                                                    properties: {},
+                                                    type: 'Feature'
+                                                    };
+                                                    }
+
+                                                    var coord1 = Number(matches[1]);
+                                                    var coord2 = Number(matches[2]);
+                                                    var geocodes = [];
+
+                                                    if (coord1 < -90 || coord1 > 90) {
+                                                    // must be lng, lat
+                                                    geocodes.push(coordinateFeature(coord1, coord2));
+                                                    }
+
+                                                    if (coord2 < -90 || coord2 > 90) {
+                                                    // must be lat, lng
+                                                    geocodes.push(coordinateFeature(coord2, coord1));
+                                                    }
+
+                                                    if (geocodes.length === 0) {
+                                                    // else could be either lng, lat or lat, lng
+                                                    geocodes.push(coordinateFeature(coord1, coord2));
+                                                    geocodes.push(coordinateFeature(coord2, coord1));
+                                                    }
+
+                                                    return geocodes;
+                                                    };
+
+                                                    map.addControl(
+                                                    new MapboxGeocoder({
+                                                    accessToken: mapboxgl.accessToken,
+                                                    localGeocoder: coordinatesGeocoder,
+                                                    zoom: 4,
+                                                    placeholder: 'Try: -40, 170',
+                                                    mapboxgl: mapboxgl
+                                                    })
+                                                    );
+                                                </script>
+
+                                                <script>
+                                                    mapboxgl.accessToken = 'pk.eyJ1IjoiZmVzdGxwbGFuZXJoYWsxIiwiYSI6ImNraHhlbHJxdjBoeWoydm5icnl0cG12dHkifQ.j_lmlCu_KtaqM6J-p15oVQ';
+
                                                     map.addControl(new mapboxgl.NavigationControl());
+                                                </script>
+
+                                                <script>
+                                                    mapboxgl.accessToken = 'pk.eyJ1IjoiZmVzdGxwbGFuZXJoYWsxIiwiYSI6ImNraHhlbHJxdjBoeWoydm5icnl0cG12dHkifQ.j_lmlCu_KtaqM6J-p15oVQ';
 
                                                     var layerList = document.getElementById('menu');
                                                     var inputs = layerList.getElementsByTagName('input');
