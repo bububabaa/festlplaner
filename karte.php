@@ -7,6 +7,8 @@
     background: #fff;
     padding: 10px;
     font-family: 'Open Sans', sans-serif;
+    max-height: 1000px;
+    height: 75%;
     }
 </style>
 
@@ -69,7 +71,7 @@
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <form id="map">
-                                                <div id='map' style='width: auto; height: 950px;'></div>
+                                                <div id='map' style='width: auto;'></div>
 
                                                 <div id="mapmenu">
                                                     <input
@@ -96,7 +98,7 @@
                                                     var map = new mapboxgl.Map({
                                                         container: 'map',
                                                         style: 'mapbox://styles/mapbox/streets-v11',
-                                                        center: [-74.5, 40],
+                                                        center: [12.550343, 55.665957],
                                                         zoom: 13
                                                     });
 
@@ -191,6 +193,12 @@
                                                     for (var i = 0; i < inputs.length; i++) {
                                                         inputs[i].onclick = switchLayer;
                                                     }
+                                                </script>
+
+                                                <script>
+                                                    var marker = new mapboxgl.Marker()
+                                                    .setLngLat([12.550343, 55.665957])
+                                                    .addTo(map);
                                                 </script>
                                             </form>
                                         </div>
