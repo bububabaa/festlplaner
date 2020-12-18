@@ -228,7 +228,7 @@ section {
 }
 
 .services .service-item:hover {
-	background-color: #535ba0;
+	background-color: #505050;
 }
 .services .service-item:hover h4,
 .services .service-item:hover p {
@@ -544,7 +544,7 @@ ul.table-pagination li a {
 
 ul.table-pagination li a:hover,
 ul.table-pagination li.active a {
-    background-color: #535ba0;
+    background-color: #505050;
     color: #fff;
 }
 
@@ -668,7 +668,7 @@ input[type="radio"] + label:before {
 input[type="checkbox"]:checked + label:before,
 input[type="radio"]:checked + label:before {
     content: '\f00c';
-    background-color: #535ba0;
+    background-color: #505050;
     color: #fff;
 }
 
@@ -1192,7 +1192,7 @@ section.buttons .container-fluid {
 }
 
 .owl-carousel button.active {
-	background-color: #535ba0!important;
+	background-color: #505050!important;
 }
 
 
@@ -1204,7 +1204,7 @@ section.buttons .container-fluid {
     display: -ms-flex;
     display: flex;
     position: relative;
-    background-color: #535ba0;
+    background-color: #505050;
     margin: -100px -100px 100px -100px;
 }
 
