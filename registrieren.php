@@ -182,9 +182,23 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         //echo $vorname;
     }
 
+// Function to check string starting
+// with given substring
+/*function startsWith ($string, $startString)
+{
+    $len = strlen($startString);
+    return (substr($string, 0, $len) === $startString);
+} */
+
     if(empty(trim($_POST["plz"]))){
         $plz_err = "Bitte geben Sie Ihre Postleitzahl ein.";
     }
+    elseif(strlen(trim($_POST["plz"])) > 5){
+        $plz_err = "Die Postleitzahl darf nicht länger als 4 Stellen sein.";
+    }
+    /*elseif(startsWith("plz","3")){
+        $plz = trim($_POST["plz"]);
+    }*/
     else{
         $plz = trim($_POST["plz"]);
         //echo $nachname;
@@ -228,7 +242,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     } elseif(strlen(trim($_POST["pswa"])) < 6){
         $pswa_err = "Das Passwort muss mindestens 6 Zeichen haben.";
     } else{
-        $psw = trim($_POST["pswa"]);
+        $pswa = trim($_POST["pswa"]);
        // echo $psw;
     }
 
@@ -236,7 +250,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty(trim($_POST["confirm_pswa"]))){
         $confirm_pswa_err = "Bitte bestätigen Sie Ihr Passwort.";
     } else{
-        $confirma_psw = trim($_POST["confirm_pswa"]);
+        $confirm_pswa = trim($_POST["confirm_pswa"]);
         if(empty($pswa_err) && ($pswa != $confirm_pswa)){
             $confirm_pswa_err = "Passwort stimmt nicht überein.";
         }
@@ -278,7 +292,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Attempt to execute the prepared statement
             if($stmt->execute()){
                 // Redirect to login page
-                header("location: login.php");
+            header("location: login.php");
             } else{
                 echo "Etwas ist schief gelaufen. Bitte probieren Sie es später noch einmal.";
             }

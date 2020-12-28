@@ -28,7 +28,8 @@ session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: profil.php");
+    //header("location: profil.php");
+   header("location: anbieterprofil.php");
     exit;
 }
 
@@ -38,6 +39,8 @@ require_once __DIR__.'/config/database.php';
 // Define variables and initialize with empty values
 $username = $password = "";
 $username_err = $password_err = "";
+$bgid ="";
+
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -59,7 +62,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        $sql = "SELECT BID, Email, Passwort FROM benutzer WHERE Email = :username";
+        //$user_ist"";
+        //$sql = "SELECT BID, BGID, Email, Passwort FROM benutzer WHERE Email = :username";
+          $sql = "SELECT AID, Email, Passwort FROM anbieter WHERE Email = :username";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -73,9 +78,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 // Check if username exists, if yes then verify password
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
-                        $id = $row["BID"];
+                       //$id = $row["BID"];
+                        $id = $row["AID"];
                         $username = $row["Email"];
+                       // $bgid =$row["BGID"];
                         $hashed_password = $row["Passwort"];
+                        //$user_ist="benutzer";
                         //echo $username;
                         //echo $password;
                         //echo $hashed_password;
@@ -88,9 +96,18 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
+                           // $_SESSIOM["bgid"] = $bgid;
 
+                            /*if($bgid = "2")
+                            {
+                                header("location: admin.php");
+                            }
+                            else
+                            {
                             // Redirect user to welcome page
                             header("location: profil.php");
+                            }*/
+                            header("location: anbieterprofil.php");
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "Das Passwort ist inkorrekt.";

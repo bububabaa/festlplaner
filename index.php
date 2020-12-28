@@ -1,3 +1,34 @@
+<?php
+$username = "root";
+$password = "";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+
+
+$db = new PDO($dsn,$username,$password);
+
+$sql = "SELECT * FROM festl";
+$result = $db->query($sql);
+$i=0;
+$arrbezeichnung = array();
+$arrdatum = array();
+$arrolz = array();
+$arrort = array();
+$arrstrasse = array();
+$arrhausnummer = array();
+while($row = $result->fetch()){
+   $arrbezeichnung[$i] = $row['Bezeichnung'];
+    $arrdatum[$i] = $row['Datum'];
+    $arrplz[$i]= $row['PLZ'];
+    $arrort[$i]= $row['Ort'];
+    $arrstrasse[$i]= $row['Strasse'];
+    $arrhausnummer[$i]= $row['Hausnummer'];
+    $i++;
+}
+//echo $arrdatum[0];
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="de">
 
@@ -67,22 +98,31 @@
                             <div class="col-md-4">
                                 <div class="service-item first-item">
                                     <div class="icon"></div>
-                                    <h4>Festl 1</h4>
-                                    <p>Super Festl</p>
+                                    <h4><?php echo $arrbezeichnung[0] ?></h4>
+                                    <p><?php echo $arrdatum[0] ?></p>
+                                    <p><?php echo $arrplz[0]; echo" "; echo $arrort[0] ?></p>
+                                    <p><?php echo $arrstrasse[0]; echo" "; echo $arrhausnummer[0] ?></p>
+                                    <p><a href="#">Details</a></p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item second-item">
                                     <div class="icon"></div>
-                                    <h4>Festl 2</h4>
-                                    <p>Super Festl</p>
+                                    <h4><?php echo $arrbezeichnung[1] ?></h4>
+                                    <p><?php echo $arrdatum[1] ?></p>
+                                    <p><?php echo $arrplz[1]; echo" "; echo $arrort[1] ?></p>
+                                    <p><?php echo $arrstrasse[1]; echo" "; echo $arrhausnummer[1] ?></p>
+                                    <p><a href="#">Details</a></p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item third-item">
                                     <div class="icon"></div>
-                                    <h4>Festl 3</h4>
-                                    <p>Super Festl</p>
+                                    <h4><?php echo $arrbezeichnung[2] ?></h4>
+                                    <p><?php echo $arrdatum[2] ?></p>
+                                    <p><?php echo $arrplz[2]; echo" "; echo $arrort[2] ?></p>
+                                    <p><?php echo $arrstrasse[2]; echo" "; echo $arrhausnummer[2] ?></p>
+                                    <p><a href="#">Details</a></p>
                                 </div>
                             </div>
                             <div class="col-md-4">
