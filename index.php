@@ -11,7 +11,7 @@ $result = $db->query($sql);
 $i=0;
 $arrbezeichnung = array();
 $arrdatum = array();
-$arrolz = array();
+$arrplz = array();
 $arrort = array();
 $arrstrasse = array();
 $arrhausnummer = array();
@@ -24,7 +24,37 @@ while($row = $result->fetch()){
     $arrhausnummer[$i]= $row['Hausnummer'];
     $i++;
 }
-//echo $arrdatum[0];
+
+session_start();
+
+
+$arr_length= count($arrbezeichnung);
+//echo $zahl1;
+
+$rdm1 = rand(0,$arr_length-1);
+$rdm2 = rand(0,$arr_length-1);
+$rdm3 = rand(0,$arr_length-1);
+
+while($rdm1==$rdm2 || $rdm1==$rdm3 || $rdm2==$rdm3)
+{
+    $rdm2 = rand(0,$arr_length-1);
+    $rdm3 = rand(0,$arr_length-1);
+}
+
+$_SESSION["rdm1"] = $rdm1;
+$_SESSION["rdm2"] = $rdm2;
+$_SESSION["rdm3"] = $rdm3;
+
+
+//echo $_SESSION["rdm1"];
+
+
+/*echo $rdm1;
+echo " ";
+echo $rdm2;
+echo " ";
+echo $rdm3;*/
+
 ?>
 
 
@@ -98,30 +128,32 @@ while($row = $result->fetch()){
                             <div class="col-md-4">
                                 <div class="service-item first-item">
                                     <div class="icon"></div>
-                                    <h4><?php echo $arrbezeichnung[0] ?></h4>
-                                    <p><?php echo $arrdatum[0] ?></p>
-                                    <p><?php echo $arrplz[0]; echo" "; echo $arrort[0] ?></p>
-                                    <p><?php echo $arrstrasse[0]; echo" "; echo $arrhausnummer[0] ?></p>
-                                    <p><a href="#">Details</a></p>
+                                    <h4><?php echo $arrbezeichnung[$rdm1] ?></h4>
+                                    <p><?php echo $arrdatum[$rdm1] ?></p>
+                                    <p><?php echo $arrplz[$rdm1]; echo" "; echo $arrort[$rdm1] ?></p>
+                                    <p><?php echo $arrstrasse[$rdm1]; echo" "; echo $arrhausnummer[$rdm1] ?></p>
+                                    <p><a href="details.php">Details</a></p>
+                                    <!--<p><a href='details.php'><button id="btn1">Details</button></a></p>-->
+
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item second-item">
                                     <div class="icon"></div>
-                                    <h4><?php echo $arrbezeichnung[1] ?></h4>
-                                    <p><?php echo $arrdatum[1] ?></p>
-                                    <p><?php echo $arrplz[1]; echo" "; echo $arrort[1] ?></p>
-                                    <p><?php echo $arrstrasse[1]; echo" "; echo $arrhausnummer[1] ?></p>
+                                    <h4><?php echo $arrbezeichnung[$rdm2] ?></h4>
+                                    <p><?php echo $arrdatum[$rdm2] ?></p>
+                                    <p><?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?></p>
+                                    <p><?php echo $arrstrasse[$rdm2]; echo" "; echo $arrhausnummer[$rdm2] ?></p>
                                     <p><a href="#">Details</a></p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item third-item">
                                     <div class="icon"></div>
-                                    <h4><?php echo $arrbezeichnung[2] ?></h4>
-                                    <p><?php echo $arrdatum[2] ?></p>
-                                    <p><?php echo $arrplz[2]; echo" "; echo $arrort[2] ?></p>
-                                    <p><?php echo $arrstrasse[2]; echo" "; echo $arrhausnummer[2] ?></p>
+                                    <h4><?php echo $arrbezeichnung[$rdm3] ?></h4>
+                                    <p><?php echo $arrdatum[$rdm3] ?></p>
+                                    <p><?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?></p>
+                                    <p><?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?></p>
                                     <p><a href="#">Details</a></p>
                                 </div>
                             </div>
@@ -149,6 +181,9 @@ while($row = $result->fetch()){
                         </div>
                     </div>
                 </section>
+
+                <!-- The Modal -->
+
 
                 <!-- Top Image -->
                 <section class="top-image">
@@ -267,6 +302,45 @@ while($row = $result->fetch()){
     <script src="assets/js/transition.js"></script>
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
+
+
+<!--    <div id="modal1" class="modal">
+
+  <!-- Modal content
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>Some text in the Modal..</p>
+  </div>
+
+</div>
+
+    <script>
+// Get the modal
+var modal = document.getElementById("modal1");
+
+// Get the button that opens the modal
+var btn = document.getElementById("btn1");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+</script>-->
 </body>
 
 </html>
