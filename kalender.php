@@ -27,10 +27,6 @@
             list-style-type: none;
         }
 
-        body {
-            font-family: Verdana, sans-serif;
-        }
-
         .month {
             padding: 70px 25px;
             width: 100%;

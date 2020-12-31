@@ -20,7 +20,6 @@
 
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
             margin: 0;
         }
 
@@ -96,7 +95,6 @@
             font-size: 25px;
             color: black;
             text-align: center;
-
         }
     </style>
 
