@@ -21,7 +21,7 @@ input, select, textarea {
 }
 
 a:hover {
-	color: #FC3;
+	color: #535ba0;
 	text-decoration: none;
 }
 
@@ -52,7 +52,7 @@ button {
     background-color: transparent;
 	display: inline-block;
 	padding: 8px 20px;
-	color: #292929;
+	color: #535ba0;
 	border: 2px solid #292929;
 	transition: all 0.5s;
 }
@@ -134,7 +134,7 @@ section {
 
 .main-banner .banner-content .banner-caption em {
 	font-style: normal;
-	color: #292929;
+	color: #535ba0;
 }
 
 .main-banner .banner-content .banner-caption span {
@@ -1276,7 +1276,7 @@ section.buttons .container-fluid {
 
 #menu ul a:hover,
 #menu ul span:hover {
-    color: #898989;
+    color: #535ba0;
 }
 
 #menu ul a.opener,
