@@ -49,7 +49,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                         <a href="index.php">Festlplaner</a>
                     </div>
                 </header>
-                        <!--ab hier Code einfügen-->
+
+                <!--ab hier Code einfügen-->
                 <section class="main-banner">
                     <div class="container-fluid">
                         <div class="row">
