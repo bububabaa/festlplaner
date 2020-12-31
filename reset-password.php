@@ -73,6 +73,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -116,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-<!--<head>
+                                            <!--<head>
     <meta charset="UTF-8">
     <title>Passwort zurücksetzen</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
@@ -158,7 +159,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </div>
 
-<?php
+        <?php
 error_reporting(-1);
 ini_set('display_errors','On');
 require __DIR__.'/templates/templateSidebar.php'?>
@@ -176,4 +177,5 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
 </body>
+
 </html>

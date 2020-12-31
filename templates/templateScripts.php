@@ -1,4 +1,3 @@
-
 <!-- Scripts -->
 <!-- Bootstrap core JavaScript -->
 <script src="assets/jquery/jquery.min.js"></script>

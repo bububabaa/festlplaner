@@ -36,8 +36,8 @@
                     </div>
                 </header>
 
-        <!--ab hier Code einfügen-->
-        <section class="main-banner">
+                <!--ab hier Code einfügen-->
+                <section class="main-banner">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-md-12">
@@ -58,9 +58,9 @@
                         </div>
                     </div>
                 </section>
-        <!--bis hier Code einfügen-->
+                <!--bis hier Code einfügen-->
 
-        </div>
+            </div>
         </div>
         <!-- Sidebar -->
         <div id="sidebar">
@@ -95,7 +95,7 @@
                     </ul>
                 </nav>
 
-              <!-- Footer -->
+                <!-- Footer -->
                 <footer id="footer">
                     <p class="copyright">Copyright &copy; 2021 Festlplaner &amp; Co. KG
                         <br>Erstellt von <a rel="nofollow" href="">Uns</a>
@@ -117,4 +117,5 @@
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
 </body>
+
 </html>

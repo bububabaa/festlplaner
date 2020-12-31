@@ -249,7 +249,7 @@ echo $rdm3;*/
             </div>
         </div>
 
-<?php
+        <?php
 error_reporting(-1);
 ini_set('display_errors','On');
 require __DIR__.'/templates/templateSidebar.php'?>
@@ -268,7 +268,7 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <script src="assets/js/custom.js"></script>
 
 
-<!--    <div id="modal1" class="modal">
+    <!--    <div id="modal1" class="modal">
 
   <!-- Modal content
   <div class="modal-content">

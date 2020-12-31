@@ -140,6 +140,7 @@
 
     /* Change styles for cancel button and signup button on extra small screens */
     @media screen and (max-width: 300px) {
+
         .cancelbtn,
         .signupbtn {
             width: 100%;
@@ -148,40 +149,40 @@
 
 
     /* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
+    .tab {
+        overflow: hidden;
+        border: 1px solid #ccc;
+        background-color: #f1f1f1;
+    }
 
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+        background-color: inherit;
+        float: left;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 14px 16px;
+        transition: 0.3s;
+    }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+        background-color: #ddd;
+    }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
+    /* Create an active/current tablink class */
+    .tab button.active {
+        background-color: #ccc;
+    }
 
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
+    /* Style the tab content */
+    .tabcontent {
+        display: none;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-top: none;
+    }
 </style>
 
 <?php
@@ -542,127 +543,127 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <div class="wrapper">
-        <h2>Registrieren</h2>
-        <p>Bitte füllen Sie diese Felder aus, um sich zu registrieren.</p>
-        <div class="container">
-        <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#benutzer">Benutzer</a></li>
-             <!--   <li><a data-toggle="tab" href="#benutzer">Benutzer</a></li> -->
-            <li><a data-toggle="tab" href="#anbieter">Anbieter</a></li>
-        </ul>
+                                                <h2>Registrieren</h2>
+                                                <p>Bitte füllen Sie diese Felder aus, um sich zu registrieren.</p>
+                                                <div class="container">
+                                                    <ul class="nav nav-tabs">
+                                                        <li class="active"><a data-toggle="tab" href="#benutzer">Benutzer</a></li>
+                                                        <!--   <li><a data-toggle="tab" href="#benutzer">Benutzer</a></li> -->
+                                                        <li><a data-toggle="tab" href="#anbieter">Anbieter</a></li>
+                                                    </ul>
 
-<div class="tab-content">
-  <div id="benutzer" class="tab-pane fade in active">
-   <!-- <div id="benutzer" class="tab-pane fade">-->
-      <h3>Benutzer</h3>
+                                                    <div class="tab-content">
+                                                        <div id="benutzer" class="tab-pane fade in active">
+                                                            <!-- <div id="benutzer" class="tab-pane fade">-->
+                                                            <h3>Benutzer</h3>
 
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
-                <label>Email</label>
-                <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
-                <span class="help-block"><?php echo $email_err; ?></span>
-            </div>
-             <div class="form-group <?php echo (!empty($vorname_err)) ? 'has-error' : ''; ?>">
-                <label>Vorname</label>
-                <input type="text" name="vorname" class="form-control" value="<?php echo $vorname; ?>">
-                <span class="help-block"><?php echo $vorname_err; ?></span>
-            </div>
-             <div class="form-group <?php echo (!empty($nachname_err)) ? 'has-error' : ''; ?>">
-                <label>Nachname</label>
-                <input type="text" name="nachname" class="form-control" value="<?php echo $nachname; ?>">
-                <span class="help-block"><?php echo $nachname_err; ?></span>
-            </div>
-             <div class="form-group <?php echo (!empty($gebdat_err)) ? 'has-error' : ''; ?>">
-                <label>Geburtsdatum</label>
-                <input type="date" name="gebdat" class="form-control" value="<?php echo $gebdat; ?>">
-                <span class="help-block"><?php echo $gebdat_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($psw_err)) ? 'has-error' : ''; ?>">
-                <label>Passwort</label>
-                <input type="password" name="psw" class="form-control" value="<?php echo $psw; ?>">
-                <span class="help-block"><?php echo $psw_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($confirm_psw_err)) ? 'has-error' : ''; ?>">
-                <label>Passwort bestätigen</label>
-                <input type="password" name="confirm_psw" class="form-control" value="<?php echo $confirm_psw; ?>">
-                <span class="help-block"><?php echo $confirm_psw_err; ?></span>
-            </div>
-            <div  class="form-group <?php echo (!empty($bgid_err)) ? 'has-error' : ''; ?>">
-                <input type="hidden" name="bgid" class="form-control" value="<?php echo $bgid; ?>">
-            </div>
-            <div class="form-group">
-                <input type="submit" name="submit1" class="btn btn-primary" value="Registrieren">
-                <input type="reset" class="btn btn-Schon registriertefault" value="Felder leeren">
-            </div>
-            <p>Schon registriert? <a href="login.php">Melden Sie sich hier an</a>.</p>
+                                                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                                                <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Email</label>
+                                                                    <input type="text" name="email" class="form-control" value="<?php echo $email; ?>">
+                                                                    <span class="help-block"><?php echo $email_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($vorname_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Vorname</label>
+                                                                    <input type="text" name="vorname" class="form-control" value="<?php echo $vorname; ?>">
+                                                                    <span class="help-block"><?php echo $vorname_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($nachname_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Nachname</label>
+                                                                    <input type="text" name="nachname" class="form-control" value="<?php echo $nachname; ?>">
+                                                                    <span class="help-block"><?php echo $nachname_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($gebdat_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Geburtsdatum</label>
+                                                                    <input type="date" name="gebdat" class="form-control" value="<?php echo $gebdat; ?>">
+                                                                    <span class="help-block"><?php echo $gebdat_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($psw_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Passwort</label>
+                                                                    <input type="password" name="psw" class="form-control" value="<?php echo $psw; ?>">
+                                                                    <span class="help-block"><?php echo $psw_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($confirm_psw_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Passwort bestätigen</label>
+                                                                    <input type="password" name="confirm_psw" class="form-control" value="<?php echo $confirm_psw; ?>">
+                                                                    <span class="help-block"><?php echo $confirm_psw_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($bgid_err)) ? 'has-error' : ''; ?>">
+                                                                    <input type="hidden" name="bgid" class="form-control" value="<?php echo $bgid; ?>">
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="submit" name="submit1" class="btn btn-primary" value="Registrieren">
+                                                                    <input type="reset" class="btn btn-Schon registriertefault" value="Felder leeren">
+                                                                </div>
+                                                                <p>Schon registriert? <a href="login.php">Melden Sie sich hier an</a>.</p>
 
-        </form>
-    </div>
-    <div id="anbieter" class="tab-pane fade">
-       <h3>Anbieter</h3>
+                                                            </form>
+                                                        </div>
+                                                        <div id="anbieter" class="tab-pane fade">
+                                                            <h3>Anbieter</h3>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-            <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
-                <label>Name</label>
-                <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
-                <span class="help-block"><?php echo $name_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($plz_err)) ? 'has-error' : ''; ?>">
-                <label>PLZ</label>
-                <input type="text" name="plz" class="form-control" value="<?php echo $plz; ?>">
-                <span class="help-block"><?php echo $plz_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($ort_err)) ? 'has-error' : ''; ?>">
-                <label>Ort</label>
-                <input type="text" name="ort" class="form-control" value="<?php echo $ort; ?>">
-                <span class="help-block"><?php echo $ort_err; ?></span>
-            </div>
-             <div class="form-group <?php echo (!empty($strasse_err)) ? 'has-error' : ''; ?>">
-                <label>Straße und Hausnummer</label>
-                <input type="text" name="strasse" class="form-control" value="<?php echo $strasse; ?>">
-                <span class="help-block"><?php echo $strasse_err; ?></span>
-            </div>
-             <div class="form-group <?php echo (!empty($ansprechp_err)) ? 'has-error' : ''; ?>">
-                <label>Ansprechsperson</label>
-                <input type="text" name="ansprechp" class="form-control" value="<?php echo $ansprechp; ?>">
-                <span class="help-block"><?php echo $ansprechp_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($telefon_err)) ? 'has-error' : ''; ?>">
-                <label>Telefon</label>
-                <input type="text" name="telefon" class="form-control" value="<?php echo $telefon; ?>">
-                <span class="help-block"><?php echo $telefon_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($emaila_err)) ? 'has-error' : ''; ?>">
-                <label>Email</label>
-                <input type="text" name="emaila" class="form-control" value="<?php echo $emaila; ?>">
-                <span class="help-block"><?php echo $emaila_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($pswa_err)) ? 'has-error' : ''; ?>">
-                <label>Passwort</label>
-                <input type="password" name="pswa" class="form-control" value="<?php echo $pswa; ?>">
-                <span class="help-block"><?php echo $pswa_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($confirm_pswa_err)) ? 'has-error' : ''; ?>">
-                <label>Passwort bestätigen</label>
-                <input type="password" name="confirm_pswa" class="form-control" value="<?php echo $confirm_pswa; ?>">
-                <span class="help-block"><?php echo $confirm_pswa_err; ?></span>
-            </div>
-            <div class="form-group <?php echo (!empty($verified_err)) ? 'has-error' : ''; ?>">
-                <input type="checkbox" id="verified" name="verified" value="<?php echo $verified; ?>" unchecked="unchecked" disabled="disabled">
-                <label for="vehicle1"> Verified</label><br>
-                <p>Bitte beachten Sie, dass die Verifizierung nur von einem Administrator durchgeführen werden kann.</p>
-            </div>
-            <div class="form-group">
-                <input type="submit" name="submit2" class="btn btn-primary" value="Registrieren">
-                <input type="reset" class="btn btn-Schon registriertefault" value="Felder leeren">
-            </div>
-            <p>Schon registriert? <a href="login.php">Melden Sie sich hier an</a>.</p>
-        </form>
-    </div>
-</div>
-</div>
+                                                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                                                <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Name</label>
+                                                                    <input type="text" name="name" class="form-control" value="<?php echo $name; ?>">
+                                                                    <span class="help-block"><?php echo $name_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($plz_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>PLZ</label>
+                                                                    <input type="text" name="plz" class="form-control" value="<?php echo $plz; ?>">
+                                                                    <span class="help-block"><?php echo $plz_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($ort_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Ort</label>
+                                                                    <input type="text" name="ort" class="form-control" value="<?php echo $ort; ?>">
+                                                                    <span class="help-block"><?php echo $ort_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($strasse_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Straße und Hausnummer</label>
+                                                                    <input type="text" name="strasse" class="form-control" value="<?php echo $strasse; ?>">
+                                                                    <span class="help-block"><?php echo $strasse_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($ansprechp_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Ansprechsperson</label>
+                                                                    <input type="text" name="ansprechp" class="form-control" value="<?php echo $ansprechp; ?>">
+                                                                    <span class="help-block"><?php echo $ansprechp_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($telefon_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Telefon</label>
+                                                                    <input type="text" name="telefon" class="form-control" value="<?php echo $telefon; ?>">
+                                                                    <span class="help-block"><?php echo $telefon_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($emaila_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Email</label>
+                                                                    <input type="text" name="emaila" class="form-control" value="<?php echo $emaila; ?>">
+                                                                    <span class="help-block"><?php echo $emaila_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($pswa_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Passwort</label>
+                                                                    <input type="password" name="pswa" class="form-control" value="<?php echo $pswa; ?>">
+                                                                    <span class="help-block"><?php echo $pswa_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($confirm_pswa_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Passwort bestätigen</label>
+                                                                    <input type="password" name="confirm_pswa" class="form-control" value="<?php echo $confirm_pswa; ?>">
+                                                                    <span class="help-block"><?php echo $confirm_pswa_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($verified_err)) ? 'has-error' : ''; ?>">
+                                                                    <input type="checkbox" id="verified" name="verified" value="<?php echo $verified; ?>" unchecked="unchecked" disabled="disabled">
+                                                                    <label for="vehicle1"> Verified</label><br>
+                                                                    <p>Bitte beachten Sie, dass die Verifizierung nur von einem Administrator durchgeführen werden kann.</p>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="submit" name="submit2" class="btn btn-primary" value="Registrieren">
+                                                                    <input type="reset" class="btn btn-Schon registriertefault" value="Felder leeren">
+                                                                </div>
+                                                                <p>Schon registriert? <a href="login.php">Melden Sie sich hier an</a>.</p>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
 
-</div> <!-- ende wrapper-->
+                                            </div> <!-- ende wrapper-->
                                         </div>
                                     </div>
                                 </div>
@@ -675,7 +676,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </div>
 
-<?php
+        <?php
 error_reporting(-1);
 ini_set('display_errors','On');
 require __DIR__.'/templates/templateSidebar.php'?>
@@ -697,12 +698,13 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script>
-    $(document).ready(function(){
-      $(".nav-tabs a").click(function(){
-        $(this).tab('show');
-      });
-    });
+        $(document).ready(function() {
+            $(".nav-tabs a").click(function() {
+                $(this).tab('show');
+            });
+        });
     </script>
 
 </body>
+
 </html>

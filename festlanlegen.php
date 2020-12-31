@@ -192,67 +192,68 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-                                            <h2>Veranstaltung hinzufügen</h2> <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                            <div class="form-group <?php echo (!empty($bezeichnung_err)) ? 'has-error' : ''; ?>">
-                                                <label>Bezeichnung</label>
-                                                <input type="text" name="bezeichnung" class="form-control" value="<?php echo $bezeichnung; ?>">
-                                                <span class="help-block"><?php echo $bezeichnung_err; ?></span>
-                                            </div>
-                                            <div class="form-group <?php echo (!empty($plz_err)) ? 'has-error' : ''; ?>">
-                                                <label>Postleitzahl</label>
-                                                <input type="text" name="plz" class="form-control" value="<?php echo $plz; ?>">
-                                                <span class="help-block"><?php echo $plz_err; ?></span>
-                                            </div>
-                                            <div class="form-group <?php echo (!empty($ort_err)) ? 'has-error' : ''; ?>">
-                                                <label>Ort</label>
-                                                <input type="text" name="ort" class="form-control" value="<?php echo $ort; ?>">
-                                                <span class="help-block"><?php echo $ort_err; ?></span>
-                                            </div>
-                                            <div class="form-group <?php echo (!empty($strasse_err)) ? 'has-error' : ''; ?>">
-                                                <label>Straße</label>
-                                                <input type="text" name="strasse" class="form-control" value="<?php echo $strasse; ?>">
-                                                <span class="help-block"><?php echo $strasse_err; ?></span>
-                                            </div>
-                                            <div class="form-group <?php echo (!empty($hausnr_err)) ? 'has-error' : ''; ?>">
-                                                <label>Hausnummer</label>
-                                                <input type="text" name="hausnr" class="form-control" value="<?php echo $hausnr; ?>">
-                                                <span class="help-block"><?php echo $hausnr_err; ?></span>
-                                            </div>
+                                            <h2>Veranstaltung hinzufügen</h2>
+                                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                                <div class="form-group <?php echo (!empty($bezeichnung_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Bezeichnung</label>
+                                                    <input type="text" name="bezeichnung" class="form-control" value="<?php echo $bezeichnung; ?>">
+                                                    <span class="help-block"><?php echo $bezeichnung_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($plz_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Postleitzahl</label>
+                                                    <input type="text" name="plz" class="form-control" value="<?php echo $plz; ?>">
+                                                    <span class="help-block"><?php echo $plz_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($ort_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Ort</label>
+                                                    <input type="text" name="ort" class="form-control" value="<?php echo $ort; ?>">
+                                                    <span class="help-block"><?php echo $ort_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($strasse_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Straße</label>
+                                                    <input type="text" name="strasse" class="form-control" value="<?php echo $strasse; ?>">
+                                                    <span class="help-block"><?php echo $strasse_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($hausnr_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Hausnummer</label>
+                                                    <input type="text" name="hausnr" class="form-control" value="<?php echo $hausnr; ?>">
+                                                    <span class="help-block"><?php echo $hausnr_err; ?></span>
+                                                </div>
 
 
-                                            <div class="form-group <?php echo (!empty($beschreibung_err)) ? 'has-error' : ''; ?>">
-                                                <label>Anmerkung</label>
-                                                <textarea id="beschreibung" name="beschreibung" rows="10" cols="50" class="form-control" value="<?php echo $beschreibung; ?>"></textarea>
-                                                <span class="help-block"><?php echo $beschreibung_err; ?></span>
-                                            </div>
+                                                <div class="form-group <?php echo (!empty($beschreibung_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Anmerkung</label>
+                                                    <textarea id="beschreibung" name="beschreibung" rows="10" cols="50" class="form-control" value="<?php echo $beschreibung; ?>"></textarea>
+                                                    <span class="help-block"><?php echo $beschreibung_err; ?></span>
+                                                </div>
 
-                                            <div class="form-group <?php echo (!empty($datum_err)) ? 'has-error' : ''; ?>">
-                                                <label>Datum</label>
-                                                <input type="date" name="datum" class="form-control" value="<?php echo $datum; ?>">
-                                                <span class="help-block"><?php echo $datum_err; ?></span>
-                                            </div>
-                                            <div class="form-group <?php echo (!empty($eintritt_err)) ? 'has-error' : ''; ?>">
-                                                <label>Eintrittspreis in Euro</label>
-                                                <input type="text" name="eintritt" class="form-control" value="<?php echo $eintritt; ?>">
-                                                <span class="help-block"><?php echo $eintritt_err; ?></span>
-                                            </div>
-                                            <div class="form-group <?php echo (!empty($einlass_err)) ? 'has-error' : ''; ?>">
-                                                <label>Einlass ab</label>
-                                                <input type="time" name="einlass" class="form-control" step="2" value="<?php echo $einlass; ?>">
-                                                <span class="help-block"><?php echo $einlass_err; ?></span>
-                                            </div>
-                                            <div class="form-group <?php echo (!empty($beginn_err)) ? 'has-error' : ''; ?>">
-                                                <label>Beginn</label>
-                                                <input type="time" name="beginn" class="form-control" step="2" value="<?php echo $beginn; ?>">
-                                                <span class="help-block"><?php echo $beginn_err; ?></span>
-                                            </div>
-                                            <div  class="form-group <?php echo (!empty($aid_err)) ? 'has-error' : ''; ?>">
-                                                <input type="hidden" name="aid" class="form-control" value="<?php echo $aid; ?>">
-                                            </div>
-                                            <div class="form-group">
-                                                <input type="submit" class="btn btn-primary" value="Speichern">
-                                                <a class="btn btn-link" href="anbieterprofil.php">Abbrechen</a>
-                                            </div>
+                                                <div class="form-group <?php echo (!empty($datum_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Datum</label>
+                                                    <input type="date" name="datum" class="form-control" value="<?php echo $datum; ?>">
+                                                    <span class="help-block"><?php echo $datum_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($eintritt_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Eintrittspreis in Euro</label>
+                                                    <input type="text" name="eintritt" class="form-control" value="<?php echo $eintritt; ?>">
+                                                    <span class="help-block"><?php echo $eintritt_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($einlass_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Einlass ab</label>
+                                                    <input type="time" name="einlass" class="form-control" step="2" value="<?php echo $einlass; ?>">
+                                                    <span class="help-block"><?php echo $einlass_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($beginn_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Beginn</label>
+                                                    <input type="time" name="beginn" class="form-control" step="2" value="<?php echo $beginn; ?>">
+                                                    <span class="help-block"><?php echo $beginn_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($aid_err)) ? 'has-error' : ''; ?>">
+                                                    <input type="hidden" name="aid" class="form-control" value="<?php echo $aid; ?>">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="submit" class="btn btn-primary" value="Speichern">
+                                                    <a class="btn btn-link" href="anbieterprofil.php">Abbrechen</a>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
@@ -265,7 +266,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </div>
 
-<?php
+        <?php
 error_reporting(-1);
 ini_set('display_errors','On');
 require __DIR__.'/templates/templateSidebar.php'?>
@@ -284,4 +285,5 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <script src="assets/js/custom.js"></script>
 
 </body>
+
 </html>

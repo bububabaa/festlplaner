@@ -214,7 +214,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             </div>
         </div>
 
-<?php
+        <?php
 error_reporting(-1);
 ini_set('display_errors','On');
 require __DIR__.'/templates/templateSidebar.php'?>
@@ -233,4 +233,5 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <script src="assets/js/custom.js"></script>
 
 </body>
+
 </html>

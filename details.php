@@ -134,7 +134,8 @@ else
                                                     <h4>Eintritt ab 18 Jahren
                                                         <br> Alkhohol für jeden
                                                         <br> Musik für jeden
-                                                        <br> Knochen MC und Raf Camaro LIVE</h4>
+                                                        <br> Knochen MC und Raf Camaro LIVE
+                                                    </h4>
                                                 </div>
 
                                                 <div class="col-md-4">
@@ -148,12 +149,12 @@ else
                         </div>
                     </div>
                 </section>
-            <!--bis hier Code einfügen-->
+                <!--bis hier Code einfügen-->
 
             </div>
         </div>
 
-<?php
+        <?php
 error_reporting(-1);
 ini_set('display_errors','On');
 require __DIR__.'/templates/templateSidebar.php'?>
@@ -170,5 +171,6 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <script src="assets/js/transition.js"></script>
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
-    </body>
+</body>
+
 </html>
