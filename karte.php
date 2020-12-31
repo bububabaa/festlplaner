@@ -2,11 +2,19 @@
 <html lang="de">
 
 <style>
+    body {
+         overflow:hidden;
+        }
+
     #mapmenu {
     position: absolute;
     background: #fff;
     padding: 10px;
     font-family: 'Open Sans', sans-serif;
+    }
+
+    #main-banner{
+        height: auto;
     }
 </style>
 
