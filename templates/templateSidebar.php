@@ -16,7 +16,6 @@
             <ul>
                 <li><a href="index.php">Homepage</a></li>
                 <li><a href="login.php">Login</a></li>
-                <li><a href="shortcodes.php">Shortcodes</a></li>
                 <li><a href="kalender.php">Kalender</a></li>
                 <li><a href="galerie.php">Galerie</a></li>
                 <li><a href="karte.php">Karte</a></li>
