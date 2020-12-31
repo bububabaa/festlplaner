@@ -1,3 +1,189 @@
+<!DOCTYPE html>
+<html>
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    .wrapper {
+        width: 350px;
+    }
+
+    #registrieren {
+        color: dodgerblue;
+        text-decoration: underline;
+    }
+
+    /* Full-width input fields */
+    input[type=text]#regmail,
+    input[type=text]#regvor,
+    input[type=text]#regnach,
+    input[type=date]#reggebdat,
+    input[type=password]#regpass,
+    input[type=password]#regpassagain {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    div[id=YesNo] {
+        width: 10%;
+    }
+
+    /* Add a background color when the inputs get focus */
+    input[type=text]#regmail:focus,
+    input[type=text]#regvor:focus,
+    input[type=text]#regnach:focus,
+    input[type=date]#reggebdat:focus,
+    input[type=password]#regpass:focus,
+    input[type=password]#regpassagain:focus {
+        background-color: #e1e1e1;
+        outline: none;
+    }
+
+    /* Set a style for all buttons */
+    button {
+        background-color: #535ba0;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    button:hover {
+        opacity: 1;
+    }
+
+    /* Extra styles for the cancel button */
+    .cancelbtn {
+        padding: 14px 20px;
+        color: black;
+        background-color: transparent;
+    }
+
+    /* Float cancel and signup buttons and add an equal width */
+    .cancelbtn,
+    .signupbtn {
+        float: left;
+        width: 50%;
+    }
+
+    /* Add padding to container elements */
+    .container {
+        padding: 16px;
+    }
+
+    /* The Modal (background) */
+    .modal {
+        display: none;
+        /* Hidden by default */
+        position: fixed;
+        /* Stay in place */
+        z-index: 1;
+        /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%;
+        /* Full width */
+        height: 100%;
+        /* Full height */
+        overflow: auto;
+        /* Enable scroll if needed */
+        background-color: #ffffff;
+        padding-top: 50px;
+    }
+
+    /* Modal Content/Box */
+    .modal-content {
+        background-color: #fefefe;
+        margin: 5% auto 15% auto;
+        /* 5% from the top, 15% from the bottom and centered */
+        border: 1px solid #888;
+        width: 80%;
+        /* Could be more or less, depending on screen size */
+    }
+
+    /* Style the horizontal ruler */
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    /* The Close Button (x) */
+    .close {
+        position: absolute;
+        right: 35px;
+        top: 15px;
+        font-size: 40px;
+        font-weight: bold;
+        color: #454545;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: #f44336;
+        cursor: pointer;
+    }
+
+    /* Clear floats */
+    .clearfix::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
+    /* Change styles for cancel button and signup button on extra small screens */
+    @media screen and (max-width: 300px) {
+        .cancelbtn,
+        .signupbtn {
+            width: 100%;
+        }
+    }
+
+
+    /* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+</style>
+
 <?php
 // Include config file
 require_once __DIR__.'/config/database.php';
@@ -310,201 +496,52 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!DOCTYPE html>
 <html lang="de">
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    #registrieren {
-        color: dodgerblue;
-        text-decoration: underline;
-    }
-
-    /* Full-width input fields */
-    input[type=text]#regmail,
-    input[type=text]#regvor,
-    input[type=text]#regnach,
-    input[type=date]#reggebdat,
-    input[type=password]#regpass,
-    input[type=password]#regpassagain {
-        width: 100%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        border: none;
-        background: #f1f1f1;
-    }
-
-    div[id=YesNo] {
-        width: 10%;
-    }
-
-    /* Add a background color when the inputs get focus */
-    input[type=text]#regmail:focus,
-    input[type=text]#regvor:focus,
-    input[type=text]#regnach:focus,
-    input[type=date]#reggebdat:focus,
-    input[type=password]#regpass:focus,
-    input[type=password]#regpassagain:focus {
-        background-color: #e1e1e1;
-        outline: none;
-    }
-
-    /* Set a style for all buttons */
-    button {
-        background-color: #535ba0;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
-    }
-
-    button:hover {
-        opacity: 1;
-    }
-
-    /* Extra styles for the cancel button */
-    .cancelbtn {
-        padding: 14px 20px;
-        color: black;
-        background-color: transparent;
-    }
-
-    /* Float cancel and signup buttons and add an equal width */
-    .cancelbtn,
-    .signupbtn {
-        float: left;
-        width: 50%;
-    }
-
-    /* Add padding to container elements */
-    .container {
-        padding: 16px;
-    }
-
-    /* The Modal (background) */
-    .modal {
-        display: none;
-        /* Hidden by default */
-        position: fixed;
-        /* Stay in place */
-        z-index: 1;
-        /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%;
-        /* Full width */
-        height: 100%;
-        /* Full height */
-        overflow: auto;
-        /* Enable scroll if needed */
-        background-color: #ffffff;
-        padding-top: 50px;
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 5% auto 15% auto;
-        /* 5% from the top, 15% from the bottom and centered */
-        border: 1px solid #888;
-        width: 80%;
-        /* Could be more or less, depending on screen size */
-    }
-
-    /* Style the horizontal ruler */
-    hr {
-        border: 1px solid #f1f1f1;
-        margin-bottom: 25px;
-    }
-
-    /* The Close Button (x) */
-    .close {
-        position: absolute;
-        right: 35px;
-        top: 15px;
-        font-size: 40px;
-        font-weight: bold;
-        color: #454545;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #f44336;
-        cursor: pointer;
-    }
-
-    /* Clear floats */
-    .clearfix::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
-
-    /* Change styles for cancel button and signup button on extra small screens */
-    @media screen and (max-width: 300px) {
-
-        .cancelbtn,
-        .signupbtn {
-            width: 100%;
-        }
-    }
-
-
-    /* Style the tab */
-.tab {
-  overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #f1f1f1;
-}
-
-/* Style the buttons that are used to open the tab content */
-.tab button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-}
-
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
-}
-
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
-
-/* Style the tab content */
-.tabcontent {
-  display: none;
-  padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-}
-</style>
 
 <head>
-    <meta charset="UTF-8">
-    <title>Registrieren</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
-    <style type="text/css">
-        body{ font: 14px sans-serif; }
-        .wrapper{ width: 350px; padding: 20px; }
-    </style>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-</head>
-<body>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
-    <div class="wrapper">
+    <title>Festlplaner</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+    <link rel="stylesheet" href="assets/css/templatemo-style.css">
+    <link rel="stylesheet" href="assets/css/owl.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+</head>
+
+<body class="is-preload">
+
+    <!-- Wrapper -->
+    <div id="wrapper">
+
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+
+                <!-- Header -->
+                <header id="header">
+                    <div class="logo">
+                        <a href="index.php">Festlplaner</a>
+                    </div>
+                </header>
+
+                <!--ab hier Code einfügen-->
+                <section class="main-banner">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="banner-caption">
+                                            <div class="wrapper">
         <h2>Registrieren</h2>
         <p>Bitte füllen Sie diese Felder aus, um sich zu registrieren.</p>
         <div class="container">
@@ -626,15 +663,46 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 </div>
 
 </div> <!-- ende wrapper-->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--bis hier Code einfügen-->
+
+            </div>
+        </div>
+
+<?php
+error_reporting(-1);
+ini_set('display_errors','On');
+require __DIR__.'/templates/templateSidebar.php'?>
+
+    </div> <!-- Wrapper -->
+
+    <!-- Scripts -->
+    <!-- Bootstrap core JavaScript -->
+    <script src="assets/jquery/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/transition.js"></script>
+    <script src="assets/js/owl-carousel.js"></script>
+    <script src="assets/js/custom.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
     <script>
-$(document).ready(function(){
-  $(".nav-tabs a").click(function(){
-    $(this).tab('show');
-  });
-});
-</script>
-
+    $(document).ready(function(){
+      $(".nav-tabs a").click(function(){
+        $(this).tab('show');
+      });
+    });
+    </script>
 
 </body>
 </html>
