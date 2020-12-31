@@ -63,7 +63,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($username_err) && empty($password_err)){
         // Prepare a select statement
-        //$user_ist"";
+        $user_ist="";
         //$sql = "SELECT BID, BGID, Email, Passwort FROM benutzer WHERE Email = :username";
           $sql = "SELECT AID, Email, Passwort FROM anbieter WHERE Email = :username";
 
@@ -84,7 +84,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         $username = $row["Email"];
                        // $bgid =$row["BGID"];
                         $hashed_password = $row["Passwort"];
-                        //$user_ist="benutzer";
+                        $user_ist="anbieter";
                         //echo $username;
                         //echo $password;
                         //echo $hashed_password;
@@ -114,7 +114,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $password_err = "Das Passwort ist inkorrekt.";
                         }
                     }
-                } else{
+                }
+                else{
                     // Display an error message if username doesn't exist
                     $username_err = "Diese Email ist unbekannt.";
                 }
