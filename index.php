@@ -156,36 +156,10 @@ echo $rdm3;*/
                                     <p><a href="details.php">Details</a></p>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <div class="service-item fourth-item">
-                                    <div class="icon"></div>
-                                    <h4>Festl 4</h4>
-                                    <p>Super Festl</p>
-                                    <p><a href="details.php">Details</a></p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="service-item fivth-item">
-                                    <div class="icon"></div>
-                                    <h4>Festl 5</h4>
-                                    <p>Super Festl</p>
-                                    <p><a href="details.php">Details</a></p>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="service-item sixth-item">
-                                    <div class="icon"></div>
-                                    <h4>Festl 6</h4>
-                                    <p>Super Festl</p>
-                                    <p><a href="details.php">Details</a></p>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </section>
-
                 <!-- The Modal -->
-
 
                 <!-- Top Image -->
                 <section class="top-image">
