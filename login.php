@@ -7,6 +7,7 @@
 
     input[type=text]#logmail,
     input[type=password]#logpass {
+        height: 50px;
         width: 100%;
         padding: 15px;
         margin: 5px 0 22px 0;
@@ -198,7 +199,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                // error_reporting(-1);
                                                 //ini_set('display_errors','On');
                                                 //require __DIR__.'/registrieren.php'?>
-                                                <p>Haben Sie bereits einen Account? <a href="./registrieren.php">Registrieren Sie sich jetzt</a>.</p>
+                                                <p>Haben Sie noch keinen Account? <a href="./registrieren.php">Registrieren Sie sich jetzt</a>.</p>
 
                                             </form>
                                         </div>
