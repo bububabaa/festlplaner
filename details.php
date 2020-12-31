@@ -106,14 +106,16 @@ else
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <h1>Sauffestl</h1>
+                                            <br>
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <h4>Datum:</h4>
                                                     <h4>Straße/Hausnummer:</h4>
                                                     <h4>PLZ/Ort:</h4>
                                                     <h4>Eintritt:</h4>
-                                                    <h4>Einlass: ab</h4>
+                                                    <h4>Einlass ab:</h4>
                                                     <h4>Beginn:</h4>
+                                                    <h4>Ende:</h4>
                                                     <br><br>
 
                                                     <h4>Beschreibung:</h4>
@@ -124,8 +126,9 @@ else
                                                     <h4>Straße 01</h4>
                                                     <h4>2130 Mistelbach</h4>
                                                     <h4>15€</h4>
-                                                    <h4>20:00</h4>
-                                                    <h4>20:30</h4>
+                                                    <h4>18:00</h4>
+                                                    <h4>18:30</h4>
+                                                    <h4>02:00</h4>
                                                     <br><br>
 
                                                     <h4>Eintritt ab 18 Jahren
