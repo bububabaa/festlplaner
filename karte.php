@@ -12,14 +12,6 @@
     padding: 10px;
     font-family: 'Open Sans', sans-serif;
     }
-
-    #main-banner{
-        height: auto;
-    }
-
-    #map{
-        height: auto;
-    }
 </style>
 
 <head>
