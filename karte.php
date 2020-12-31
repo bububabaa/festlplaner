@@ -4,7 +4,7 @@
 <style>
     body {
          overflow:hidden;
-        }
+    }
 
     #mapmenu {
     position: absolute;
@@ -14,6 +14,10 @@
     }
 
     #main-banner{
+        height: auto;
+    }
+
+    #map{
         height: auto;
     }
 </style>
@@ -81,7 +85,7 @@
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <form id="map">
-                                                <div id='map' style='width: auto; height: 900px;'></div>
+                                                <div id='map' style='width: auto; height: 1000px;'></div>
                                                 <script>
                                                 //Map
                                                     mapboxgl.accessToken = 'pk.eyJ1IjoiZmVzdGxwbGFuZXJoYWsxIiwiYSI6ImNraHhlbHJxdjBoeWoydm5icnl0cG12dHkifQ.j_lmlCu_KtaqM6J-p15oVQ';
