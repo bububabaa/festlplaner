@@ -48,6 +48,7 @@ $rdm_2 = $_SESSION["rdm2"];
 $rdm_3 = $_SESSION["rdm3"];
 //echo $rdm_1;
 }
+
 else
 {
     header("Location: login.php");
@@ -92,15 +93,62 @@ else
                         <a href="index.php">Festlplaner</a>
                     </div>
                 </header>
-                <h1>Zahl 1: <?php echo $rdm_1?></h1>
+                <!--<h1>Zahl 1: <?php echo $rdm_1?></h1>
                 <h1>Zahl 2: <?php echo $rdm_2?></h1>
-                <h1>Zahl 3: <?php echo $rdm_3?></h1>
+                <h1>Zahl 3: <?php echo $rdm_3?></h1>-->
+
+                <!--ab hier Code einfügen-->
+                <section class="main-banner">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="banner-caption">
+                                            <h1>Sauffestl</h1>
+                                            <div class="row">
+                                                <div class="col-md-3">
+                                                    <h4>Datum:</h4>
+                                                    <h4>Straße/Hausnummer:</h4>
+                                                    <h4>PLZ/Ort:</h4>
+                                                    <h4>Eintritt:</h4>
+                                                    <h4>Einlass: ab</h4>
+                                                    <h4>Beginn:</h4>
+                                                    <br><br>
+
+                                                    <h4>Beschreibung:</h4>
+                                                </div>
+
+                                                <div class="col-md-5">
+                                                    <h4>31.12.2020</h4>
+                                                    <h4>Straße 01</h4>
+                                                    <h4>2130 Mistelbach</h4>
+                                                    <h4>15€</h4>
+                                                    <h4>20:00</h4>
+                                                    <h4>20:30</h4>
+                                                    <br><br>
+
+                                                    <h4>Eintritt ab 18 Jahren
+                                                        <br> Alkhohol für jeden
+                                                        <br> Musik für jeden
+                                                        <br> Knochen MC und Raf Camaro LIVE</h4>
+                                                </div>
+
+                                                <div class="col-md-4">
+                                                    <img src="assets/images/featured_post_01.jpg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            <!--bis hier Code einfügen-->
 
             </div>
         </div>
-
-
-
 
 <?php
 error_reporting(-1);

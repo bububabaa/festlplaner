@@ -134,7 +134,6 @@ echo $rdm3;*/
                                     <p><?php echo $arrstrasse[$rdm1]; echo" "; echo $arrhausnummer[$rdm1] ?></p>
                                     <p><a href="details.php">Details</a></p>
                                     <!--<p><a href='details.php'><button id="btn1">Details</button></a></p>-->
-
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -144,7 +143,7 @@ echo $rdm3;*/
                                     <p><?php echo $arrdatum[$rdm2] ?></p>
                                     <p><?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?></p>
                                     <p><?php echo $arrstrasse[$rdm2]; echo" "; echo $arrhausnummer[$rdm2] ?></p>
-                                    <p><a href="#">Details</a></p>
+                                    <p><a href="details.php">Details</a></p>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -154,7 +153,7 @@ echo $rdm3;*/
                                     <p><?php echo $arrdatum[$rdm3] ?></p>
                                     <p><?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?></p>
                                     <p><?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?></p>
-                                    <p><a href="#">Details</a></p>
+                                    <p><a href="details.php">Details</a></p>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -162,6 +161,7 @@ echo $rdm3;*/
                                     <div class="icon"></div>
                                     <h4>Festl 4</h4>
                                     <p>Super Festl</p>
+                                    <p><a href="details.php">Details</a></p>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -169,6 +169,7 @@ echo $rdm3;*/
                                     <div class="icon"></div>
                                     <h4>Festl 5</h4>
                                     <p>Super Festl</p>
+                                    <p><a href="details.php">Details</a></p>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -176,6 +177,7 @@ echo $rdm3;*/
                                     <div class="icon"></div>
                                     <h4>Festl 6</h4>
                                     <p>Super Festl</p>
+                                    <p><a href="details.php">Details</a></p>
                                 </div>
                             </div>
                         </div>
