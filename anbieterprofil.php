@@ -7,6 +7,32 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+
+
+
+if(isset($_POST['submit']))
+{
+    require_once 'vendor/autoload.php';
+
+// Create the Transport
+$transport = (new Swift_SmtpTransport('smtp.gmail.com', 587, 'tls'))
+  ->setUsername('username')
+  ->setPassword('password')
+;
+
+// Create the Mailer using your created Transport
+$mailer = new Swift_Mailer($transport);
+
+// Create a message
+$message = (new Swift_Message('Verifizierungsantrag'))
+  ->setFrom(['email' => 'Name'])
+  ->setTo(['receiver@domain.org', 'other@domain.org' => 'A name'])
+  ->setBody('Here is the message itself')
+  ;
+
+// Send the message
+$result = $mailer->send($message);
+}
 ?>
 
 <!DOCTYPE html>
@@ -61,8 +87,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                         <div class="banner-caption">
                                             <div class="page-header">
                                                 <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Willkommen auf Ihrem Profil.</h1>
-                                                <div class="popup" onclick="myFunction()">Klicken Sie hier für Informationen zu Veranstaltungen anlegen
+                                                <div id="popup" class="popup" onclick="myFunction()"><img alt="Information" src="assets/images/information.png">
                                                     <span class="popuptext" id="myPopup">Bitte beachten Sie, dass der Verifizierungsprozess bis zu einem Tag dauern kann. Wir bitten um Verständnis.</span>
+                                                    <button type="submit" btn-verifizieren>Verifizierung anfordern</button>
                                                 </div>
                                             </div>
                                             <p>
@@ -89,6 +116,10 @@ ini_set('display_errors','On');
 require __DIR__.'/templates/templateSidebar.php'?>
 
     </div>
+     <?php
+error_reporting(-1);
+ini_set('display_errors','On');
+    require __DIR__.'/templates/templateScripts.php'?>
 </body>
 
 <script>
@@ -100,6 +131,12 @@ require __DIR__.'/templates/templateSidebar.php'?>
 </script>
 
 <style>
+
+    #popup img{
+        width: 50px;
+        height: 50px;
+    }
+
     /* Popup container */
     .popup {
         position: relative;
@@ -110,7 +147,7 @@ require __DIR__.'/templates/templateSidebar.php'?>
     /* The actual popup (appears on top) */
     .popup .popuptext {
         visibility: hidden;
-        width: 160px;
+        width: 170px;
         background-color: #555;
         color: #fff;
         text-align: center;

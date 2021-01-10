@@ -60,7 +60,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <div class="page-header">
-                                                <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Willkommen auf Ihrem Profil.</h1>
+                                                <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["usernamebenutzer"]); ?></b>. Willkommen auf Ihrem Profil.</h1>
                                             </div>
                                             <p>
                                                 <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a>
@@ -82,6 +82,10 @@ ini_set('display_errors','On');
 require __DIR__.'/templates/templateSidebar.php'?>
 
     </div>
+<?php
+error_reporting(-1);
+ini_set('display_errors','On');
+    require __DIR__.'/templates/templateScripts.php'?>
 </body>
 
 </html>

@@ -2,8 +2,8 @@
 session_start();
 
     require_once __DIR__.'/config/database.php';
-    $bezeichnung = $plz = $ort = $strasse = $hausnr = $beschreibung = $datum = $eintritt = $einlass = $beginn ="";
-    $bezeichnung_err = $plz_err = $ort_err = $strasse_err = $hausnr_err = $beschreibung_err = $datum_err = $eintritt_err = $einlass_err = $beginn_err = $aid_err="";
+    $bezeichnung = $plz = $ort = $strasse = $hausnr = $beschreibung = $datum = $eintritt = $einlass = $beginn = $ende="";
+    $bezeichnung_err = $plz_err = $ort_err = $strasse_err = $hausnr_err = $beschreibung_err = $datum_err = $eintritt_err = $einlass_err = $beginn_err = $ende_err =$aid_err="";
     //echo $_SESSION["id"];
     $aid =$_SESSION["id"];
 
@@ -79,6 +79,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     else{
         $beginn = trim($_POST["beginn"]);
     }
+    if(empty(trim($_POST["ende"]))){
+        $ende_err = "Bitte geben Sie die Uhrzeit ein zu der die Veranstaltung endet.";
+    }
+    else{
+        $ende = trim($_POST["ende"]);
+    }
 
     $aid = trim($_POST["aid"]);
 
@@ -98,7 +104,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($bezeichnung_err) && empty($plz_err) && empty($ort_err) && empty($strasse_err) && empty($beschreibung_err) && empty($datum_err) && empty($eintritt_err) && empty($einlass_err) && empty($beginn_err)){
 
         // Prepare an insert statement
-        $sql = "INSERT INTO festl (Bezeichnung, PLZ, Ort, Strasse, Hausnummer, Beschreibung, Datum, Eintritt, EinlassAb, Beginn, AID) VALUES (:bezeichnung, :plz, :ort, :strasse, :hausnr, :beschreibung, :datum, :eintritt, :einlass, :beginn, :aid)";
+        $sql = "INSERT INTO festl (Bezeichnung, PLZ, Ort, Strasse, Hausnummer, Beschreibung, Datum, Eintritt, EinlassAb, Beginn, Ende, AID) VALUES (:bezeichnung, :plz, :ort, :strasse, :hausnr, :beschreibung, :datum, :eintritt, :einlass, :beginn, :ende, :aid)";
 
         // $sql = "INSERT INTO benutzer (Vorname, Nachname, Gebdat, Email, Passwort) VALUES (:vorname, :nachname, :gebdat, :email, :psw)";
 
@@ -114,6 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":eintritt", $param_eintritt, PDO::PARAM_STR);
             $stmt->bindParam(":einlass", $param_einlass, PDO::PARAM_STR);
             $stmt->bindParam(":beginn", $param_beginn, PDO::PARAM_STR);
+            $stmt->bindParam(":ende", $param_ende, PDO::PARAM_STR);
             $stmt->bindParam(":aid", $param_aid, PDO::PARAM_STR);
 
             // Set parameters
@@ -127,6 +134,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_eintritt = $eintritt;
             $param_einlass = $einlass;
             $param_beginn = $beginn;
+            $param_ende = $ende;
             $param_aid = $aid;
 
             // Attempt to execute the prepared statement
@@ -219,14 +227,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     <input type="text" name="hausnr" class="form-control" value="<?php echo $hausnr; ?>">
                                                     <span class="help-block"><?php echo $hausnr_err; ?></span>
                                                 </div>
-
-
                                                 <div class="form-group <?php echo (!empty($beschreibung_err)) ? 'has-error' : ''; ?>">
                                                     <label>Anmerkung</label>
                                                     <textarea id="beschreibung" name="beschreibung" rows="10" cols="50" class="form-control" value="<?php echo $beschreibung; ?>"></textarea>
                                                     <span class="help-block"><?php echo $beschreibung_err; ?></span>
                                                 </div>
-
                                                 <div class="form-group <?php echo (!empty($datum_err)) ? 'has-error' : ''; ?>">
                                                     <label>Datum</label>
                                                     <input type="date" name="datum" class="form-control" value="<?php echo $datum; ?>">
@@ -246,6 +251,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     <label>Beginn</label>
                                                     <input type="time" name="beginn" class="form-control" step="2" value="<?php echo $beginn; ?>">
                                                     <span class="help-block"><?php echo $beginn_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($ende_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Ende</label>
+                                                    <input type="time" name="ende" class="form-control" step="2" value="<?php echo $ende; ?>">
+                                                    <span class="help-block"><?php echo $ende_err; ?></span>
                                                 </div>
                                                 <div class="form-group <?php echo (!empty($aid_err)) ? 'has-error' : ''; ?>">
                                                     <input type="hidden" name="aid" class="form-control" value="<?php echo $aid; ?>">

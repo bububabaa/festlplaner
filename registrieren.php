@@ -1,189 +1,6 @@
 <!DOCTYPE html>
 <html>
-<style>
-    * {
-        box-sizing: border-box;
-    }
 
-    .wrapper {
-        width: 350px;
-    }
-
-    #registrieren {
-        color: dodgerblue;
-        text-decoration: underline;
-    }
-
-    /* Full-width input fields */
-    input[type=text]#regmail,
-    input[type=text]#regvor,
-    input[type=text]#regnach,
-    input[type=date]#reggebdat,
-    input[type=password]#regpass,
-    input[type=password]#regpassagain {
-        width: 100%;
-        padding: 15px;
-        margin: 5px 0 22px 0;
-        display: inline-block;
-        border: none;
-        background: #f1f1f1;
-    }
-
-    div[id=YesNo] {
-        width: 10%;
-    }
-
-    /* Add a background color when the inputs get focus */
-    input[type=text]#regmail:focus,
-    input[type=text]#regvor:focus,
-    input[type=text]#regnach:focus,
-    input[type=date]#reggebdat:focus,
-    input[type=password]#regpass:focus,
-    input[type=password]#regpassagain:focus {
-        background-color: #e1e1e1;
-        outline: none;
-    }
-
-    /* Set a style for all buttons */
-    button {
-        background-color: #535ba0;
-        color: white;
-        padding: 14px 20px;
-        margin: 8px 0;
-        border: none;
-        cursor: pointer;
-        width: 100%;
-        opacity: 0.9;
-    }
-
-    button:hover {
-        opacity: 1;
-    }
-
-    /* Extra styles for the cancel button */
-    .cancelbtn {
-        padding: 14px 20px;
-        color: black;
-        background-color: transparent;
-    }
-
-    /* Float cancel and signup buttons and add an equal width */
-    .cancelbtn,
-    .signupbtn {
-        float: left;
-        width: 50%;
-    }
-
-    /* Add padding to container elements */
-    .container {
-        padding: 16px;
-    }
-
-    /* The Modal (background) */
-    .modal {
-        display: none;
-        /* Hidden by default */
-        position: fixed;
-        /* Stay in place */
-        z-index: 1;
-        /* Sit on top */
-        left: 0;
-        top: 0;
-        width: 100%;
-        /* Full width */
-        height: 100%;
-        /* Full height */
-        overflow: auto;
-        /* Enable scroll if needed */
-        background-color: #ffffff;
-        padding-top: 50px;
-    }
-
-    /* Modal Content/Box */
-    .modal-content {
-        background-color: #fefefe;
-        margin: 5% auto 15% auto;
-        /* 5% from the top, 15% from the bottom and centered */
-        border: 1px solid #888;
-        width: 80%;
-        /* Could be more or less, depending on screen size */
-    }
-
-    /* Style the horizontal ruler */
-    hr {
-        border: 1px solid #f1f1f1;
-        margin-bottom: 25px;
-    }
-
-    /* The Close Button (x) */
-    .close {
-        position: absolute;
-        right: 35px;
-        top: 15px;
-        font-size: 40px;
-        font-weight: bold;
-        color: #454545;
-    }
-
-    .close:hover,
-    .close:focus {
-        color: #f44336;
-        cursor: pointer;
-    }
-
-    /* Clear floats */
-    .clearfix::after {
-        content: "";
-        clear: both;
-        display: table;
-    }
-
-    /* Change styles for cancel button and signup button on extra small screens */
-    @media screen and (max-width: 300px) {
-
-        .cancelbtn,
-        .signupbtn {
-            width: 100%;
-        }
-    }
-
-
-    /* Style the tab */
-    .tab {
-        overflow: hidden;
-        border: 1px solid #ccc;
-        background-color: #f1f1f1;
-    }
-
-    /* Style the buttons that are used to open the tab content */
-    .tab button {
-        background-color: inherit;
-        float: left;
-        border: none;
-        outline: none;
-        cursor: pointer;
-        padding: 14px 16px;
-        transition: 0.3s;
-    }
-
-    /* Change background color of buttons on hover */
-    .tab button:hover {
-        background-color: #ddd;
-    }
-
-    /* Create an active/current tablink class */
-    .tab button.active {
-        background-color: #ccc;
-    }
-
-    /* Style the tab content */
-    .tabcontent {
-        display: none;
-        padding: 6px 12px;
-        border: 1px solid #ccc;
-        border-top: none;
-    }
-</style>
 
 <?php
 // Include config file
@@ -515,7 +332,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="assets/css/templatemo-style.css">
     <link rel="stylesheet" href="assets/css/owl.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
 </head>
 
 <body class="is-preload">
@@ -543,19 +360,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <div class="wrapper">
-                                                <h2>Registrieren</h2>
-                                                <p>Bitte füllen Sie diese Felder aus, um sich zu registrieren.</p>
-                                                <div class="container">
-                                                    <ul class="nav nav-tabs">
-                                                        <li class="active"><a data-toggle="tab" href="#benutzer">Benutzer</a></li>
-                                                        <!--   <li><a data-toggle="tab" href="#benutzer">Benutzer</a></li> -->
-                                                        <li><a data-toggle="tab" href="#anbieter">Anbieter</a></li>
-                                                    </ul>
 
-                                                    <div class="tab-content">
-                                                        <div id="benutzer" class="tab-pane fade in active">
-                                                            <!-- <div id="benutzer" class="tab-pane fade">-->
-                                                            <h3>Benutzer</h3>
+                                                <div class="tab">
+                                                        <button class="tablinks" onclick="openTab(event, 'Benutzer')" id="defaultOpen">Benutzer</button>
+                                                        <button class="tablinks" onclick="openTab(event, 'Anbieter')">Anbieter</button>
+                                                    </div>
+
+                                               <div id="Benutzer" class="tabcontent">
+                                                   <h3>Benutzer Registrieren</h3>
+                                                   <p>Bitte füllen Sie diese Felder aus, um sich zu registrieren.</p>
 
                                                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                                                 <div class="form-group <?php echo (!empty($email_err)) ? 'has-error' : ''; ?>">
@@ -598,9 +411,10 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                                 <p>Schon registriert? <a href="login.php">Melden Sie sich hier an</a>.</p>
 
                                                             </form>
-                                                        </div>
-                                                        <div id="anbieter" class="tab-pane fade">
-                                                            <h3>Anbieter</h3>
+                                                </div>
+                                                <div id="Anbieter" class="tabcontent">
+                                                    <h3>Anbieter Registrieren</h3>
+                                                    <p>Bitte füllen Sie diese Felder aus, um sich zu registrieren.</p>
 
                                                             <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                                                                 <div class="form-group <?php echo (!empty($name_err)) ? 'has-error' : ''; ?>">
@@ -650,7 +464,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                                 </div>
                                                                 <div class="form-group <?php echo (!empty($verified_err)) ? 'has-error' : ''; ?>">
                                                                     <input type="checkbox" id="verified" name="verified" value="<?php echo $verified; ?>" unchecked="unchecked" disabled="disabled">
-                                                                    <label for="vehicle1"> Verified</label><br>
+                                                                    <label for="verified"> Verified</label><br>
                                                                     <p>Bitte beachten Sie, dass die Verifizierung nur von einem Administrator durchgeführen werden kann.</p>
                                                                 </div>
                                                                 <div class="form-group">
@@ -659,8 +473,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                                 </div>
                                                                 <p>Schon registriert? <a href="login.php">Melden Sie sich hier an</a>.</p>
                                                             </form>
-                                                        </div>
-                                                    </div>
                                                 </div>
 
                                             </div> <!-- ende wrapper-->
@@ -685,25 +497,97 @@ require __DIR__.'/templates/templateSidebar.php'?>
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
-    <script src="assets/jquery/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+  <?php
+error_reporting(-1);
+ini_set('display_errors','On');
+    require __DIR__.'/templates/templateScripts.php'?>
 
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/transition.js"></script>
-    <script src="assets/js/owl-carousel.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-    <script>
+   <!-- <script>
         $(document).ready(function() {
             $(".nav-tabs a").click(function() {
                 $(this).tab('show');
             });
         });
+    </script>-->
+
+     <script>
+        function openTab(evt, tabName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
     </script>
+
+    <script>
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+
+    <style>
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+        .tabcontent {
+            animation: fadeEffect 1s; /* Fading effect takes 1 second */
+        }
+
+        /* Go from zero to full opacity */
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
 
 </body>
 

@@ -23,6 +23,7 @@ $arrbeschreibung = array();
 $arreintritt = array();
 $arreinlass = array();
 $arrbeginn = array();
+$arrende=array();
 $arraid = array();
 while($row = $result->fetch()){
     $arrfid[$i]= $row['FID'];
@@ -32,10 +33,11 @@ while($row = $result->fetch()){
     $arrort[$i]= $row['Ort'];
     $arrstrasse[$i]= $row['Strasse'];
     $arrhausnummer[$i]= $row['Hausnummer'];
-    $arrbeschreibung[$i]= $row['Beschreibung'];
+    $arrbeschreibung[$i]= ($row['Beschreibung']=nl2br($row['Beschreibung']));
     $arreintritt[$i]= $row['Eintritt'];
     $arreinlass[$i]= $row['EinlassAb'];
     $arrbeginn[$i]= $row['Beginn'];
+    $arrende[$i]= $row['Ende'];
     $arraid[$i]= $row['AID'];
 
     $i++;
@@ -46,14 +48,42 @@ if (isset($_SESSION['loggedin'])) {
 $rdm_1 = $_SESSION["rdm1"];
 $rdm_2 = $_SESSION["rdm2"];
 $rdm_3 = $_SESSION["rdm3"];
+
+/*$id_ = $_SESSION["id"];
+$id1_ = $_SESSION["id1"];
+$id2_ = $_SESSION["id2"];
+$id3_ = $_SESSION["id3"];*/
 //echo $rdm_1;
 }
-
 else
 {
     header("Location: login.php");
     die();
 }
+$date = DateTime::createFromFormat('Y-m-d', $arrdatum[$rdm_1]);
+$converted_date = $date->format('D d.m.Y');
+
+$time1 =DateTime::createFromFormat('G:i:s', $arreinlass[$rdm_1]);
+$time2 =DateTime::createFromFormat('G:i:s', $arrbeginn[$rdm_1]);
+$time3 =DateTime::createFromFormat('G:i:s', $arrende[$rdm_1]);
+$converted_time1 = $time1->format('H:i');
+$converted_time2 = $time2->format('H:i');
+$converted_time3 = $time3->format('H:i');
+
+$anbieterid=$arraid[$rdm_1];
+//echo $anbieterid;
+
+$sql2 ="SELECT * FROM anbieter WHERE AID='".$anbieterid."'";
+$result = $db->query($sql2);
+$a=0;
+$veranstalter = array();
+while($row = $result->fetch()){
+    $veranstalter[$a]= $row['Name'];
+
+    $a++;
+}
+//echo $veranstalter[0];
+
 ?>
 
 <!DOCTYPE html>
@@ -93,9 +123,10 @@ else
                         <a href="index.php">Festlplaner</a>
                     </div>
                 </header>
-                <!--<h1>Zahl 1: <?php echo $rdm_1?></h1>
-                <h1>Zahl 2: <?php echo $rdm_2?></h1>
-                <h1>Zahl 3: <?php echo $rdm_3?></h1>-->
+                <!--<h1>Zahl 1: <?php echo $id1_?></h1>
+                <h1>Zahl 2: <?php echo $id2_?></h1>
+                <h1>Zahl 3: <?php echo $id3_?></h1>
+                <h1>Zahl: <?php echo $id_?></h1>-->
 
                 <!--ab hier Code einfügen-->
                 <section class="main-banner">
@@ -105,10 +136,11 @@ else
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-                                            <h1>Sauffestl</h1>
+                                            <h1><?php echo $arrbezeichnung[$rdm_1]?></h1>
                                             <br>
                                             <div class="row">
                                                 <div class="col-md-3">
+                                                    <h4>Veranstalter:</h4>
                                                     <h4>Datum:</h4>
                                                     <h4>Straße/Hausnummer:</h4>
                                                     <h4>PLZ/Ort:</h4>
@@ -122,19 +154,24 @@ else
                                                 </div>
 
                                                 <div class="col-md-5">
-                                                    <h4>31.12.2020</h4>
-                                                    <h4>Straße 01</h4>
-                                                    <h4>2130 Mistelbach</h4>
-                                                    <h4>15€</h4>
-                                                    <h4>18:00</h4>
-                                                    <h4>18:30</h4>
-                                                    <h4>02:00</h4>
+                                                    <h4><?php echo $veranstalter[0]?></h4>
+                                                    <h4><?php echo $converted_date?></h4>
+                                                    <h4><?php echo $arrstrasse[$rdm_1]; echo " "; echo $arrhausnummer[$rdm_1]?></h4>
+                                                    <h4><?php echo $arrplz[$rdm_1]; echo " "; echo $arrort[$rdm_1]?></h4>
+                                                    <h4><?php echo $arreintritt[$rdm_1]; echo " €"?></h4>
+                                                    <h4><?php echo $converted_time1; echo " Uhr"?></h4>
+                                                    <h4><?php echo $converted_time2; echo " Uhr"?></h4>
+                                                    <h4><?php echo $converted_time3; echo " Uhr"?></h4>
                                                     <br><br>
 
-                                                    <h4>Eintritt ab 18 Jahren
+                                                    <!--<h4>Eintritt ab 18 Jahren
                                                         <br> Alkhohol für jeden
                                                         <br> Musik für jeden
                                                         <br> Knochen MC und Raf Camaro LIVE
+                                                    </h4>-->
+
+                                                    <h4>
+                                                        <?php echo $arrbeschreibung[$rdm_1]?>
                                                     </h4>
                                                 </div>
 

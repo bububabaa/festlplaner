@@ -24,7 +24,6 @@ while($row = $result->fetch()){
     $arrhausnummer[$i]= $row['Hausnummer'];
     $i++;
 }
-
 session_start();
 
 
@@ -45,6 +44,12 @@ $_SESSION["rdm1"] = $rdm1;
 $_SESSION["rdm2"] = $rdm2;
 $_SESSION["rdm3"] = $rdm3;
 
+$date1 = DateTime::createFromFormat('Y-m-d', $arrdatum[$rdm1]);
+$converted_date1 = $date1->format('d.m.Y');
+$date2 = DateTime::createFromFormat('Y-m-d', $arrdatum[$rdm2]);
+$converted_date2 = $date2->format('d.m.Y');
+$date3 = DateTime::createFromFormat('Y-m-d', $arrdatum[$rdm3]);
+$converted_date3 = $date3->format('d.m.Y');
 
 //echo $_SESSION["rdm1"];
 
@@ -120,7 +125,40 @@ echo $rdm3;*/
                         </div>
                     </div>
                 </section>
-
+                <section class="cards">
+                    <div class="card-deck">
+                                 <div class="card">
+                                     <div class="icon"></div>
+                                     <div class="card-body">
+                                        <h4><?php echo $arrbezeichnung[$rdm1] ?></h4><br>
+                                         <p><?php echo $converted_date1 ?><br>
+                                         <?php echo $arrstrasse[$rdm1]; echo" "; echo $arrhausnummer[$rdm1] ?><br>
+                                         <?php echo $arrplz[$rdm1]; echo" "; echo $arrort[$rdm1] ?><br>
+                                         <a href="details1.php">Details</a></p>
+                                     </div>
+                                </div>
+                                <div class="card">
+                                     <div class="icon"></div>
+                                     <div class="card-body">
+                                        <h4><?php echo $arrbezeichnung[$rdm2] ?></h4><br>
+                                         <p><?php echo $converted_date2 ?><br>
+                                         <?php echo $arrstrasse[$rdm2]; echo" "; echo $arrhausnummer[$rdm2] ?><br>
+                                         <?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?><br>
+                                         <a href="details2.php">Details</a></p>
+                                     </div>
+                                </div>
+                                <div class="card">
+                                     <div class="icon"></div>
+                                     <div class="card-body">
+                                        <h4><?php echo $arrbezeichnung[$rdm3] ?></h4><br>
+                                         <p><?php echo $converted_date3 ?><br>
+                                         <?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?><br>
+                                         <?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?><br>
+                                         <a href="details3.php">Details</a></p>
+                                     </div>
+                                </div>
+                            </div>
+                    </section>
                 <!-- Services -->
                 <section class="services">
                     <div class="container-fluid">
@@ -129,37 +167,43 @@ echo $rdm3;*/
                                 <div class="service-item first-item">
                                     <div class="icon"></div>
                                     <h4><?php echo $arrbezeichnung[$rdm1] ?></h4>
-                                    <p><?php echo $arrdatum[$rdm1] ?></p>
-                                    <p><?php echo $arrplz[$rdm1]; echo" "; echo $arrort[$rdm1] ?></p>
+                                    <div class="inhalt">
+                                    <p><?php echo $converted_date1 ?></p>
                                     <p><?php echo $arrstrasse[$rdm1]; echo" "; echo $arrhausnummer[$rdm1] ?></p>
-                                    <p><a href="details.php">Details</a></p>
-                                    <!--<p><a href='details.php'><button id="btn1">Details</button></a></p>-->
+                                    <p><?php echo $arrplz[$rdm1]; echo" "; echo $arrort[$rdm1] ?></p>
+                                    <p><a href="details1.php">Details</a></p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item second-item">
                                     <div class="icon"></div>
+                                    <div class="inhalt">
                                     <h4><?php echo $arrbezeichnung[$rdm2] ?></h4>
-                                    <p><?php echo $arrdatum[$rdm2] ?></p>
-                                    <p><?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?></p>
+                                    <p><?php echo $converted_date2 ?></p>
                                     <p><?php echo $arrstrasse[$rdm2]; echo" "; echo $arrhausnummer[$rdm2] ?></p>
-                                    <p><a href="details.php">Details</a></p>
+                                    <p><?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?></p>
+                                    <p><a href="details2.php">Details</a></p>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="service-item third-item">
                                     <div class="icon"></div>
+                                    <div class="inhalt">
                                     <h4><?php echo $arrbezeichnung[$rdm3] ?></h4>
-                                    <p><?php echo $arrdatum[$rdm3] ?></p>
-                                    <p><?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?></p>
+                                    <p><?php echo $converted_date3 ?></p>
                                     <p><?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?></p>
-                                    <p><a href="details.php">Details</a></p>
+                                    <p><?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?></p>
+                                    <p><a href="details3.php">Details</a></p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 <!-- The Modal -->
+               <!-- <h1><?php echo $converted_date1; echo " "; echo $converted_date2; echo" "; echo $converted_date3?></h1>-->
 
                 <!-- Top Image -->
                 <section class="top-image">
@@ -242,43 +286,24 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <script src="assets/js/custom.js"></script>
 
 
-    <!--    <div id="modal1" class="modal">
+<style>
+    .card{
+        margin-top: 100px;
+        margin-bottom: 3px;
+        background-color: #eaebef;
+        padding: 50px;
+        text-align: center;
+        transition: all 0.5s;
+    }
+    .card:hover{
+        background-color: #292929;
+    }
+    .card:hover h4,
+    .card:hover p {
+	   color: #fff;
+    }
 
-  <!-- Modal content
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>Some text in the Modal..</p>
-  </div>
-
-</div>
-
-    <script>
-// Get the modal
-var modal = document.getElementById("modal1");
-
-// Get the button that opens the modal
-var btn = document.getElementById("btn1");
-
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
-
-// When the user clicks the button, open the modal
-btn.onclick = function() {
-  modal.style.display = "block";
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function() {
-  modal.style.display = "none";
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
-  }
-}
-</script>-->
+</style>
 </body>
 
 </html>

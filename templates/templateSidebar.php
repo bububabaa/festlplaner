@@ -14,10 +14,21 @@
         <nav id="menu">
             <ul>
                 <li><a href="index.php">Homepage</a></li>
+                <?php
+                if (isset($_SESSION['loggedin'])) {
+                ?>
+                <li><a href="login.php">Profil</a></li>
+                <?php }
+                else
+                {?>
                 <li><a href="login.php">Login</a></li>
+                <?php }?>
                 <li><a href="kalender.php">Kalender</a></li>
                 <li><a href="galerie.php">Galerie</a></li>
                 <li><a href="karte.php">Karte</a></li>
+                <?php
+                if (isset($_SESSION['loggedin'])) {
+                ?>
                 <li>
                     <span class="opener">Abos</span>
                     <ul>
@@ -26,6 +37,8 @@
                         <li><a href="#">Abo 3</a></li>
                     </ul>
                 </li>
+                     <?php }?>
+
                 <li><a target="_blank" href="https://hakmistelbach.ac.at/">externer Link</a></li>
                 <li><a href="ueberuns.php">Über uns</a></li>
             </ul>

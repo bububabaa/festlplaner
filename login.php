@@ -29,8 +29,36 @@ session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    //header("location: profil.php");
-   header("location: anbieterprofil.php");
+    header("location: profil.php");
+
+    /*$user_ist=$_SESSION["user_ist"];
+
+    if($user_ist_=="anbieter")
+    {
+       header("location: anbieterprofil.php");
+    }
+    else if($user_ist_=="benutzer")
+    {
+        header("location: profil.php");
+    }
+    else if($user_ist_=="admin")
+    {
+        header("location: admin.php");
+    }*/
+
+
+    /*switch($user_ist) {
+        case 'anbieter': $_SESSION['user_ist'] = 'anbieter';
+            header("location: anbieterprofil.php");
+            break;
+            case 'benutzer': $_SESSION['user_ist'] = 'benutzer';
+            header("location: profil.php");
+            break;
+            case 'admin': $_SESSION['user_ist'] = 'admin';
+            header("location: admin.php");
+            break;
+    }*/
+
     exit;
 }
 
@@ -38,11 +66,111 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
 require_once __DIR__.'/config/database.php';
 
 // Define variables and initialize with empty values
-$username = $password = "";
-$username_err = $password_err = "";
-$bgid ="";
+$username = $password = $usernamebenutzer = $passwordbenutzer ="";
+$username_err = $password_err = $usernamebenutzer_err = $passwordbenutzer_err ="";
+$bgid =0;
+$user_ist="";
 
+if(isset($_POST['submit1']))
+{
+// Processing form data when form is submitted
+if($_SERVER["REQUEST_METHOD"] == "POST"){
 
+    // Check if username is empty
+    if(empty(trim($_POST["usernamebenutzer"]))){
+        $usernamebenutzer_err = "Bitte geben Sie eine Email ein.";
+    } else{
+        $usernamebenutzer = trim($_POST["usernamebenutzer"]);
+    }
+
+    // Check if password is empty
+    if(empty(trim($_POST["passwordbenutzer"]))){
+        $passwordbenutzer_err = "Bitte geben Sie ein Passwort ein.";
+    } else{
+        $passwordbenutzer = trim($_POST["passwordbenutzer"]);
+    }
+
+    // Validate credentials
+    if(empty($usernamebenutzer_err) && empty($passwordbenutzer_err)){
+        // Prepare a select statement
+        $user_ist="";
+        $sql = "SELECT BID, BGID, Email, Passwort FROM benutzer WHERE Email = :usernamebenutzer";
+         // $sql = "SELECT AID, Email, Passwort FROM anbieter WHERE Email = :username";
+
+        if($stmt = $pdo->prepare($sql)){
+            // Bind variables to the prepared statement as parameters
+            $stmt->bindParam(":usernamebenutzer", $param_usernamebenutzer, PDO::PARAM_STR);
+
+            // Set parameters
+            $param_usernamebenutzer = trim($_POST["usernamebenutzer"]);
+
+            // Attempt to execute the prepared statement
+            if($stmt->execute()){
+                // Check if username exists, if yes then verify password
+                if($stmt->rowCount() == 1){
+                    if($row = $stmt->fetch()){
+                        $bid = $row["BID"];
+                        //$id = $row["AID"];
+                        $usernamebenutzer = $row["Email"];
+                        $bgid =$row["BGID"];
+                        $hashed_passwordbenutzer = $row["Passwort"];
+                        //$user_ist="anbieter";
+                        //echo $bgid;
+                        //echo $password;
+                        //echo $hashed_password;
+                        if(password_verify($passwordbenutzer, $hashed_passwordbenutzer)){
+                        //if(strcmp($password, $hashed_password) == 0){
+                            // Password is correct, so start a new session
+                            session_start();
+
+                            // Store data in session variables
+                            $_SESSION["loggedin"] = true;
+                            $_SESSION["bid"] = $bid;
+                            $_SESSION["usernamebenutzer"] = $usernamebenutzer;
+                            $_SESSION["bgid"]=$bgid;
+                            //echo $bgid;
+
+                            if($bgid == 2)
+                            {
+                                $user_ist="benutzer";
+                                $_SESSION["user_ist"]=$user_ist;
+                                header("location: admin.php");
+                            }
+                            else if($bgid == 1)
+                            {
+                            // Redirect user to welcome page
+                                $user_ist="admin";
+                                $_SESSION["user_ist"]=$user_ist;
+                                header("location: profil.php");
+                            }
+                            // header("location: admin.php");
+                            //header("location: anbieterprofil.php");
+                        } else{
+                            // Display an error message if password is not valid
+                            $passwordbenutzer_err = "Das Passwort ist inkorrekt.";
+                        }
+                    }
+                }
+                else{
+                    // Display an error message if username doesn't exist
+                    $usernamebenutzer_err = "Diese Email ist unbekannt.";
+                }
+            } else{
+                echo "Oops! Etwas ist schief gelaufen. Bitte probieren Sie es später noch einmal.";
+            }
+
+            // Close statement
+            unset($stmt);
+        }
+    }
+
+    // Close connection
+    unset($pdo);
+}
+}
+
+if(isset($_POST['submit2']))
+{
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
 
@@ -78,11 +206,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             if($stmt->execute()){
                 // Check if username exists, if yes then verify password
                 if($stmt->rowCount() == 1){
-                    if($row = $stmt->fetch()){
-                       //$id = $row["BID"];
+                    if($row = $stmt->fetch()){;
                         $id = $row["AID"];
                         $username = $row["Email"];
-                       // $bgid =$row["BGID"];
                         $hashed_password = $row["Passwort"];
                         $user_ist="anbieter";
                         //echo $username;
@@ -97,17 +223,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             $_SESSION["loggedin"] = true;
                             $_SESSION["id"] = $id;
                             $_SESSION["username"] = $username;
-                           // $_SESSIOM["bgid"] = $bgid;
 
-                            /*if($bgid = "2")
-                            {
-                                header("location: admin.php");
-                            }
-                            else
-                            {
-                            // Redirect user to welcome page
-                            header("location: profil.php");
-                            }*/
+                            $user_ist="anbieter";
+                            $_SESSION["user_ist"]=$user_ist;
                             header("location: anbieterprofil.php");
                         } else{
                             // Display an error message if password is not valid
@@ -131,6 +249,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Close connection
     unset($pdo);
 }
+}
 ?>
 
 <!DOCTYPE html>
@@ -152,6 +271,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="stylesheet" href="assets/css/fontawesome.css">
     <link rel="stylesheet" href="assets/css/templatemo-style.css">
     <link rel="stylesheet" href="assets/css/owl.css">
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.css">-->
 </head>
 
 <body class="is-preload">
@@ -178,30 +299,58 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-                                            <h2>Login</h2>
-                                            <p>Bitte geben Sie Ihre Benutzerdaten an.</p>
-                                            <form id="eingaben" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-                                                <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
-                                                    <label>E-Mail</label>
-                                                    <input type="text" id="logmail" name="username" placeholder="E-Mail eingeben" class="form-control" value="<?php echo $username; ?>">
-                                                    <span class="help-block"><?php echo $username_err; ?></span>
-                                                </div>
-                                                <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
-                                                    <label>Passwort</label>
-                                                    <input type="password" id="logpass" name="password" placeholder="Passwort" class="form-control">
-                                                    <span class="help-block"><?php echo $password_err; ?></span>
-                                                </div>
-                                                <div class="form-group">
-                                                    <input type="submit" class="btn btn-primary" value="Login">
-                                                    <input type="reset" class="btn btn-default" value="Reset">
-                                                </div>
-                                                <?php
-                                               // error_reporting(-1);
-                                                //ini_set('display_errors','On');
-                                                //require __DIR__.'/registrieren.php'?>
-                                                <p>Haben Sie noch keinen Account? <a href="./registrieren.php">Registrieren Sie sich jetzt</a>.</p>
+                                           <div class="wrapper">
+                                                    <div class="tab">
+                                                        <button class="tablinks" onclick="openTab(event, 'Benutzer')" id="defaultOpen">Benutzer</button>
+                                                        <button class="tablinks" onclick="openTab(event, 'Anbieter')">Anbieter</button>
+                                                    </div>
 
-                                            </form>
+                                                    <div id="Benutzer" class="tabcontent">
+                                                        <h2>Benutzer Login</h2>
+                                                            <p>Bitte geben Sie Ihre Benutzerdaten an.</p>
+                                                            <form id="eingaben" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                                                <div class="form-group <?php echo (!empty($usernamebenutzer_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>E-Mail</label>
+                                                                    <input type="text" id="logmail" name="usernamebenutzer" placeholder="E-Mail eingeben" class="form-control" value="<?php echo $usernamebenutzer; ?>">
+                                                                    <span class="help-block"><?php echo $usernamebenutzer_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group <?php echo (!empty($passwordbenutzer_err_err)) ? 'has-error' : ''; ?>">
+                                                                    <label>Passwort</label>
+                                                                    <input type="password" id="logpass" name="passwordbenutzer" placeholder="Passwort" class="form-control">
+                                                                    <span class="help-block"><?php echo $passwordbenutzer_err; ?></span>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <input type="submit" name="submit1" class="btn btn-primary" value="Login">
+                                                                    <input type="reset" name="reset1" class="btn btn-default" value="Reset">
+                                                                </div>
+                                                                <p>Haben Sie noch keinen Account? <a href="./registrieren.php">Registrieren Sie sich jetzt</a>.</p>
+
+                                                            </form>
+                                                    </div>
+
+                                                    <div id="Anbieter" class="tabcontent">
+                                                        <h2>Anbieter Login</h2>
+                                                           <p>Bitte geben Sie Ihre Benutzerdaten an.</p>
+                                                           <form id="eingaben" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                                               <div class="form-group <?php echo (!empty($username_err)) ? 'has-error' : ''; ?>">
+                                                                   <label>E-Mail</label>
+                                                                   <input type="text" id="logmail" name="username" placeholder="E-Mail eingeben" class="form-control" value="<?php echo $username; ?>">
+                                                                   <span class="help-block"><?php echo $username_err; ?></span>
+                                                               </div>
+                                                               <div class="form-group <?php echo (!empty($password_err)) ? 'has-error' : ''; ?>">
+                                                                   <label>Passwort</label>
+                                                                   <input type="password" id="logpass" name="password" placeholder="Passwort" class="form-control">
+                                                                   <span class="help-block"><?php echo $password_err; ?></span>
+                                                               </div>
+                                                               <div class="form-group">
+                                                                   <input type="submit" name="submit2" class="btn btn-primary" value="Login">
+                                                                   <input type="reset" name="reset2" class="btn btn-default" value="Reset">
+                                                               </div>
+                                                               <p>Haben Sie noch keinen Account? <a href="./registrieren.php">Registrieren Sie sich jetzt</a>.</p>
+
+                                                           </form>
+                                                    </div>
+                                           </div>
                                         </div>
                                     </div>
                                 </div>
@@ -223,14 +372,96 @@ require __DIR__.'/templates/templateSidebar.php'?>
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
-    <script src="assets/jquery/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
+<?php
+error_reporting(-1);
+ini_set('display_errors','On');
+    require __DIR__.'/templates/templateScripts.php'?>
 
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/transition.js"></script>
-    <script src="assets/js/owl-carousel.js"></script>
-    <script src="assets/js/custom.js"></script>
+    <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
+
+    <!--<script>
+        $(document).ready(function() {
+            $(".nav-tabs a").click(function() {
+                $(this).tab('show');
+            });
+        });
+    </script>-->
+
+    <script>
+        function openTab(evt, tabName) {
+            // Declare all variables
+            var i, tabcontent, tablinks;
+
+            // Get all elements with class="tabcontent" and hide them
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+
+            // Get all elements with class="tablinks" and remove the class "active"
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+
+            // Show the current tab, and add an "active" class to the button that opened the tab
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+    <script>
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+
+    <style>
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons that are used to open the tab content */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+        .tabcontent {
+            animation: fadeEffect 1s; /* Fading effect takes 1 second */
+        }
+
+        /* Go from zero to full opacity */
+        @keyframes fadeEffect {
+            from {opacity: 0;}
+            to {opacity: 1;}
+        }
+    </style>
 
 </body>
 
