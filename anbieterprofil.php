@@ -10,7 +10,7 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 
 
 
-if(isset($_POST['submit']))
+/*if(isset($_POST['submit']))
 {
     require_once 'vendor/autoload.php';
 
@@ -32,7 +32,7 @@ $message = (new Swift_Message('Verifizierungsantrag'))
 
 // Send the message
 $result = $mailer->send($message);
-}
+}*/
 ?>
 
 <!DOCTYPE html>
