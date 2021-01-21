@@ -4,6 +4,8 @@ session_start();
     require_once __DIR__.'/config/database.php';
     $bezeichnung = $plz = $ort = $strasse = $hausnr = $beschreibung = $datum = $eintritt = $einlass = $beginn = $ende="";
     $bezeichnung_err = $plz_err = $ort_err = $strasse_err = $hausnr_err = $beschreibung_err = $datum_err = $eintritt_err = $einlass_err = $beginn_err = $ende_err =$aid_err="";
+    $foto = $webad ="";
+    $foto_err =$webad_err="";
     //echo $_SESSION["id"];
     $aid =$_SESSION["id"];
 
@@ -88,6 +90,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
     $aid = trim($_POST["aid"]);
 
+    if(empty(trim($_POST["webad"]))){
+        $webad = "";
+    }
+    else{
+        $webad = trim($_POST["webad"]);
+    }
+
+    $foto=$_POST['bild'];
+    //$foto = addslashes(file_get_contents($_FILES['bild']['tmp_name']));
+    //$webad = trim($_POST["webad"]);
+
   /*  echo $bezeichnung;
     echo "\n$plz";
     echo "\n$ort";
@@ -104,7 +117,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     if(empty($bezeichnung_err) && empty($plz_err) && empty($ort_err) && empty($strasse_err) && empty($beschreibung_err) && empty($datum_err) && empty($eintritt_err) && empty($einlass_err) && empty($beginn_err)){
 
         // Prepare an insert statement
-        $sql = "INSERT INTO festl (Bezeichnung, PLZ, Ort, Strasse, Hausnummer, Beschreibung, Datum, Eintritt, EinlassAb, Beginn, Ende, AID) VALUES (:bezeichnung, :plz, :ort, :strasse, :hausnr, :beschreibung, :datum, :eintritt, :einlass, :beginn, :ende, :aid)";
+        $sql = "INSERT INTO festl (Bezeichnung, PLZ, Ort, Strasse, Hausnummer, Beschreibung, Datum, Eintritt, EinlassAb, Beginn, Ende, AID, Webadresse, Titelbild) VALUES (:bezeichnung, :plz, :ort, :strasse, :hausnr, :beschreibung, :datum, :eintritt, :einlass, :beginn, :ende, :aid, :webad,'$foto')";
 
         // $sql = "INSERT INTO benutzer (Vorname, Nachname, Gebdat, Email, Passwort) VALUES (:vorname, :nachname, :gebdat, :email, :psw)";
 
@@ -122,6 +135,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->bindParam(":beginn", $param_beginn, PDO::PARAM_STR);
             $stmt->bindParam(":ende", $param_ende, PDO::PARAM_STR);
             $stmt->bindParam(":aid", $param_aid, PDO::PARAM_STR);
+            $stmt->bindParam(":webad", $param_webad, PDO::PARAM_STR);
+           // $stmt->bindParam(":foto", $param_foto, PDO::PARAM_STR);
 
             // Set parameters
             $param_bezeichnung = $bezeichnung;
@@ -136,6 +151,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_beginn = $beginn;
             $param_ende = $ende;
             $param_aid = $aid;
+            $param_webad = $webad;
+            //$param_foto = $foto;
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){
@@ -257,11 +274,20 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                                     <input type="time" name="ende" class="form-control" step="2" value="<?php echo $ende; ?>">
                                                     <span class="help-block"><?php echo $ende_err; ?></span>
                                                 </div>
+                                                <div class="form-group <?php echo (!empty($webad_err)) ? 'has-error' : ''; ?>">
+                                                    <label>Webaddresse</label>
+                                                    <input type="text" name="webad" class="form-control" step="2" value="<?php echo $webad; ?>">
+                                                    <span class="help-block"><?php echo $webad_err; ?></span>
+                                                </div>
+                                                <div class="form-group <?php echo (!empty($foro_err)) ? 'has-error' : '';?>">
+                                                    <input type="file" name="bild" class="form-control">
+                                                </div>
+
                                                 <div class="form-group <?php echo (!empty($aid_err)) ? 'has-error' : ''; ?>">
                                                     <input type="hidden" name="aid" class="form-control" value="<?php echo $aid; ?>">
                                                 </div>
                                                 <div class="form-group">
-                                                    <input type="submit" class="btn btn-primary" value="Speichern">
+                                                    <input type="submit"class="btn btn-primary" value="Speichern">
                                                     <a class="btn btn-link" href="anbieterprofil.php">Abbrechen</a>
                                                 </div>
                                             </form>

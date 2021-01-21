@@ -9,7 +9,6 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
 }
 
 
-
 /*if(isset($_POST['submit']))
 {
     require_once 'vendor/autoload.php';

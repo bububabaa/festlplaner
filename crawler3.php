@@ -35,4 +35,4 @@ function crawl_page($url, $depth = 5)
     }
     echo "URL:",$url,PHP_EOL,"CONTENT:",PHP_EOL,$dom->saveHTML(),PHP_EOL,PHP_EOL;
 }
-crawl_page("https://www.wolkersdorf.at/", 2);
+crawl_page("http://www.laessigeparty.at/events", 2);

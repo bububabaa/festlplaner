@@ -59,7 +59,7 @@ echo " ";
 echo $rdm2;
 echo " ";
 echo $rdm3;*/
-
+$card_item=0;
 ?>
 
 
@@ -115,7 +115,7 @@ echo $rdm3;*/
                                                 <h4>Wilkkommen auf unserer Seite <em>Festlplaner</em></h4>
                                                 <span>Super Website &amp; Mit den besten Websitedesignern</span>
                                                 <div class="primary-button">
-                                                    <a href="#">Mehr anzeigen</a>
+                                                    <a href="festleintrag.php">Mehr anzeigen</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -135,6 +135,7 @@ echo $rdm3;*/
                                          <?php echo $arrstrasse[$rdm1]; echo" "; echo $arrhausnummer[$rdm1] ?><br>
                                          <?php echo $arrplz[$rdm1]; echo" "; echo $arrort[$rdm1] ?><br>
                                          <a href="details1.php">Details</a></p>
+
                                      </div>
                                 </div>
                                 <div class="card">
@@ -145,6 +146,7 @@ echo $rdm3;*/
                                          <?php echo $arrstrasse[$rdm2]; echo" "; echo $arrhausnummer[$rdm2] ?><br>
                                          <?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?><br>
                                          <a href="details2.php">Details</a></p>
+
                                      </div>
                                 </div>
                                 <div class="card">
@@ -155,6 +157,7 @@ echo $rdm3;*/
                                          <?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?><br>
                                          <?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?><br>
                                          <a href="details3.php">Details</a></p>
+
                                      </div>
                                 </div>
                             </div>

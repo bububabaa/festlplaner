@@ -1,4 +1,26 @@
 <?php
+session_start();
+
+if (isset($_SESSION['loggedin'])) {
+$clicked_festl_=$_SESSION["clicked_festl"];
+//echo $clicked_festl1_;
+}
+
+$username = "root";
+$password = "";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+
+
+$db = new PDO($dsn,$username,$password);
+
+$sql = "SELECT Webadresse FROM festl WHERE FID='".$clicked_festl_.".'";
+$result = $db->query($sql);
+$i=0;
+$webad_ = array();
+while($row = $result->fetch()){
+    $webad_[$i]= $row['Webadresse'];
+}
+//echo $webad_[0];
 
 //proxy source url
 //https://www.my-proxy.com/free-proxy-list-$i.html
@@ -18,7 +40,8 @@ $proxies =array();
 $start_count =1;
 $end_count =10;
 
-curl_setopt($curl,CURLOPT_URL, "http://www.laessigeparty.at/events");
+//curl_setopt($curl,CURLOPT_URL, "http://www.laessigeparty.at/events");
+curl_setopt($curl,CURLOPT_URL, $webad_[0]);
 //execute curl url
 $result =curl_exec($curl);
 //echo $result; die();

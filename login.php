@@ -29,36 +29,19 @@ session_start();
 
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: profil.php");
 
-    /*$user_ist=$_SESSION["user_ist"];
-
-    if($user_ist_=="anbieter")
-    {
-       header("location: anbieterprofil.php");
-    }
-    else if($user_ist_=="benutzer")
-    {
-        header("location: profil.php");
-    }
-    else if($user_ist_=="admin")
-    {
-        header("location: admin.php");
-    }*/
-
-
-    /*switch($user_ist) {
-        case 'anbieter': $_SESSION['user_ist'] = 'anbieter';
+ $user_ist_ = $_SESSION['user_ist'];
+    switch($user_ist_) {
+        case 'anbieter': $user_ist_ = 'anbieter';
             header("location: anbieterprofil.php");
             break;
-            case 'benutzer': $_SESSION['user_ist'] = 'benutzer';
+            case 'benutzer': $user_ist_ = 'benutzer';
             header("location: profil.php");
             break;
-            case 'admin': $_SESSION['user_ist'] = 'admin';
+            case 'admin': $user_ist_ = 'admin';
             header("location: admin.php");
             break;
-    }*/
-
+    }
     exit;
 }
 
@@ -132,14 +115,14 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
                             if($bgid == 2)
                             {
-                                $user_ist="benutzer";
+                                $user_ist="admin";
                                 $_SESSION["user_ist"]=$user_ist;
                                 header("location: admin.php");
                             }
                             else if($bgid == 1)
                             {
                             // Redirect user to welcome page
-                                $user_ist="admin";
+                                $user_ist="benutzer";
                                 $_SESSION["user_ist"]=$user_ist;
                                 header("location: profil.php");
                             }

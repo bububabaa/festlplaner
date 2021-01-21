@@ -75,6 +75,21 @@ while($row = $result->fetch()){
 
     $a++;
 }
+$clicked_festl=$arrfid[$rdm_2];
+$_SESSION["clicked_festl"]=$clicked_festl;
+
+$sql3 = "SELECT * FROM festl WHERE FID='".$clicked_festl."'";
+//echo $sql3;
+$result = $db->query($sql3);
+$b=0;
+$weblink=array();
+$arrfoto=array();
+while($row = $result->fetch()){
+    $weblink[$b]= $row['Webadresse'];
+    $arrfoto[$b]=$row['Titelbild'];
+
+    $b++;
+}
 ?>
 
 <!DOCTYPE html>
@@ -123,8 +138,19 @@ while($row = $result->fetch()){
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-                                            <h1><?php echo $arrbezeichnung[$rdm_2]?></h1>
-                                            <br>
+                                            <?php
+                                            if($weblink[0]==null)
+                                            {?>
+                                                <h1><?php echo $arrbezeichnung[$rdm_2]?></h1>
+                                                <br>
+                                            <?php
+                                            }
+                                            else
+                                            {?>
+                                               <h1><?php echo $arrbezeichnung[$rdm_2]?></h1> <h5>Klicken Sie <a href="webpage.php">hier</a> um mehr über unsere Veranstaltungen zu erfahren.</h5>
+                                            <?php
+                                            }?>
+
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <h3>Veranstalter:</h3>
@@ -163,7 +189,10 @@ while($row = $result->fetch()){
                                                 </div>
 
                                                 <div class="col-md-4">
-                                                    <img src="assets/images/featured_post_01.jpg">
+                                                    <!--<img src="assets/images/featured_post_01.jpg">-->
+                                                    <?php
+                                                    echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[0]) . '">';
+                                                    ?>
                                                 </div>
                                             </div>
                                         </div>
