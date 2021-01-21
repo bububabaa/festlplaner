@@ -1,3 +1,21 @@
+<?php
+$username = "root";
+$password = "";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+
+$db = new PDO($dsn,$username,$password);
+
+$sql = "SELECT * FROM festl";
+$result = $db->query($sql);
+$i=0;
+$orte = array();
+
+while($row = $result->fetch()){
+    $orte[$i] = array($row['PLZ'], $row['Ort'], $row['Strasse'], $row['Hausnummer']);
+    $i++;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
 
@@ -6,35 +24,21 @@
         overflow: hidden;
     }
 
-    #mapmenu {
-        position: absolute;
-        background: #fff;
-        padding: 10px;
-        font-family: 'Open Sans', sans-serif;
+    #map{
+        position: relative;
     }
 </style>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
-    <title>Festlplaner</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Additional CSS Files -->
-    <link rel="stylesheet" href="assets/css/fontawesome.css">
-    <link rel="stylesheet" href="assets/css/templatemo-style.css">
-    <link rel="stylesheet" href="assets/css/owl.css">
+<?php
+error_reporting(-1);
+ini_set('display_errors','On');
+require __DIR__.'/templates/templateHead.php'?>
 
     <!-- Mapbox -->
     <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
-
 
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
@@ -46,6 +50,13 @@
     <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
 
     <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-language/v0.10.1/mapbox-gl-language.js'></script>
+
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css" rel="stylesheet" />
+
+    <script src="https://unpkg.com/es6-promise@4.2.4/dist/es6-promise.auto.min.js"></script>
+    <script src="https://unpkg.com/@mapbox/mapbox-sdk/umd/mapbox-sdk.min.js"></script>
+    <!-- Mapbox ende -->
 </head>
 
 <body class="is-preload">
@@ -73,20 +84,43 @@
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <form id="map">
-                                                <div id='map' style='width: auto; height: 1000px;'></div>
+                                                <div id='map' style='width: auto; height: 1010px;'></div>
                                                 <script>
                                                     //Map
                                                     mapboxgl.accessToken = 'pk.eyJ1IjoiZmVzdGxwbGFuZXJoYWsxIiwiYSI6ImNraHhlbHJxdjBoeWoydm5icnl0cG12dHkifQ.j_lmlCu_KtaqM6J-p15oVQ';
-                                                    var map = new mapboxgl.Map({
-                                                        container: 'map',
-                                                        style: 'mapbox://styles/mapbox/streets-v11',
-                                                        center: [12.550343, 55.665957],
-                                                        zoom: 11
-                                                    });
+                                                    var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
 
-                                                    var language = new MapboxLanguage();
-                                                    map.addControl(language);
-                                                    options.defaultLanguage("de");
+                                                    var orte_js =<?php echo json_encode($orte );?>;
+                                                     var map = new mapboxgl.Map({
+                                                                    container: 'map',
+                                                                    style: 'mapbox://styles/mapbox/streets-v11',
+                                                                    center: [16.5722, 48.56743],
+                                                                    zoom: 10
+                                                                });
+
+                                                    console.log(orte_js);
+                                                    for (i = 0; i < orte_js.length; i++) {
+                                                    mapboxClient.geocoding
+                                                        .forwardGeocode({
+                                                                query: orte_js[i]+"",
+                                                                autocomplete: false,
+                                                                limit: orte_js.length
+                                                        })
+
+                                                        .send()
+                                                        .then(function(response) {
+                                                            if (
+                                                                response &&
+                                                                response.body &&
+                                                                response.body.features &&
+                                                                response.body.features.length
+                                                            ) {
+                                                                var feature = response.body.features[0];
+                                                                new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+                                                            }
+                                                        });
+                                                    }
+
                                                 </script>
 
                                                 <script>
@@ -100,6 +134,19 @@
                                                 </script>
 
                                                 <script>
+                                                    //Geocoder
+                                                    map.addControl(
+                                                    new MapboxGeocoder({
+                                                        accessToken: mapboxgl.accessToken,
+                                                        localGeocoder: coordinatesGeocoder,
+                                                        zoom: 4,
+                                                        placeholder: 'Try: -40, 170',
+                                                        mapboxgl: mapboxgl
+                                                        })
+                                                    );
+                                                </script>
+
+                                                <!--<script>
                                                     //Geocoder
                                                     var coordinatesGeocoder = function(query) {
                                                         var matches = query.match(
@@ -146,23 +193,14 @@
                                                         return geocodes;
                                                     };
 
-                                                    map.addControl(
-                                                        new MapboxGeocoder({
-                                                            accessToken: mapboxgl.accessToken,
-                                                            localGeocoder: coordinatesGeocoder,
-                                                            zoom: 4,
-                                                            placeholder: 'Try: -40, 170',
-                                                            mapboxgl: mapboxgl
-                                                        })
-                                                    );
-                                                </script>
+                                                </script>-->
 
                                                 <script>
                                                     //Navigation
                                                     map.addControl(new mapboxgl.NavigationControl());
                                                 </script>
 
-                                                <script>
+                                                <!--<script>
                                                     //Layer
                                                     var layerList = document.getElementById('menu');
                                                     var inputs = layerList.getElementsByTagName('input');
@@ -175,26 +213,27 @@
                                                     for (var i = 0; i < inputs.length; i++) {
                                                         inputs[i].onclick = switchLayer;
                                                     }
-                                                </script>
+                                                </script>-->
 
-                                                <script>
+                                                <!--<script>
                                                     //Marker
                                                     var marker = new mapboxgl.Marker()
                                                         .setLngLat([12.550343, 55.665957])
                                                         .addTo(map);
-                                                </script>
+                                                </script>-->
 
                                                 <script>
+                                                    for()
                                                     //Cluster
                                                     map.on('load', function() {
                                                         // Add a new source from our GeoJSON data and
                                                         // set the 'cluster' option to true. GL-JS will
                                                         // add the point_count property to your source data.
-                                                        map.addSource('earthquakes', {
+                                                        map.addSource('festl', {
                                                             type: 'geojson',
                                                             // Point to GeoJSON data. This example visualizes all M1.0+ earthquakes
                                                             // from 12/22/15 to 1/21/16 as logged by USGS' Earthquake hazards program.
-                                                            data: 'https://docs.mapbox.com/mapbox-gl-js/assets/earthquakes.geojson',
+                                                            data: 'https://geocode.at/list?state=3',
                                                             cluster: true,
                                                             clusterMaxZoom: 14, // Max zoom to cluster points on
                                                             clusterRadius: 50 // Radius of each cluster when clustering points (defaults to 50)
@@ -203,7 +242,7 @@
                                                         map.addLayer({
                                                             id: 'clusters',
                                                             type: 'circle',
-                                                            source: 'earthquakes',
+                                                            source: 'festl',
                                                             filter: ['has', 'point_count'],
                                                             paint: {
                                                                 // Use step expressions (https://docs.mapbox.com/mapbox-gl-js/style-spec/#expressions-step)
@@ -235,7 +274,7 @@
                                                         map.addLayer({
                                                             id: 'cluster-count',
                                                             type: 'symbol',
-                                                            source: 'earthquakes',
+                                                            source: 'festl',
                                                             filter: ['has', 'point_count'],
                                                             layout: {
                                                                 'text-field': '{point_count_abbreviated}',
@@ -247,7 +286,7 @@
                                                         map.addLayer({
                                                             id: 'unclustered-point',
                                                             type: 'circle',
-                                                            source: 'earthquakes',
+                                                            source: 'festl',
                                                             filter: ['!', ['has', 'point_count']],
                                                             paint: {
                                                                 'circle-color': '#11b4da',
@@ -263,7 +302,7 @@
                                                                 layers: ['clusters']
                                                             });
                                                             var clusterId = features[0].properties.cluster_id;
-                                                            map.getSource('earthquakes').getClusterExpansionZoom(
+                                                            map.getSource('festl').getClusterExpansionZoom(
                                                                 clusterId,
                                                                 function(err, zoom) {
                                                                     if (err) return;
@@ -327,23 +366,17 @@
             </div>
         </div>
 
-        <?php
+<?php
 error_reporting(-1);
 ini_set('display_errors','On');
 require __DIR__.'/templates/templateSidebar.php'?>
 
     </div>
 
-    <!-- Scripts -->
-    <!-- Bootstrap core JavaScript -->
-    <script src="assets/jquery/jquery.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/transition.js"></script>
-    <script src="assets/js/owl-carousel.js"></script>
-    <script src="assets/js/custom.js"></script>
+<?php
+error_reporting(-1);
+ini_set('display_errors','On');
+require __DIR__.'/templates/templateScripts.php'?>
 </body>
 
 </html>
