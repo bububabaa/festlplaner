@@ -1,25 +1,32 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script>
-function link1() {
-document.cookie="link=1";
-}
-function link2() {
-document.cookie="link=2";
-}
-function link3() {
-document.cookie="link=3";
-}
-function alertCookie() {
-  alert(document.cookie);
-}
-</script>
-</head>
-<body>
-    <a href="page2.html" onclick="link1()">1 dd</a><!--This would be link 1-->
-    <a href="page2.html" onclick="link2()">2</a><!--This would be link 2-->
-    <a href="page2.html" onclick="link3()">3</a><!--This would be link 3-->
-    <button onclick="alertCookie()">Show cookies</button>
-</body>
-</html>
+<?php
+$timestamp=time();
+$dtNow = new DateTime();
+// Set a non-default timezone if needed
+$dtNow->setTimezone(new DateTimeZone('Europe/Berlin'));
+$dtNow->setTimestamp($timestamp);
+
+$beginOfDay = clone $dtNow;
+$beginOfDay->modify('today');
+
+$endOfDay = clone $beginOfDay;
+$endOfDay->modify('tomorrow');
+// adjust from the start of next day to the end of the day,
+// per original question
+// Decremented the second as a long timestamp rather than the
+// DateTime object, due to oddities around modifying
+// into skipped hours of day-lights-saving.
+$endOfDateTimestamp = $endOfDay->getTimestamp();
+$endOfDay->setTimestamp($endOfDateTimestamp - 1);
+
+/*var_dump(
+    array(
+        'time ' => $dtNow->format('Y-m-d H:i:s e'),
+        'start' => $beginOfDay->format('Y-m-d H:i:s e'),
+        'end  ' => $endOfDay->format('Y-m-d H:i:s e'),
+    )
+);*/
+
+
+$heute = $beginOfDay->format('Y-m-d H:i:s');
+echo $heute;
+?>

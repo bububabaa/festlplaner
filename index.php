@@ -6,7 +6,26 @@ $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
 
 $db = new PDO($dsn,$username,$password);
 
-$sql = "SELECT * FROM festl";
+$timestamp=time();
+
+$dtNow = new DateTime();
+// Set a non-default timezone if needed
+$dtNow->setTimezone(new DateTimeZone('Europe/Vienna'));
+$dtNow->setTimestamp($timestamp);
+
+$beginOfDay = clone $dtNow;
+$beginOfDay->modify('today');
+
+/* $endOfDay = clone $beginOfDay;
+$endOfDay->modify('tomorrow');
+
+$endOfDateTimestamp = $endOfDay->getTimestamp();
+$endOfDay->setTimestamp($endOfDateTimestamp - 1);*/
+
+$heutedatum = $beginOfDay->format('Y-m-d H:i:s');
+$heutetimestamp= strtotime($heutedatum);
+
+$sql = "SELECT * FROM festl WHERE Datum >='".$heutedatum."'";
 $result = $db->query($sql);
 $i=0;
 $arrbezeichnung = array();
@@ -25,7 +44,6 @@ while($row = $result->fetch()){
     $i++;
 }
 session_start();
-
 
 $arr_length= count($arrbezeichnung);
 //echo $zahl1;
@@ -127,6 +145,7 @@ $card_item=0;
                 </section>
                 <section class="cards">
                     <div class="card-deck">
+
                                  <div class="card">
                                      <div class="icon"></div>
                                      <div class="card-body">
@@ -157,56 +176,10 @@ $card_item=0;
                                          <?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?><br>
                                          <?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?><br>
                                          <a href="details3.php">Details</a></p>
-
                                      </div>
                                 </div>
                             </div>
                     </section>
-                <!-- Services -->
-                <section class="services">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-md-4">
-                                <div class="service-item first-item">
-                                    <div class="icon"></div>
-                                    <h4><?php echo $arrbezeichnung[$rdm1] ?></h4>
-                                    <div class="inhalt">
-                                    <p><?php echo $converted_date1 ?></p>
-                                    <p><?php echo $arrstrasse[$rdm1]; echo" "; echo $arrhausnummer[$rdm1] ?></p>
-                                    <p><?php echo $arrplz[$rdm1]; echo" "; echo $arrort[$rdm1] ?></p>
-                                    <p><a href="details1.php">Details</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="service-item second-item">
-                                    <div class="icon"></div>
-                                    <div class="inhalt">
-                                    <h4><?php echo $arrbezeichnung[$rdm2] ?></h4>
-                                    <p><?php echo $converted_date2 ?></p>
-                                    <p><?php echo $arrstrasse[$rdm2]; echo" "; echo $arrhausnummer[$rdm2] ?></p>
-                                    <p><?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?></p>
-                                    <p><a href="details2.php">Details</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="service-item third-item">
-                                    <div class="icon"></div>
-                                    <div class="inhalt">
-                                    <h4><?php echo $arrbezeichnung[$rdm3] ?></h4>
-                                    <p><?php echo $converted_date3 ?></p>
-                                    <p><?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?></p>
-                                    <p><?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?></p>
-                                    <p><a href="details3.php">Details</a></p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <!-- The Modal -->
-               <!-- <h1><?php echo $converted_date1; echo " "; echo $converted_date2; echo" "; echo $converted_date3?></h1>-->
 
                 <!-- Top Image -->
                 <section class="top-image">

@@ -121,7 +121,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $param_bgid = $bgid;
             $param_email = $email;
            // $param_psw = psw_hash($psw, PASSWORD_DEFAULT); // Creates a password hash
+
             $psw= password_hash($psw, PASSWORD_DEFAULT); // Creates a password hash
+
             $param_psw = $psw;
 
             // Attempt to execute the prepared statement

@@ -1,4 +1,14 @@
 <?php
+session_start();
+
+if (isset($_SESSION['loggedin'])) {
+}
+else
+{
+    header("Location: login.php");
+    die();
+}
+
 $username = "root";
 $password = "";
 $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
@@ -19,10 +29,19 @@ $i=0;
 $arraid = array();
 $arrfoto=array();
 $arrweblink=array();
+$arreinlass=array();
+$arrbeginn=array();
+$arrende=array();
+$arrdatum=array();
 while($row = $result1->fetch()){
     $arraid[$i]= $row['AID'];
     $arrfoto[$i]=$row['Titelbild'];
     $arrweblink[$i]=$row['Webadresse'];
+    $arreinlass[$i]=$row['EinlassAb'];
+    $arrbeginn[$i]=$row['Beginn'];
+    $arrende[$i]=$row['Ende'];
+    $arrdatum[$i]=$row['Datum'];
+
     $i++;
 }
 $anzahl = count ($arraid);
@@ -40,8 +59,32 @@ for ($x = 0; $x < $anzahl; $x++ )
     }
 }
 
-//Weblink
 
+
+/*$test="select * from festl order by Datum ASC";
+$resulttest = $db->query($test);
+$t=0;
+$arrtest = array();
+while($testrow = $resulttest->fetch()){
+    $arrtest[$t]= $testrow['Datum'];
+    $t++;
+}
+
+for ($z = 0; $z < $anzahl; $z++ )
+{
+if(strtotime($arrtest[$z])>time())
+{
+
+    echo $arrtest[$z];
+    echo " ";
+    }
+    else
+    {
+         echo $z.'. ';
+        echo "Fehler";
+        echo " ";
+    }
+}*/
 
 ?>
 <!DOCTYPE html>
@@ -101,9 +144,41 @@ for ($x = 0; $x < $anzahl; $x++ )
 
                                                <div class="col-md-3">
                                             <?php
+                                                   $timestamp=time();
+
+                                                   $dtNow = new DateTime();
+                                                   // Set a non-default timezone if needed
+                                                   $dtNow->setTimezone(new DateTimeZone('Europe/Vienna'));
+                                                   $dtNow->setTimestamp($timestamp);
+
+                                                   $beginOfDay = clone $dtNow;
+                                                   $beginOfDay->modify('today');
+
+                                                  /* $endOfDay = clone $beginOfDay;
+                                                   $endOfDay->modify('tomorrow');
+
+                                                   $endOfDateTimestamp = $endOfDay->getTimestamp();
+                                                   $endOfDay->setTimestamp($endOfDateTimestamp - 1);*/
+
+                                                   $heutedatum = $beginOfDay->format('Y-m-d H:i:s e');
+                                                   $heutetimestamp= strtotime($heutedatum);
+
+
+                                                   $count1=0;
                                             foreach ($festln as $festl) {
+                                                if(strtotime($arrdatum[$count1])>=$heutetimestamp)
+                                                {
+                                                echo '<div class="line"></div>';
                                                     echo '<div class="festl-content">';
-                                                    echo '<h1>Titel:</h1>';
+                                                    if($arrfoto[$count1]==null)
+                                                    {
+                                                        echo '<h1><br></h1>';
+                                                        echo '<h5><br></h5>';
+                                                    }
+                                                    else
+                                                    {
+                                                        echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[$count1]) . '">';
+                                                    }
                                                     echo '<br>';
                                                     echo '<h3>Veranstalter:</h3>';
                                                     echo '<h4>Datum:</h4>';
@@ -114,53 +189,77 @@ for ($x = 0; $x < $anzahl; $x++ )
                                                     echo '<h4>Beginn:</h4>';
                                                     echo '<h4>Ende:</h4>';
                                                     echo '<br>';
-
-
-
                                                     echo'<h4>Beschreibung:</h4></div>';
-                                                 echo '<div class="line"></div>';
-
+                                               // echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[$count1]) . '">';
+                                               //  echo '<div class="line"></div>';
+                                                $count1++;
+                                                }
+                                                else
+                                                {
+                                                    $count1++;
+                                                }
                                             }?>
                                                 </div>
-
 
                                                <div class="col-md-9">
 
                                                 <?php
+
                                                 $count=0;
+
                                             foreach ($festln as $festl) {
-                                            echo '<section class="festl-banner">'; ?><?php
-                                            echo '<h1>'.$festl['Bezeichnung'] . '</h1>';
-                                            if($arrweblink[$count]==null)
-                                             {
-                                                  echo '<br>';
-                                             }
-                                             else
-                                             {
-                                                echo '<h5>Klicken Sie <a href="webpage.php">hier</a> um mehr über unsere Veranstaltungen zu erfahren.</h5>';
-                                             }
-                                            //echo '<h3>'.$arrweblink[$count].'</h3>';
-                                            echo '<h3>'.$veranstalter[$count].'</h3>';
-                                            //echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[$count]) . '">';
-                                            $count++;
-                                            echo '<h4>'.$festl['Datum'] . '</h4>';
-                                            echo '<h4>'.$festl['Strasse'];echo " "; echo $festl['Hausnummer'] . '</h4>';
-                                            echo '<h4>'.$festl['PLZ'];echo " "; echo $festl['Ort'] . '</h4>';
-                                            echo '<h4>'.$festl['Eintritt'] . ' €</h4>';
-                                            echo '<h4>'.$festl['EinlassAb'] . ' Uhr</h4>';
-                                            echo '<h4>'.$festl['Beginn'] . ' Uhr</h4>';
-                                            echo '<h4>'.$festl['Ende'] . ' Uhr</h4>';
-                                            echo '<br>';
-                                            echo '<div class="festl-scroll">'.nl2br($festl['Beschreibung']).'</div></section>';
 
+                                                if(strtotime($arrdatum[$count])>=$heutetimestamp)
+                                                {
+                                                    echo '<div class="line"></div>';
+                                                    echo '<section class="festl-banner">'; ?><?php
+                                                    echo '<h1>'.$festl['Bezeichnung'] . '</h1>';
+                                                    if($arrweblink[$count]==null)
+                                                    {
+                                                        echo '<h5><br><br></h5>';
+                                                    }
+                                                    else
+                                                    {
 
-                                            echo '<div class="line"></div>';
+                                                        // echo '<h5>Klicken Sie <a href="webpage.php">hier</a> um mehr über unsere Veranstaltungen zu erfahren.</h5>';
+                                                        echo '<h5>Klicken Sie <a href="'.$arrweblink[$count].'" target="_blank" >hier</a> um mehr über unsere Veranstaltungen zu erfahren.</h5>';
+                                                        echo '<br>';
+                                                    }
 
+                                                    echo '<h3>'.$veranstalter[$count].'</h3>';
+
+                                                    $date = DateTime::createFromFormat('Y-m-d', $arrdatum[$count]);
+                                                    $converted_date = $date->format('d.m.Y');
+
+                                                    $time1 =DateTime::createFromFormat('G:i:s', $arreinlass[$count]);
+                                                    $time2 =DateTime::createFromFormat('G:i:s', $arrbeginn[$count]);
+                                                    $time3 =DateTime::createFromFormat('G:i:s', $arrende[$count]);
+                                                    $converted_time1 = $time1->format('H:i');
+                                                    $converted_time2 = $time2->format('H:i');
+                                                    $converted_time3 = $time3->format('H:i');
+
+                                                    echo '<h4>'.$converted_date . '</h4>';
+                                                    echo '<h4>'.$festl['Strasse'];echo " "; echo $festl['Hausnummer'] . '</h4>';
+                                                    echo '<h4>'.$festl['PLZ'];echo " "; echo $festl['Ort'] . '</h4>';
+                                                    echo '<h4>'.$festl['Eintritt'] . ' €</h4>';
+                                                    echo '<h4>'.$converted_time1 . ' Uhr</h4>';
+                                                    echo '<h4>'.$converted_time2 . ' Uhr</h4>';
+                                                    echo '<h4>'.$converted_time3 . ' Uhr</h4>';
+                                                    echo '<br>';
+                                                    echo '<div class="festl-scroll">'.nl2br($festl['Beschreibung']).'</div></section>';
+                                                    $count++;
+                                                    // echo '<div class="line"></div>';
+
+                                                }
+                                                else
+                                                {
+                                                    $count++;
+                                                }
                                             }
+
                                                 ?>
                                                </div>
                                             </div>
-
                                            </div>
                                     </div>
                                 </div>
@@ -216,14 +315,14 @@ require __DIR__.'/templates/templateSidebar.php'?>
 	}
     div.festl-content{
         margin-top: 30px;
-
+        border-bottom: none;
         padding-bottom: 100px;
         height: 600px;
     }
     div.festl-scroll {
                 margin:4px, 4px;
                 padding:4px;
-                width: 500px;
+                width: 700px;
                 height: 200px;
                 overflow-x: hidden;
                 overflow-y: auto;
@@ -237,6 +336,13 @@ require __DIR__.'/templates/templateSidebar.php'?>
         border-bottom: 3px solid #eee;
     }
 
+    img {
+        height: 110px;
+
+
+    }
+
     </style>
 </body>
+
 </html>
