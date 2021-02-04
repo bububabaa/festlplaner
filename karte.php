@@ -8,10 +8,10 @@ $db = new PDO($dsn,$username,$password);
 $sql = "SELECT * FROM festl";
 $result = $db->query($sql);
 $i=0;
-$orte = array();
 
 while($row = $result->fetch()){
     $orte[$i] = array($row['PLZ'], $row['Ort'], $row['Strasse'], $row['Hausnummer']);
+    $bezeichnung[$i] = array($row['Bezeichnung']);
     $i++;
 }
 ?>
@@ -27,6 +27,14 @@ while($row = $result->fetch()){
     #map{
         position: relative;
     }
+
+    .mapboxgl-popup-close-button{
+        padding: 4px 8px;
+    }
+
+    .mapboxgl-popup-content {
+        max-width: 300px;
+    }
 </style>
 
 <head>
@@ -37,8 +45,8 @@ ini_set('display_errors','On');
 require __DIR__.'/templates/templateHead.php'?>
 
     <!-- Mapbox -->
-    <script src='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.js'></script>
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.0.0/mapbox-gl.css' rel='stylesheet' />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.js"></script>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
 
     <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
     <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css" />
@@ -91,16 +99,20 @@ require __DIR__.'/templates/templateHead.php'?>
                                                     var mapboxClient = mapboxSdk({ accessToken: mapboxgl.accessToken });
 
                                                     var orte_js =<?php echo json_encode($orte );?>;
-                                                     var map = new mapboxgl.Map({
-                                                                    container: 'map',
-                                                                    style: 'mapbox://styles/mapbox/streets-v11',
-                                                                    center: [16.5722, 48.56743],
-                                                                    zoom: 10
-                                                                });
+                                                    var bezeichnung_js =<?php echo json_encode($bezeichnung );?>;
 
-                                                    console.log(orte_js);
-                                                    for (i = 0; i < orte_js.length; i++) {
-                                                    mapboxClient.geocoding
+                                                    var map = new mapboxgl.Map({
+                                                        container: 'map',
+                                                        style: 'mapbox://styles/mapbox/streets-v11',
+                                                        center: [16.5722, 48.56743],
+                                                        zoom: 10
+                                                    });
+
+                                                    //Standorte einlesen
+                                                    var i2 = 0;
+
+                                                    for (var i = 0; i < orte_js.length; i++) {
+                                                        mapboxClient.geocoding
                                                         .forwardGeocode({
                                                                 query: orte_js[i]+"",
                                                                 autocomplete: false,
@@ -109,14 +121,29 @@ require __DIR__.'/templates/templateHead.php'?>
 
                                                         .send()
                                                         .then(function(response) {
-                                                            if (
-                                                                response &&
-                                                                response.body &&
-                                                                response.body.features &&
-                                                                response.body.features.length
-                                                            ) {
+                                                            {
                                                                 var feature = response.body.features[0];
-                                                                new mapboxgl.Marker().setLngLat(feature.center).addTo(map);
+
+                                                                /*
+                                                                var popup = new mapboxgl.Popup({ offset: [0, 30] }).setText(
+                                                                    bezeichnung_js[counter]
+                                                                    + "\n" + orte_js[counter] + "\n"
+                                                                    + "<a href='festleintrag.php' target='_blank'>Details</a>"
+                                                                );
+                                                                */
+
+                                                                var popup = new mapboxgl.Popup({ offset: 30 }).setHTML(
+                                                                    '<strong>' + bezeichnung_js[i2] + '</strong>'
+                                                                    + '<p style="font-size:12px;">' + orte_js[i2] +'</p>'
+                                                                    + "<a href='festleintrag.php'>Details</a>"
+                                                                );
+
+                                                                new mapboxgl.Marker()
+                                                                    .setLngLat(feature.center)
+                                                                    .setPopup(popup)
+                                                                    .addTo(map);
+
+                                                                i2++;
                                                             }
                                                         });
                                                     }
