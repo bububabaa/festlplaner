@@ -20,9 +20,7 @@ while($row = $result->fetch()){
 <html lang="de">
 
 <style>
-    body {
-        overflow: hidden;
-    }
+
 
     #map{
         position: relative;
