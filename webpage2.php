@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['loggedin'])) {
-$clicked_festl_=$_SESSION["clicked_festl"];
+$clicked_festl_=$_SESSION["count"];;
 //echo $clicked_festl1_;
 }
 

@@ -97,21 +97,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $webad = trim($_POST["webad"]);
     }
 
-    $foto=$_POST['bild'];
-    //$foto = addslashes(file_get_contents($_FILES['bild']['tmp_name']));
-    //$webad = trim($_POST["webad"]);
+    //$foto=$_POST['bild'];
+    $foto = addslashes(file_get_contents($_FILES['bild']['tmp_name']));
 
-  /*  echo $bezeichnung;
-    echo "\n$plz";
-    echo "\n$ort";
-    echo "\n$strasse";
-    echo "\n$hausnr";
-    echo "\n$beschreibung";
-    echo "\n$datum";
-    echo "\n$eintritt";
-    echo "\n$einlass";
-    echo "\n$beginn";
-    echo "\n$aid";*/
 
     // Check input errors before inserting in database
     if(empty($bezeichnung_err) && empty($plz_err) && empty($ort_err) && empty($strasse_err) && empty($beschreibung_err) && empty($datum_err) && empty($eintritt_err) && empty($einlass_err) && empty($beginn_err)){
@@ -218,7 +206,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <h2>Veranstaltung hinzufügen</h2>
-                                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                                            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                                                 <div class="form-group <?php echo (!empty($bezeichnung_err)) ? 'has-error' : ''; ?>">
                                                     <label>Bezeichnung</label>
                                                     <input type="text" name="bezeichnung" class="form-control" value="<?php echo $bezeichnung; ?>">

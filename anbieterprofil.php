@@ -2,11 +2,37 @@
 // Initialize the session
 session_start();
 
+$username = "root";
+$password = "";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+
+
+$db = new PDO($dsn,$username,$password);
+
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
 }
+
+$anbierterid= $_SESSION["id"];
+
+$sql= "SELECT * FROM anbieter WHERE AID='".$anbierterid."'";
+$result = $db->query($sql);
+$i=0;
+$arrverifiziert = array();
+while($row = $result->fetch()){
+    $arrverifiziert[$i]= $row['Verified'];
+
+    $i++;
+}
+//$anzahl = count($arrfid);
+//echo $anzahl;
+
+$sql= "SELECT * FROM festl WHERE AID='".$anbierterid."'";
+$result = $db->query($sql);
+
+$festln = $result->fetchAll();
 
 
 /*if(isset($_POST['submit']))
@@ -86,19 +112,40 @@ $result = $mailer->send($message);
                                         <div class="banner-caption">
                                             <div class="page-header">
                                                 <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Willkommen auf Ihrem Profil.</h1>
-                                                <div id="popup" class="popup" onclick="myFunction()"><img alt="Information" src="assets/images/information.png">
+                                                <?php if(($arrverifiziert[0]==0))
+                                                { ?>
+                                                <div class="alert alert-danger" role="alert">
+                                                    <div id="popup" class="popup" onclick="myFunction()">Sie sind noch nicht verifiziert! Klicken Sie hier.
+                                                    <span class="popuptext" id="myPopup">Bitte beachten Sie, dass der Verifizierungsprozess bis zu einem Tag dauern kann. Wir bitten um Verständnis.</span>
+                                                    </div>
+
+                                                </div>
+
+                                                <button type="submit" btn-verifizieren>Verifizierung anfordern</button>
+                                                <br>
+                                                <?php
+                                                }
+                                                else
+                                                {
+                                                ?>
+                                                <!--<div id="popup" class="popup" onclick="myFunction()"><img alt="Information" src="assets/images/information.png">
                                                     <span class="popuptext" id="myPopup">Bitte beachten Sie, dass der Verifizierungsprozess bis zu einem Tag dauern kann. Wir bitten um Verständnis.</span>
                                                     <button type="submit" btn-verifizieren>Verifizierung anfordern</button>
-                                                </div>
+                                                </div>-->
                                             </div>
-                                            <p>
+
                                                 <button btn-anlegen><a href="festlanlegen.php">Veranstaltung anlegen</a></button>
                                                 <br>
+                                                 <button btn-anlegen><a href="verwaltunganbieter.php">Veranstaltung verwalten</a></button>
+                                                <br>
+                                                <?php } ?>
+
+
                                                 <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a>
                                                 <br>
                                                 <a href="logout.php" class="btn btn-danger">Logout</a>
 
-                                            </p>
+
                                         </div>
                                     </div>
                                 </div>

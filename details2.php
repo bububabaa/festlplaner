@@ -9,7 +9,25 @@ $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
 
 $db = new PDO($dsn,$username,$password);
 
-$sql = "SELECT * FROM festl";
+$timestamp=time();
+
+$dtNow = new DateTime();
+// Set a non-default timezone if needed
+$dtNow->setTimezone(new DateTimeZone('Europe/Vienna'));
+$dtNow->setTimestamp($timestamp);
+
+$beginOfDay = clone $dtNow;
+$beginOfDay->modify('today');
+
+/* $endOfDay = clone $beginOfDay;
+$endOfDay->modify('tomorrow');
+
+$endOfDateTimestamp = $endOfDay->getTimestamp();
+$endOfDay->setTimestamp($endOfDateTimestamp - 1);*/
+
+$heutedatum = $beginOfDay->format('Y-m-d H:i:s');
+
+$sql = "SELECT * FROM festl Where Datum>='".$heutedatum."'";
 $result = $db->query($sql);
 $i=0;
 $arrfid = array();
@@ -56,7 +74,7 @@ else
     die();
 }
 $date = DateTime::createFromFormat('Y-m-d', $arrdatum[$rdm_2]);
-$converted_date = $date->format('D d.m.Y');
+$converted_date = $date->format('d.m.Y');
 
 $time1 =DateTime::createFromFormat('G:i:s', $arreinlass[$rdm_2]);
 $time2 =DateTime::createFromFormat('G:i:s', $arrbeginn[$rdm_2]);

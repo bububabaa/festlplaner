@@ -27,17 +27,17 @@
                 <li><a href="galerie.php">Galerie</a></li>
                 <li><a href="karte.php">Karte</a></li>
                 <?php
-                if (isset($_SESSION['loggedin'])) {
+                //if (isset($_SESSION['loggedin'])) {
                 ?>
-                <li>
+               <!-- <li>
                     <span class="opener">Abos</span>
                     <ul>
                         <li><a href="#">Abo 1</a></li>
                         <li><a href="#">Abo 2</a></li>
                         <li><a href="#">Abo 3</a></li>
                     </ul>
-                </li>
-                     <?php }?>
+                </li>-->
+                     <?php //}?>
 
                 <li><a target="_blank" href="https://hakmistelbach.ac.at/">externer Link</a></li>
                 <li><a href="ueberuns.php">Über uns</a></li>
