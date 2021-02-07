@@ -1,4 +1,15 @@
 <?php
+    session_start();
+
+    if (isset($_SESSION['loggedin'])) {
+        $email =$_SESSION["username"];
+    }
+    else
+    {
+        header("Location: login.php");
+        die();
+    }
+
     require_once 'vendor/autoload.php';
 
     $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
@@ -11,7 +22,7 @@
     $message = (new Swift_Message('Verifikation'))
     ->setFrom(['festlplaner@gmail.com' => 'Festlplaner Anfrage'])
     ->setTo(['festlplaner@gmail.com' => ''])
-    ->setBody('Der User ... beantragt die Verifikation des Accounts')
+    ->setBody('Der User ' + $email + ' beantragt die Verifikation des Accounts')
     ;
 
     $result = $mailer->send($message);

@@ -7,7 +7,6 @@ $username = "root";
 $password = "";
 $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
 
-
 $db = new PDO($dsn,$username,$password);
 
 // Check if the user is logged in, if not then redirect him to login page
