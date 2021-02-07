@@ -21,8 +21,10 @@ $sql= "SELECT * FROM anbieter WHERE AID='".$anbierterid."'";
 $result = $db->query($sql);
 $i=0;
 $arrverifiziert = array();
+$arranbietername =array();
 while($row = $result->fetch()){
     $arrverifiziert[$i]= $row['Verified'];
+    $arranbietername[$i]=$row['Name'];
 
     $i++;
 }
@@ -111,7 +113,8 @@ $result = $mailer->send($message);
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <div class="page-header">
-                                                <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Willkommen auf Ihrem Profil.</h1>
+                                                <!--<h1>Hi, <b><?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Willkommen auf Ihrem Profil.</h1>-->
+                                                <h1>Hi, <b><?php echo htmlspecialchars($arranbietername[0]); ?></b>. Willkommen auf Ihrem Profil.</h1>
                                                 <?php if(($arrverifiziert[0]==0))
                                                 { ?>
                                                 <div class="alert alert-danger" role="alert">

@@ -2,10 +2,31 @@
 // Initialize the session
 session_start();
 
+$username = "root";
+$password = "";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+
+
+$db = new PDO($dsn,$username,$password);
+
 // Check if the user is logged in, if not then redirect him to login page
 if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
     header("location: login.php");
     exit;
+}
+$benutzerid=$_SESSION["bid"];
+//echo $benutzerid;
+
+$sql= "SELECT * FROM benutzer WHERE BID='".$benutzerid."'";
+$result = $db->query($sql);
+$i=0;
+$arrbenutzervorname =array();
+$arrbenutzernachname =array();
+while($row = $result->fetch()){
+    $arrbenutzervorname[$i]=$row['Vorname'];
+    $arrbenutzernachname[$i]=$row['Nachname'];
+
+    $i++;
 }
 ?>
 
@@ -60,7 +81,8 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <div class="page-header">
-                                                <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["usernamebenutzer"]); ?></b>. Willkommen auf Ihrem Profil.</h1>
+                                                <!--<h1>Hi, <b><?php echo htmlspecialchars($_SESSION["usernamebenutzer"]); ?></b>. Willkommen auf Ihrem Profil.</h1>-->
+                                                <h1>Hi, <b><?php echo $arrbenutzervorname[0];echo " "; echo $arrbenutzernachname[0]; ?></b>. Willkommen auf Ihrem Profil.</h1>
                                             </div>
                                             <p>
                                                 <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a>
