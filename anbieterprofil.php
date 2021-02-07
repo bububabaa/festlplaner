@@ -1,4 +1,5 @@
 <?php
+
 // Initialize the session
 session_start();
 
@@ -58,6 +59,23 @@ $message = (new Swift_Message('Verifizierungsantrag'))
 // Send the message
 $result = $mailer->send($message);
 }*/
+
+if(isset($_POST['verifizieren']))
+{
+    require_once __DIR__.'/vendor/autoload.php';
+    $transport = new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl');
+    $transport->setUsername('festlplaner@gmail.com');
+    $transport->setPassword('unqovrmbgtxmczvx');
+
+    $mailer = new Swift_Mailer($transport);
+
+    $message = new Swift_Message('Verifikation');
+    $message->setFrom(['festlplaner@gmail.com' => 'Festlplaner Anfrage']);
+    $message->setTo(['bopejik361@poetred.com' => '']);
+    $message->setBody('Der User ... beantragt die Verifikation des Accounts');
+
+    $result = $mailer->send($message);
+}
 ?>
 
 <!DOCTYPE html>
@@ -118,11 +136,11 @@ $result = $mailer->send($message);
                                                     <div id="popup" class="popup" onclick="myFunction()">Sie sind noch nicht verifiziert! Klicken Sie hier.
                                                     <span class="popuptext" id="myPopup">Bitte beachten Sie, dass der Verifizierungsprozess bis zu einem Tag dauern kann. Wir bitten um Verständnis.</span>
                                                     </div>
-
                                                 </div>
 
-                                                <button type="submit" btn-verifizieren>Verifizierung anfordern</button>
+                                                <button type="submit" name="verifizieren" btn-verifizieren>Verifizierung anfordern</button>
                                                 <br>
+
                                                 <?php
                                                 }
                                                 else

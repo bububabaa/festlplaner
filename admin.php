@@ -64,12 +64,21 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
                                             <div class="page-header">
                                                 <h1>Hi, <b><?php echo htmlspecialchars($_SESSION["usernamebenutzer"]); ?></b>. Sie befinden sich im Adminbereich.</h1>
                                             </div>
+
+                                            <div class="primary-button">
+                                                <a href="anbieterverwalten.php">Anbieter verwalten</a>
+                                            </div>
+
+                                            <br>
+
+                                            <div class="primary-button">
+                                                <a href="benutzerverwalten.php">Benutzer verwalten</a>
+                                            </div>
+
+                                            <br><br>
+
                                             <p>
-                                            <button btn-anlegen><a href="anbieterverwalten.php">Anbieter verwalten</a></button><br>
-                                            <button btn-anlegen><a href="benutzerverwalten.php">Benutzer verwalten</a></button>
-                                            </p>
-                                            <p>
-                                                <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a><br>
+                                                <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a>
                                                 <a href="logout.php" class="btn btn-danger">Logout</a>
                                             </p>
                                         </div>
