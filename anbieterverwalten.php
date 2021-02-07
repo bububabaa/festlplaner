@@ -1,6 +1,15 @@
 <?php
     session_start();
 
+if (isset($_SESSION['loggedin'])) {
+
+}
+else
+{
+    header("Location: login.php");
+    die();
+}
+
 $username = "root";
 $password = "";
 $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
@@ -39,7 +48,6 @@ $anzahl = count($arraid);
    echo $arrverified[$z];
     echo " ";
 }*/
-
 
 ?>
 
@@ -295,6 +303,17 @@ $anzahl = count($arraid);
         width: 20px;
         height: 20px;
     }
+
+    #myInput {
+  background-image: url('/css/searchicon.png');
+  background-position: 10px 10px;
+  background-repeat: no-repeat;
+  width: 100%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -335,17 +354,20 @@ $(document).ready(function(){
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-5">
 						<h2>Verwaltung <b>Anbieter</b></h2>
-					</div>
-					<div class="col-sm-6">
 
+					</div>
+                    <div class="col-sm-4">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Suche nach E-Mail-Adressen.." title="Type in a name">
+                    </div>
+					<div class="col-sm-3">
                         <a href="admin.php" class="btn btn-danger"><img src="assets/images/baseline_close_black_18dp.png"></a>
                         <a href="admin.php" class="btn btn-secondary"><img src="assets/images/baseline_download_black_18dp.png"></a>
 					</div>
                 </div>
             </div>
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" id="myTable">
                 <thead>
                     <tr>
                         <th>AID</th>
@@ -411,6 +433,27 @@ $(document).ready(function(){
     <script src="assets/js/transition.js"></script>
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
+
+    <script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[4];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }
+  }
+}
+</script>
 
 </body>
 </html>

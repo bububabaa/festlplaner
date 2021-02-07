@@ -1,5 +1,5 @@
 <?php
-session_start();
+    session_start();
 
 $username = "root";
 $password = "";
@@ -8,62 +8,28 @@ $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
 
 $db = new PDO($dsn,$username,$password);
 
-
-if (isset($_SESSION['loggedin'])) {
-    $anbieterid= $_SESSION["id"];
-}
-else
-{
-    header("Location: login.php");
-    die();
-}
-
-$sql= "SELECT * FROM festl WHERE AID='".$anbieterid."'";
+$sql= "SELECT * FROM benutzer WHERE BGID=1";
 $result = $db->query($sql);
 
-$festln = $result->fetchAll();
+$benutzern = $result->fetchAll();
 
-$sql1= "SELECT * FROM festl WHERE AID='".$anbieterid."'";
+$sql1= "SELECT * FROM benutzer WHERE BGID=1";
 $result1 = $db->query($sql1);
 $i=0;
-$arrdatum=array();
-$arrfid=array();
-$arrbezeichnung=array();
-$arrplz=array();
-$arrort=array();
-$arrstrasse=array();
-$arrhausnummer=array();
-$arrbeschreibung=array();
-$arreintritt=array();
-$arreinlass=array();
-$arrbeginn=array();
-$arrende=array();
-$arrwebad=array();
-$arrfoto=array();
+$arrbid=array();
+$arrvorname=array();
+$arrnachname=array();
+$arrgebdat=array();
+$arremail=array();
 while($row1 = $result1->fetch()){
-    $arrdatum[$i]= $row1['Datum'];
-    $arrfid[$i]=$row1['FID'];
-    $arrbezeichnung[$i]=$row1['Bezeichnung'];
-    $arrplz[$i]=$row1['PLZ'];
-    $arrort[$i]=$row1['Ort'];
-    $arrstrasse[$i]=$row1['Strasse'];
-    $arrhausnummer[$i]=$row1['Hausnummer'];
-    $arrbeschreibung[$i]=$row1['Beschreibung'];
-    $arreintritt[$i]=$row1['Eintritt'];
-    $arreinlass[$i]=$row1['EinlassAb'];
-    $arrbeginn[$i]=$row1['Beginn'];
-    $arrende[$i]=$row1['Ende'];
-    $arrwebad[$i]=$row1['Webadresse'];
-    $arrfoto[$i]=$row1['Titelbild'];
+    $arrbid[$i]= $row1['BID'];
+    $arrvorname[$i]= $row1['Vorname'];
+    $arrnachname[$i]= $row1['Nachname'];
+    $arrgebdat[$i]= $row1['Gebdat'];
+    $arremail[$i]= $row1['Email'];
     $i++;
 }
-$anzahl = count($arrdatum);
 $count=0;
-$zid=0;
-
-
-//echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[$count]) . '">';
-
 ?>
 
 <!DOCTYPE html>
@@ -318,7 +284,7 @@ $zid=0;
         height: 20px;
     }
 
-     #myInput {
+        #myInput {
   background-image: url('/css/searchicon.png');
   background-position: 10px 10px;
   background-repeat: no-repeat;
@@ -328,7 +294,6 @@ $zid=0;
   border: 1px solid #ddd;
   margin-bottom: 12px;
 }
-</s
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
@@ -354,7 +319,6 @@ $(document).ready(function(){
 		}
 	});
 });
-
 </script>
 </head>
 <body>
@@ -371,85 +335,52 @@ $(document).ready(function(){
             <div class="table-title">
                 <div class="row">
                     <div class="col-sm-5">
-						<h2>Verwaltung <b>Veranstaltungen</b></h2>
+						<h2>Verwaltung <b>Benutzer</b></h2>
 					</div>
-                    <div class="col-sm-4">
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Suche nach Veranstaltungen" title="Type in a name">
+                     <div class="col-sm-4">
+                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Suche nach E-Mail-Adressen.." title="Type in a name">
                     </div>
 					<div class="col-sm-3">
-                        <a href="anbieterprofil.php" class="btn btn-danger"><img src="assets/images/baseline_close_black_18dp.png"></a>
+                        <a href="admin.php" class="btn btn-danger"><img src="assets/images/baseline_close_black_18dp.png"></a>
+                        <a href="benutzerscraper.php" class="btn btn-secondary"><img src="assets/images/baseline_download_black_18dp.png"></a>
 					</div>
                 </div>
             </div>
             <table class="table table-striped table-hover" id="myTable">
                 <thead>
                     <tr>
-						<th>
-							<span class="custom-checkbox">
-								<input type="checkbox">
-							</span>
-						</th>
-                        <th>Bezeichnung</th>
-                        <th>Datum</th>
-                        <th>Aktionen</th>
+                        <th>BID</th>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                        <th>Geburtsdatum</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php
 
-                    foreach ($festln as $festl) {
-                        $date = DateTime::createFromFormat('Y-m-d', $arrdatum[$count]);
-                        $converted_date = $date->format('d.m.Y');
-
-                        /*<span class="custom-checkbox">
-								<input type="checkbox" id="checkbox" name="options[]" value="1">
-								<label for="checkbox?"></label>
-							</span>*/
-                       // <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Bearbeiten">&#xE254;</i></a>
-                       // <a href="#editEmployeeModal?aendern='; echo $festl['FID'];echo'" method="GET" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Bearbeiten">&#xE254;</i></a>
-
-
+                    foreach ($benutzern as $benutzer) {
+                        $gebdate = DateTime::createFromFormat('Y-m-d', $arrgebdat[$count]);
+                        $converted_gebdate = $gebdate->format('d.m.Y');
                         echo '<tr>
-                        <td>'.$arrfid[$count].'</td>
-                        <td>'.$arrbezeichnung[$count].'</td>
-                        <td>'.$converted_date.'</td>
-
-                        <td>
-                            <a href="festlbearbeiten.php?aendern='; echo $festl['FID'];echo'" class="edit"><i class="material-icons" title="Bearbeiten">&#xE254;</i></a>
-                            <a href="festlloeschen.php?loeschen=';echo $festl['FID'];echo'" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Löschen">&#xE872;</i></a>
-                        </td>
-                    </tr>';
-
-
+                        <td> '.$arrbid[$count].'</td>
+                        <td> '.$arrvorname[$count].'</td>
+                        <td> '.$arrnachname[$count].'</td>
+                        <td> '.$converted_gebdate.'</td>
+                        <td> '.$arremail[$count].'</td>
+                        </tr>';
                         $count++;
+
                     }
+
                     ?>
                 </tbody>
             </table>
         </div>
     </div>
 
-	<!-- Delete Modal HTML -->
-	<div id="deleteEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form>
-					<div class="modal-header">
-						<h4 class="modal-title">Veranstaltung löschen</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">
-						<p>Sind Sie sicher, dass Sie diese Veranstaltung löschen wollen?</p>
-						<p style="color:#F44336;"><small>Diese Aktion kann nicht rückgängig gemacht werden.</small></p>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Abbrechen">
-						<input type="submit" class="btn btn-danger" value="Löschen">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+
+
             </div>
         </div>
 
@@ -467,7 +398,7 @@ $(document).ready(function(){
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
 
-     <script>
+        <script>
 function myFunction() {
   var input, filter, table, tr, td, i, txtValue;
   input = document.getElementById("myInput");
@@ -475,7 +406,7 @@ function myFunction() {
   table = document.getElementById("myTable");
   tr = table.getElementsByTagName("tr");
   for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
+    td = tr[i].getElementsByTagName("td")[4];
     if (td) {
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {

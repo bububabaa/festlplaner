@@ -74,7 +74,7 @@ $bezeichnung = $plz = $ort = $strasse = $hausnr = $beschreibung = $datum = $eint
 $bezeichnung_err = $plz_err = $ort_err = $strasse_err = $hausnr_err = $beschreibung_err = $datum_err = $eintritt_err = $einlass_err = $beginn_err = $ende_err =$aid_err="";
 $foto = $webad ="";
 $foto_err =$webad_err="";
-echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[0]) . '">';
+//echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[0]) . '">';
 
 if(isset($_POST['aendern-submit']))
 {
@@ -185,16 +185,19 @@ if(isset($_POST['aendern-submit']))
         else{
             $webad = trim($_POST["webad"]);
         }
-      //  $foto=$_POST['bild'];
+
         if(empty($_FILES['bild']['size'])){
             $foto=$arrfoto[0];
         }
         else{
             $foto = addslashes(file_get_contents($_FILES['bild']['tmp_name']));
         }
+       // $foto = addslashes(file_get_contents($_FILES['bild']['tmp_name']));
+        $speicherndb = "UPDATE festl SET Titelbild='$foto' Where FID='".$zid_."'";
+        $resultspeichern = $db->Exec($speicherndb);
 
 
-         $sql = "UPDATE festl SET Bezeichnung=:bezeichnung, PLZ=:plz, Ort=:ort, Strasse=:strasse, Hausnummer=:hausnr, Beschreibung=:beschreibung, Datum=:datum, Eintritt=:eintritt, EinlassAb=:einlass, Beginn=:beginn, Ende=:ende, AID=:anbieterid, Webadresse=:webad, Titelbild=:foto WHERE FID='".$zid_."'";
+         $sql = "UPDATE festl SET Bezeichnung=:bezeichnung, PLZ=:plz, Ort=:ort, Strasse=:strasse, Hausnummer=:hausnr, Beschreibung=:beschreibung, Datum=:datum, Eintritt=:eintritt, EinlassAb=:einlass, Beginn=:beginn, Ende=:ende, AID=:anbieterid, Webadresse=:webad WHERE FID='".$zid_."'";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -211,7 +214,7 @@ if(isset($_POST['aendern-submit']))
             $stmt->bindParam(":ende", $param_ende, PDO::PARAM_STR);
             $stmt->bindParam(":webad", $param_webad, PDO::PARAM_STR);
             $stmt->bindParam(":anbieterid", $param_anbieterid, PDO::PARAM_STR);
-            $stmt->bindParam(":foto", $param_foto, PDO::PARAM_STR);
+           // $stmt->bindParam(":foto", $foto);
            // $stmt->bindParam(":foto", $param_foto, PDO::PARAM_STR);
 
             // Set parameters
@@ -228,7 +231,7 @@ if(isset($_POST['aendern-submit']))
             $param_ende = $ende;
             $param_webad = $webad;
             $param_anbieterid = $anbieterid;
-            $param_foto = $foto;
+            //$param_foto = $foto;
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){

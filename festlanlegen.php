@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+if (isset($_SESSION['loggedin'])) {
+
+}
+else
+{
+    header("Location: login.php");
+    die();
+}
+
     require_once __DIR__.'/config/database.php';
     $bezeichnung = $plz = $ort = $strasse = $hausnr = $beschreibung = $datum = $eintritt = $einlass = $beginn = $ende="";
     $bezeichnung_err = $plz_err = $ort_err = $strasse_err = $hausnr_err = $beschreibung_err = $datum_err = $eintritt_err = $einlass_err = $beginn_err = $ende_err =$aid_err="";
