@@ -152,7 +152,9 @@ if(isset($_POST['verifizieren']))
                                                 </div>
 
                                                 <!--<button type="submit" name="verifizieren" btn-verifizieren>Verifizierung anfordern</button>-->
+                                                <div class="primary-button">
                                                 <a href="verifizierenmail.php" class="btn">Verifizierung anfordern</a>
+                                                </div>
                                                 <br>
 
                                                 <?php
@@ -165,16 +167,19 @@ if(isset($_POST['verifizieren']))
                                                     <button type="submit" btn-verifizieren>Verifizierung anfordern</button>
                                                 </div>-->
                                             </div>
-
-                                                <button btn-anlegen><a href="festlanlegen.php">Veranstaltung anlegen</a></button>
                                                 <br>
-                                                 <button btn-anlegen><a href="verwaltunganbieter.php">Veranstaltung verwalten</a></button>
+                                                <div class="primary-button">
+                                                <a href="festlanlegen.php">Veranstaltung anlegen</a>
+                                                </div>
+                                                <br>
+                                                <div class="primary-button">
+                                                <a href="verwaltunganbieter.php">Veranstaltung verwalten</a>
+                                                </div>
                                                 <br>
                                                 <?php } ?>
 
-
-                                                <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a>
                                                 <br>
+                                                <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a>
                                                 <a href="logout.php" class="btn btn-danger">Logout</a>
 
 

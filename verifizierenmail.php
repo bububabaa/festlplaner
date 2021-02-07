@@ -22,7 +22,8 @@
     $message = (new Swift_Message('Verifikation'))
     ->setFrom(['festlplaner@gmail.com' => 'Festlplaner Anfrage'])
     ->setTo(['festlplaner@gmail.com' => ''])
-    ->setBody('Der User ' + $email + ' beantragt die Verifikation des Accounts')
+    ->setBody('Der User ' .$email. ' beantragt die Verifikation des Accounts<br>
+    <a href="localhost/festlplaner/login.php">hier klicken</a>', 'text/html')
     ;
 
     $result = $mailer->send($message);

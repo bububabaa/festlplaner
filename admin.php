@@ -89,9 +89,6 @@ while($row = $result->fetch()){
                                             <div class="primary-button">
                                                 <a href="anbieterverwalten.php">Anbieter verwalten</a>
                                             </div>
-
-                                            <br>
-
                                             <div class="primary-button">
                                                 <a href="benutzerverwalten.php">Benutzer verwalten</a>
                                             </div>
