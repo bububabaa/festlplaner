@@ -62,22 +62,33 @@ $message = (new Swift_Message('Verifizierungsantrag'))
 $result = $mailer->send($message);
 }*/
 
+/*
 if(isset($_POST['verifizieren']))
 {
-    require_once __DIR__.'/vendor/autoload.php';
-    $transport = new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl');
-    $transport->setUsername('festlplaner@gmail.com');
-    $transport->setPassword('unqovrmbgtxmczvx');
+    require_once 'vendor/autoload.php';
+
+    $transport = (new Swift_SmtpTransport('smtp.gmail.com', 465, 'ssl'))
+    ->setUsername('festlplaner@gmail.com')
+    ->setPassword('unqovrmbgtxmczvx')
+    ;
 
     $mailer = new Swift_Mailer($transport);
 
-    $message = new Swift_Message('Verifikation');
-    $message->setFrom(['festlplaner@gmail.com' => 'Festlplaner Anfrage']);
-    $message->setTo(['bopejik361@poetred.com' => '']);
-    $message->setBody('Der User ... beantragt die Verifikation des Accounts');
+    $message = (new Swift_Message('Verifikation'))
+    ->setFrom(['festlplaner@gmail.com' => 'Festlplaner Anfrage'])
+    ->setTo(['bopejik361@poetred.com' => ''])
+    ->setBody('Der User ... beantragt die Verifikation des Accounts')
+    ;
 
     $result = $mailer->send($message);
+
+    if($result){
+        echo "Mail wurde versendet";
+        die();
+    }
+    echo "Mail wurde NICHT versendet";
 }
+*/
 ?>
 
 <!DOCTYPE html>
@@ -141,7 +152,8 @@ if(isset($_POST['verifizieren']))
                                                     </div>
                                                 </div>
 
-                                                <button type="submit" name="verifizieren" btn-verifizieren>Verifizierung anfordern</button>
+                                                <!--<button type="submit" name="verifizieren" btn-verifizieren>Verifizierung anfordern</button>-->
+                                                <a href="verifizierenmail.php" class="btn">Verifizierung anfordern</a>
                                                 <br>
 
                                                 <?php
