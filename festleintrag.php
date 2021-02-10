@@ -60,32 +60,6 @@ for ($x = 0; $x < $anzahl; $x++ )
 }
 
 
-
-/*$test="select * from festl order by Datum ASC";
-$resulttest = $db->query($test);
-$t=0;
-$arrtest = array();
-while($testrow = $resulttest->fetch()){
-    $arrtest[$t]= $testrow['Datum'];
-    $t++;
-}
-
-for ($z = 0; $z < $anzahl; $z++ )
-{
-if(strtotime($arrtest[$z])>time())
-{
-
-    echo $arrtest[$z];
-    echo " ";
-    }
-    else
-    {
-         echo $z.'. ';
-        echo "Fehler";
-        echo " ";
-    }
-}*/
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -134,6 +108,13 @@ if(strtotime($arrtest[$z])>time())
                 <!--ab hier Code einfügen-->
                 <section class="main-banner">
                     <div class="container-fluid">
+                        <div class="wrap" id="searchbar">
+                            <div class="search">
+                                <input placeholder="Suchen nach..." type="text" id="search" class="searchTerm">
+                                <input type="button" id="#searchbtn" value="Suchen" onclick="search(document.getElementById('search').value)" class="searchButton">
+                            </div>
+                        </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="row">
@@ -265,6 +246,7 @@ if(strtotime($arrtest[$z])>time())
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </section>
                 <!--bis hier Code einfügen-->
@@ -287,6 +269,8 @@ function myFunction() {
     moreText.style.display = "inline";
   }
 }
+
+
 </script>
         <?php
 error_reporting(-1);
@@ -297,7 +281,7 @@ require __DIR__.'/templates/templateSidebar.php'?>
 
     <!-- Scripts -->
     <!-- Bootstrap core JavaScript -->
-<script src="assets/jquery/jquery.min.js"></script>
+    <script src="assets/jquery/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
     <script src="assets/js/browser.min.js"></script>
@@ -338,11 +322,76 @@ require __DIR__.'/templates/templateSidebar.php'?>
 
     img {
         height: 110px;
-
-
     }
+/*Searchbar*/
+    .search {
+  width: 100%;
+  position: relative;
+  display: flex;
+
+}
+
+.searchTerm {
+  width: 100%;
+  border: 3px solid #191919;
+  border-right: none;
+  padding: 5px;
+  height: 20px;
+  border-radius: 5px 0 0 5px;
+  outline: none;
+  color: #191919;
+     height: 36px;
+    background: #fff;
+}
+
+
+
+.searchButton {
+  width: 85px;
+  height: 36px;
+  border: 1px solid #191919;
+  background: #292929;
+  text-align: center;
+  color: #fff;
+  border-radius: 0 5px 5px 0;
+  cursor: pointer;
+  font-size: 20px;
+}
+    .searchbar {
+
+  background: #fff;
+}
+    .sticky {
+    position: fixed;
+   position: sticky;   /* The magic */
+    z-index: 1;         /* Ensure it stays on top of other player divs */
+    top: 0px;           /* Where it should stick to */
+}
 
     </style>
+
+    <script>
+    function search(string)
+        {
+            {
+                window.find(string);
+            }
+        }
+
+  window.onscroll = function() {myFunction1()};
+
+var searchbar = document.getElementById("searchbar");
+var sticky = searchbar.offsetTop;
+
+function myFunction1() {
+  if (window.pageYOffset >= sticky) {
+    searchbar.classList.add("sticky")
+  } else {
+    searchbar.classList.remove("sticky");
+  }
+}
+
+</script>
 </body>
 
 </html>

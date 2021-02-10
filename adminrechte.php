@@ -1,48 +1,70 @@
 <?php
-    session_start();
+require_once __DIR__.'/config/database.php';
+session_start();
 
 $username = "root";
 $password = "";
 $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
-
-
 $db = new PDO($dsn,$username,$password);
 
-$sql= "SELECT * FROM anbieter";
-$result = $db->query($sql);
+if (isset($_GET['value'])) {
 
-$anbietern = $result->fetchAll();
+    $zid = $_GET['value'];
+    $_SESSION["zid"]=$zid;
+    //$verified=1;
+    echo $zid;
 
-$sql1= "SELECT * FROM anbieter";
+}
+
+if (isset($_SESSION['loggedin'])) {
+    $zid_=$_SESSION["zid"];
+}
+else
+{
+    header("Location: login.php");
+    die();
+}
+echo $zid_;
+$sql1= "SELECT * FROM benutzer WHERE BID='".$zid_."'";
 $result1 = $db->query($sql1);
 $i=0;
-$arraid=array();
-$arrname=array();
-$arransprechsperson=array();
-$arrtelefon=array();
-$arremail=array();
-$arrverified=array();
+$arradmin=array();
+$vorname=array();
+$nachname=array();
+$email=array();
 while($row1 = $result1->fetch()){
-    $arraid[$i]= $row1['AID'];
-    $arrname[$i]= $row1['Name'];
-    $arransprechsperson[$i]= $row1['Ansprechsperson'];
-    $arrtelefon[$i]= $row1['Telefon'];
-    $arremail[$i]= $row1['Email'];
-    $arrverified[$i]= $row1['Verified'];
+    $arradmin[$i]= $row1['BGID'];
+    $vorname[$i]= $row1['Vorname'];
+    $nachname[$i]= $row1['Nachname'];
+    $email[$i]= $row1['Email'];
     $i++;
 }
-$count=0;
-$anzahl = count($arraid);
 
-/*for ($z = 0; $z < $anzahl; $z++ )
+if(isset($_POST['submit']))
 {
-   echo $arrverified[$z];
-    echo " ";
-}*/
+if(($arradmin[0])==1)
+{
+        $bgid=2;
+        $stmt=$db->prepare("UPDATE benutzer SET BGID=:bgid WHERE BID=:zid");
+        $stmt->bindParam(":bgid",$bgid,PDO::PARAM_INT);
+        $stmt->bindParam(":zid",$zid_,PDO::PARAM_INT);
+        $stmt->execute();
 
+       //header("Location: test6.php");
+}
+else
+{
+        $verified=1;
+        $stmt=$db->prepare("UPDATE benutzer SET BGID=:bgid WHERE BID=:zid");
+        $stmt->bindParam(":bgid",$verified,PDO::PARAM_INT);
+        $stmt->bindParam(":zid",$zid_,PDO::PARAM_INT);
+        $stmt->execute();
+
+       // header("Location: test6.php");
+}
+    header("Location: benutzerverwalten.php");
+}
 ?>
-
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -294,129 +316,77 @@ $anzahl = count($arraid);
         width: 20px;
         height: 20px;
     }
-
-    #myInput {
-  background-image: url('/css/searchicon.png');
-  background-position: 10px 10px;
-  background-repeat: no-repeat;
-  width: 100%;
-  font-size: 16px;
-  padding: 12px 20px 12px 40px;
-  border: 1px solid #ddd;
-  margin-bottom: 12px;
-}
 </style>
 <script type="text/javascript">
 $(document).ready(function(){
 	// Activate tooltip
-	$('[data-toggle="tooltip"]').tooltip();
+	//$('[data-toggle="tooltip"]').tooltip();
 
-	// Select/Deselect checkboxes
-	var checkbox = $('table tbody input[type="checkbox"]');
-	$("#selectAll").click(function(){
-		if(this.checked){
-			checkbox.each(function(){
-				this.checked = true;
-			});
-		} else{
-			checkbox.each(function(){
-				this.checked = false;
-			});
-		}
-	});
-	checkbox.click(function(){
-		if(!this.checked){
-			$("#selectAll").prop("checked", false);
-		}
-	});
 });
+
 </script>
 </head>
 <body>
-
+<?php if(($arradmin[0])==1)
+{?>
    <!-- Wrapper -->
     <div id="wrapper">
 
         <!-- Main -->
         <div id="main">
             <div class="inner">
-
-    <div class="container">
-        <div class="table-wrapper">
-            <div class="table-title">
-                <div class="row">
-                    <div class="col-sm-5">
-						<h2>Verwaltung <b>Anbieter</b></h2>
-
+                <div class="modal-dialog">
+                    <div class="modal-content">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+					<div class="modal-header">
+						<h4 class="modal-title">Vergabe der Adminrechte</h4>
+                        <a href="test6.php" class="btn"><img src="assets/images/baseline_close_black_18dp.png"></a>
 					</div>
-                    <div class="col-sm-4">
-                        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Suche nach E-Mail-Adressen.." title="Type in a name">
-                    </div>
-					<div class="col-sm-3">
-                        <a href="admin.php" class="btn btn-danger"><img src="assets/images/baseline_close_black_18dp.png"></a>
-                        <a href="admin.php" class="btn btn-secondary"><img src="assets/images/baseline_download_black_18dp.png"></a>
+					<div class="modal-body">
+						<p>Sind Sie sicher, dass Sie <?php echo $vorname[0]; echo " "; echo $nachname[0]; echo " ("; echo $email[0]; echo ") " ?>Adminrechte geben wollen?</p>
 					</div>
+					<div class="modal-footer">
+                        <a href="test6.php" class="btn">Abbrechen</a>
+                        <input type="submit" name="submit" class="btn btn-danger" value="Ja">
+					</div>
+				</form>
+			</div>
                 </div>
             </div>
-            <table class="table table-striped table-hover" id="myTable">
-                <thead>
-                    <tr>
-                        <th>AID</th>
-                        <th>Name</th>
-                        <th>Ansprechsperson</th>
-                        <th>Telefon</th>
-                        <th>Email</th>
-                        <th>Verified</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-
-                    foreach ($anbietern as $anbieter) {
-
-                        echo '<tr>
-                        <td> '.$arraid[$count].'</td>
-                        <td>'.$arrname[$count].'</td>
-                        <td>'.$arransprechsperson[$count].'</td>
-                        <td>'.$arrtelefon[$count].'</td>
-                        <td>'.$arremail[$count].'</td>';
-
-
-                        echo '
-                        <td><center><span class="custom-checkbox">';
-                            if($arrverified[$count]==0){
-                                echo'
-                                <a href="verifizieren.php?value=';echo $anbieter['AID'];echo'" class="btn"><img src="assets/images/baseline_check_box_outline_blank_black_18dp.png"></a>';
-                            }
-                            else
-                            {
-                                echo'
-                                 <a href="verifizieren.php?value=';echo $anbieter['AID'];echo'" class="btn"><img src="assets/images/baseline_check_box_black_18dp.png"></a>';
-                            }
-                        echo'
-							</span></center><td>
-                        </tr>';
-                        $count++;
-
-                    }
-
-                    ?>
-                </tbody>
-            </table>
         </div>
     </div>
+    <?php
+}
+else
+{?>
+    <!-- Wrapper -->
+    <div id="wrapper">
 
-
-
+        <!-- Main -->
+        <div id="main">
+            <div class="inner">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+				<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+					<div class="modal-header">
+						<h4 class="modal-title">Entzug der Adminrechte</h4>
+                        <a href="test6.php" class="btn"><img src="assets/images/baseline_close_black_18dp.png"></a>
+					</div>
+					<div class="modal-body">
+						<p>Sind Sie sicher, dass Sie <?php echo $vorname[0]; echo " "; echo $nachname[0]; echo " ("; echo $email[0]; echo ") " ?>die Adminrechte entziehen wollen?</p>
+					</div>
+					<div class="modal-footer">
+                        <a href="test6.php" class="btn">Abbrechen</a>
+                        <input type="submit" name="submit" class="btn btn-danger" value="Ja">
+					</div>
+				</form>
+			</div>
+                </div>
             </div>
         </div>
-
     </div>
-
-
-     <!-- Scripts -->
-    <!-- Bootstrap core JavaScript -->
-    <script src="assets/jquery/jquery.min.js"></script>
+    <?php } ?>
+     <script src="assets/jquery/jquery.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 
     <script src="assets/js/browser.min.js"></script>
@@ -424,27 +394,5 @@ $(document).ready(function(){
     <script src="assets/js/transition.js"></script>
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
-
-    <script>
-function myFunction() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[4];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
-
 </body>
 </html>

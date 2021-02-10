@@ -33,5 +33,8 @@
         echo "Mail wurde versendet";
         die();
     }
-    echo "Mail wurde NICHT versendet";
+    else
+    {
+        echo "Mail wurde NICHT versendet";
+    }
 ?>

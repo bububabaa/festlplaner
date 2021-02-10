@@ -17,12 +17,12 @@ $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
 
 $db = new PDO($dsn,$username,$password);
 
-$sql= "SELECT * FROM benutzer WHERE BGID=1";
+$sql= "SELECT * FROM benutzer";
 $result = $db->query($sql);
 
 $benutzern = $result->fetchAll();
 
-$sql1= "SELECT * FROM benutzer WHERE BGID=1";
+$sql1= "SELECT * FROM benutzer";
 $result1 = $db->query($sql1);
 $i=0;
 $arrbid=array();
@@ -30,12 +30,14 @@ $arrvorname=array();
 $arrnachname=array();
 $arrgebdat=array();
 $arremail=array();
+$arrbgid=array();
 while($row1 = $result1->fetch()){
     $arrbid[$i]= $row1['BID'];
     $arrvorname[$i]= $row1['Vorname'];
     $arrnachname[$i]= $row1['Nachname'];
     $arrgebdat[$i]= $row1['Gebdat'];
     $arremail[$i]= $row1['Email'];
+    $arrbgid[$i]=$row1['BGID'];
     $i++;
 }
 $count=0;
@@ -363,6 +365,7 @@ $(document).ready(function(){
                         <th>Nachname</th>
                         <th>Geburtsdatum</th>
                         <th>Email</th>
+                        <th>Adminrechte</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -376,7 +379,23 @@ $(document).ready(function(){
                         <td> '.$arrvorname[$count].'</td>
                         <td> '.$arrnachname[$count].'</td>
                         <td> '.$converted_gebdate.'</td>
-                        <td> '.$arremail[$count].'</td>
+                        <td> '.$arremail[$count].'</td>';
+
+                        echo '
+
+
+                        <td><center><span class="custom-checkbox">';
+                            if($arrbgid[$count]==1){
+                                echo'
+                                <a href="adminrechte.php?value=';echo $benutzer['BID'];echo'" class="btn"><img src="assets/images/outline_shield_black_18dp-outline.png"></a>';
+                            }
+                            else
+                            {
+                                echo'
+                                 <a href="adminrechte.php?value=';echo $benutzer['BID'];echo'" class="btn"><img src="assets/images/baseline_shield_black_18dp.png"></a>';
+                            }
+                        echo'
+							</span></center><td>
                         </tr>';
                         $count++;
 
@@ -387,6 +406,7 @@ $(document).ready(function(){
             </table>
         </div>
     </div>
+
 
 
 
