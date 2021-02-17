@@ -156,19 +156,33 @@ while($row = $result->fetch()){
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
+
                                             <?php
                                             if($weblink[0]==null)
                                             {?>
-                                                <h1><?php echo $arrbezeichnung[$rdm_2]?></h1>
+                                            <div class="row">
+                                                <div class="col-11">
+                                                    <h1><?php echo $arrbezeichnung[$rdm_2]?></h1>
+                                                </div>
+                                                <div class="col-1">
+                                                    <a href="index.php" class="btn"><img src="assets/images/baseline_close_black_18dp.png"></a>
+                                                </div>
+                                            </div>
                                                 <br>
                                             <?php
                                             }
                                             else
                                             {?>
+                                            <div class="row">
+                                                <div class="col-11">
                                                <h1><?php echo $arrbezeichnung[$rdm_2]?></h1> <h5>Klicken Sie <a href="webpage.php">hier</a> um mehr über unsere Veranstaltungen zu erfahren.</h5>
+                                                </div>
+                                                <div class="col-1">
+                                                    <a href="index.php" class="btn"><img src="assets/images/baseline_close_black_18dp.png"></a>
+                                                </div>
+                                            </div>
                                             <?php
                                             }?>
-
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <h3>Veranstalter:</h3>
@@ -209,7 +223,14 @@ while($row = $result->fetch()){
                                                 <div class="col-md-4">
                                                     <!--<img src="assets/images/featured_post_01.jpg">-->
                                                     <?php
-                                                    echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[0]) . '">';
+                                                    if(empty($arrfoto[0]))
+                                                    {
+
+                                                    }
+                                                    else
+                                                    {
+                                                        echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[0]) . '">';
+                                                    }
                                                     ?>
                                                 </div>
                                             </div>

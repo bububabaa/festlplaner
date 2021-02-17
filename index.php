@@ -16,12 +16,6 @@ $dtNow->setTimestamp($timestamp);
 $beginOfDay = clone $dtNow;
 $beginOfDay->modify('today');
 
-/* $endOfDay = clone $beginOfDay;
-$endOfDay->modify('tomorrow');
-
-$endOfDateTimestamp = $endOfDay->getTimestamp();
-$endOfDay->setTimestamp($endOfDateTimestamp - 1);*/
-
 $heutedatum = $beginOfDay->format('Y-m-d H:i:s');
 $heutetimestamp= strtotime($heutedatum);
 
@@ -69,14 +63,6 @@ $converted_date2 = $date2->format('d.m.Y');
 $date3 = DateTime::createFromFormat('Y-m-d', $arrdatum[$rdm3]);
 $converted_date3 = $date3->format('d.m.Y');
 
-//echo $_SESSION["rdm1"];
-
-
-/*echo $rdm1;
-echo " ";
-echo $rdm2;
-echo " ";
-echo $rdm3;*/
 $card_item=0;
 ?>
 
@@ -93,6 +79,7 @@ $card_item=0;
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
     <title>Festlplaner</title>
+   <link rel="icon" type="image/x-icon" href="/assets/images/icon.ico">
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -130,7 +117,7 @@ $card_item=0;
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="banner-caption">
-                                                <h4>Wilkkommen auf unserer Seite <em>Festlplaner</em></h4>
+                                                <h4>Willkommen auf unserer Seite <em>Festlplaner</em></h4>
                                                 <span>Super Website &amp; Mit den besten Websitedesignern</span>
                                                 <div class="primary-button">
                                                     <a href="festleintrag.php">Mehr anzeigen</a>
@@ -147,35 +134,46 @@ $card_item=0;
                     <div class="card-deck">
 
                                  <div class="card">
-                                     <div class="icon"></div>
+
+
                                      <div class="card-body">
-                                        <h4><?php echo $arrbezeichnung[$rdm1] ?></h4><br>
+
+                                         <div class="icon"> <img src="assets/images/logostraight.png"> </div>
+                                            <br>
+                                        <h4><?php echo $arrbezeichnung[$rdm1] ?></h4>
                                          <p><?php echo $converted_date1 ?><br>
                                          <?php echo $arrstrasse[$rdm1]; echo" "; echo $arrhausnummer[$rdm1] ?><br>
                                          <?php echo $arrplz[$rdm1]; echo" "; echo $arrort[$rdm1] ?><br>
                                          <a href="details1.php">Details</a></p>
-
+                                             </div>
                                      </div>
-                                </div>
+
                                 <div class="card">
-                                     <div class="icon"></div>
+
                                      <div class="card-body">
-                                        <h4><?php echo $arrbezeichnung[$rdm2] ?></h4><br>
+                                          <div class="icon"> <img src="assets/images/logostraight.png"> </div>
+                                         <br>
+                                         <div class="text">
+                                        <h4><?php echo $arrbezeichnung[$rdm2] ?></h4>
                                          <p><?php echo $converted_date2 ?><br>
                                          <?php echo $arrstrasse[$rdm2]; echo" "; echo $arrhausnummer[$rdm2] ?><br>
                                          <?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?><br>
                                          <a href="details2.php">Details</a></p>
-
+                                         </div>
                                      </div>
                                 </div>
                                 <div class="card">
-                                     <div class="icon"></div>
+
                                      <div class="card-body">
-                                        <h4><?php echo $arrbezeichnung[$rdm3] ?></h4><br>
+                                          <div class="icon"> <img src="assets/images/logostraight.png"> </div>
+                                         <br>
+                                         <div class="text">
+                                        <h4><?php echo $arrbezeichnung[$rdm3] ?></h4>
                                          <p><?php echo $converted_date3 ?><br>
                                          <?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?><br>
                                          <?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?><br>
                                          <a href="details3.php">Details</a></p>
+                                         </div>
                                      </div>
                                 </div>
                             </div>
@@ -207,13 +205,19 @@ require __DIR__.'/templates/templateSidebar.php'?>
 
 
 <style>
+
     .card{
         margin-top: 100px;
         margin-bottom: 3px;
         background-color: #eaebef;
         padding: 50px;
         text-align: center;
-        transition: all 0.5s;
+        transition: all 0.5s ease;
+        height: 370px;
+        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+        border: 2px solid rgba(7, 7, 7, 0.12);
+        align-items: center;
+
     }
     .card:hover{
         background-color: #292929;
@@ -223,7 +227,48 @@ require __DIR__.'/templates/templateSidebar.php'?>
 	   color: #fff;
     }
 
-</style>
+    .card:hover {
+   height: 390px;
+}
+
+.card:hover .info {
+   height: 90%;
+}
+
+.card:hover .text {
+   transition: all 0.3s ease;
+   opacity: 1;
+   max-height:40px;
+}
+.card:hover .icon {
+   background-position: -120px;
+   transition: all 0.3s ease;
+}
+
+.card:hover .icon i {
+   background: linear-gradient(90deg, #FF7E7E, #FF4848);
+   -webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+   opacity: 1;
+   transition: all 0.3s ease;
+}
+    .icon {
+   margin: 0 auto;
+   width: 100%;
+   height: 80px;
+   max-width:80px;
+   background: linear-gradient(90deg, #FF7E7E 0%, #FF4848 40%, rgba(0, 0, 0, 0.28) 60%);
+   border-radius: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   color: white;
+   transition: all 0.8s ease;
+   background-position: 0px;
+   background-size: 200px;
+}
+
+    </style>
 </body>
 
 </html>

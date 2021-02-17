@@ -158,11 +158,6 @@ while($row = $result->fetch()){
                         <a href="index.php">Festlplaner</a>
                     </div>
                 </header>
-                <!--<h1>Zahl 1: <?php echo $id1_?></h1>
-                <h1>Zahl 2: <?php echo $id2_?></h1>
-                <h1>Zahl 3: <?php echo $id3_?></h1>
-                <h1>Zahl: <?php echo $id_?></h1>-->
-
                 <!--ab hier Code einfügen-->
                 <section class="main-banner">
                     <div class="container-fluid">
@@ -174,13 +169,27 @@ while($row = $result->fetch()){
                                             <?php
                                             if($weblink[0]==null)
                                             {?>
-                                                <h1><?php echo $arrbezeichnung[$rdm_1]?></h1>
+                                            <div class="row">
+                                                <div class="col-11">
+                                                    <h1><?php echo $arrbezeichnung[$rdm_1]?></h1>
+                                                </div>
+                                                <div class="col-1">
+                                                    <a href="index.php" class="btn"><img src="assets/images/baseline_close_black_18dp.png"></a>
+                                                </div>
+                                            </div>
                                                 <br>
                                             <?php
                                             }
                                             else
                                             {?>
+                                            <div class="row">
+                                                <div class="col-11">
                                                <h1><?php echo $arrbezeichnung[$rdm_1]?></h1> <h5>Klicken Sie <a href="webpage.php">hier</a> um mehr über unsere Veranstaltungen zu erfahren.</h5>
+                                                </div>
+                                                <div class="col-1">
+                                                    <a href="index.php" class="btn"><img src="assets/images/baseline_close_black_18dp.png"></a>
+                                                </div>
+                                            </div>
                                             <?php
                                             }?>
 
@@ -227,7 +236,14 @@ while($row = $result->fetch()){
                                                 <div class="col-md-4">
 
                                                     <?php
-                                                    echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[0]) . '">';
+                                                    if(empty($arrfoto[0]))
+                                                    {
+
+                                                    }
+                                                    else
+                                                    {
+                                                        echo '<img src="data:image/jpeg;base64,' . base64_encode($arrfoto[0]) . '">';
+                                                    }
                                                     ?>
                                                 </div>
                                             </div>
