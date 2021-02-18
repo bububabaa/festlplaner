@@ -8,7 +8,41 @@ else
     header("Location: login.php");
     die();
 }
+
+$username = "root";
+$password = "";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+
+
+$db = new PDO($dsn,$username,$password);
+
+$sql= "SELECT * FROM festl order by Datum ASC";
+$result = $db->query($sql);
+
+$festln = $result->fetchAll();
+
+$sql1="select * from festl order by Datum ASC";
+$result1 = $db->query($sql1);
+$i=0;
+$arrfoto=array();
+while($row = $result1->fetch()){
+    $arrfoto[$i]=$row['Titelbild'];
+
+    $i++;
+}
+
+$count =0;
 ?>
+<?php foreach ($festln as $festl) {
+
+
+
+//echo '<h1>'.$festl['Bezeichnung'] . '</h1>';
+
+                                                  // echo '<img src="data:image/jpeg;base64,' . base64_encode($festl['Titelbild']) . '">';
+}
+
+    ?>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -58,6 +92,21 @@ else
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
+                                            <?php
+                                                foreach ($festln as $festl) {
+                                                    if($arrfoto[$count]==null)
+                                                    {
+
+                                                    }
+                                                    else
+                                                    {
+                                                         echo '<h1>'.$festl['Bezeichnung'] . '</h1>';
+                                                       echo '<img src="data:image/jpeg;base64,' . base64_encode($festl['Titelbild']) . '">';
+
+                                                    }
+                                                    $count++;
+
+                                                }?>
 
                                             <!-- ### start of the gallery definition ### -->
                                             <div id="galerie" data-nanogallery2='{
@@ -68,6 +117,10 @@ else
                                                 "thumbnailHoverEffect2": "imageGrayOn|scale120",
                                                 "galleryDisplayTransition": "slideDown"
                                                 }'>
+
+
+
+
 
                                                 <!-- gallery content -->
                                                 <a href="assets/images/house_of_pain.jpg" "assets/images/house_of_pain.jpg" data-ngThumb="assets/images/house_of_pain.jpg"> House of Pain 12.10.19</a>
