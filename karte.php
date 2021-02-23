@@ -1,7 +1,18 @@
 <?php
-$username = "root";
+/*$username = "root";
 $password = "";
-$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";*/
+session_start();
+if (isset($_SESSION['loggedin'])) {
+}
+else
+{
+    header("Location: login.php");
+    die();
+}
+$username = "digbizm_1";
+$password = "2021##Fireme";
+$dsn = "mysql:host=sql349.your-server.de;dbname=festlpage;charset=utf8";
 
 $db = new PDO($dsn,$username,$password);
 
@@ -18,7 +29,7 @@ while($row = $result->fetch()){
 
 <!DOCTYPE html>
 <html lang="de">
-
+<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 <style>
 
 

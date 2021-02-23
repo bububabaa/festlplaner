@@ -6,9 +6,13 @@ $clicked_festl_=$_SESSION["clicked_festl"];
 //echo $clicked_festl1_;
 }
 
-$username = "root";
+/*$username = "root";
 $password = "";
-$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";*/
+
+$username = "digbizm_1";
+$password = "2021##Fireme";
+$dsn = "mysql:host=sql349.your-server.de;dbname=festlpage;charset=utf8";
 
 
 $db = new PDO($dsn,$username,$password);

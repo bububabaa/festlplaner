@@ -1,7 +1,12 @@
 <?php
-$username = "root";
+/*$username = "root";
 $password = "";
-$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";*/
+
+$username = "digbizm_1";
+$password = "2021##Fireme";
+$dsn = "mysql:host=sql349.your-server.de;dbname=festlpage;charset=utf8";
+
 
 
 $db = new PDO($dsn,$username,$password);
@@ -70,7 +75,7 @@ $card_item=0;
 
 <!DOCTYPE html>
 <html lang="de">
-
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

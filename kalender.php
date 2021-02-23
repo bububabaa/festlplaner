@@ -1,6 +1,17 @@
+<?php
+session_start();
+if (isset($_SESSION['loggedin'])) {
+}
+else
+{
+    header("Location: login.php");
+    die();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="de">
-
+<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">

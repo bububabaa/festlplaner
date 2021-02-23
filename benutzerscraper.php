@@ -8,14 +8,14 @@ $dom = file_get_html('http://localhost/festlplaner/benutzerverwalten.php', false
 $answer = array();
 if(!empty($dom)) {
 $divClass = $title = "";$i = 0;
-foreach($dom->find("table.table table-striped table-hover") as $divClass) {
+foreach($dom->find("myTable") as $divClass) {
 //title
-foreach($divClass->find("thead") as $title ) {
-$answer[$i]['tr'] = $title->plaintext;
+foreach($divClass->find("th") as $title ) {
+$answer[$i]['th'] = $title->plaintext;
 }
 //ipl-ratings-bar
-foreach($divClass->find("tbody") as $ipl_ratings_bar ) {
-$answer[$i]['tr'] = trim($ipl_ratings_bar->plaintext);
+foreach($divClass->find("td") as $ipl_ratings_bar ) {
+$answer[$i]['td'] = trim($ipl_ratings_bar->plaintext);
 }
 /*foreach($divClass->find(".image_container") as $image ) {
 $answer[$i]['img'] = trim($image->plaintext);

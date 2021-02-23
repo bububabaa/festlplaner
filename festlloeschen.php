@@ -6,6 +6,8 @@ session_start();
 $username = "root";
 $password = "";
 $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+
+
 $db = new PDO($dsn,$username,$password);
 
 if (isset($_GET['aendern'])) {
@@ -48,6 +50,7 @@ if(isset($_POST['loeschen-submit']))
 ?>
 <!DOCTYPE html>
 <html lang="de">
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 <head>
     <meta name="description" content="">
     <meta name="author" content="">

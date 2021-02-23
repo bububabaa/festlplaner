@@ -39,7 +39,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
             header("location: profil.php");
             break;
             case 'admin': $user_ist_ = 'admin';
-            header("location: admin.php");
+           // header("location: admin.php");
+           echo("<script>location.href='/festlplaner/admin.php';</script>");
             break;
     }
     exit;
@@ -104,7 +105,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if(password_verify($passwordbenutzer, $hashed_passwordbenutzer)){
                         //if(strcmp($password, $hashed_password) == 0){
                             // Password is correct, so start a new session
-                            session_start();
+                            //session_start();
 
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
@@ -117,7 +118,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             {
                                 $user_ist="admin";
                                 $_SESSION["user_ist"]=$user_ist;
-                                header("location: admin.php");
+                                //header("location: admin.php");
+                                echo("<script>location.href='/festlplaner/admin.php';</script>");
+
                             }
                             else if($bgid == 1)
                             {
@@ -200,7 +203,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                         if(password_verify($password, $hashed_password)){
                         //if(strcmp($password, $hashed_password) == 0){
                             // Password is correct, so start a new session
-                            session_start();
+
 
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
@@ -237,7 +240,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!DOCTYPE html>
 <html lang="de">
-
+<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
