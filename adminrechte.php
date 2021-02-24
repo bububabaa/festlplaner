@@ -7,10 +7,13 @@ $password = "";
 $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
 $db = new PDO($dsn,$username,$password);*/
 
-$username = "digbizm_1";
+/*$username = "digbizm_1";
 $password = "2021##Fireme";
-$dsn = "mysql:host=sql349.your-server.de;dbname=festlpage;charset=utf8";
+$dsn = "mysql:host=sql349.your-server.de;dbname=festlpage;charset=utf8";*/
 
+$username = "c31festlplaner";
+$password = "Festlplaner2020";
+$dsn = "mysql:host=projects.hakmistelbach.ac.at;dbname=c31festlplaner;charset=utf8";
 
 $db = new PDO($dsn,$username,$password);
 

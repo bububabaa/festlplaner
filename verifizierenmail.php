@@ -23,7 +23,7 @@
     ->setFrom(['festlplaner@gmail.com' => 'Festlplaner Anfrage'])
     ->setTo(['festlplaner@gmail.com' => ''])
     ->setBody('Der User ' .$email. ' beantragt die Verifikation des Accounts<br>
-    <a href="localhost/festlplaner/login.php">hier klicken</a>', 'text/html')
+    <a href="http://festlplaner.projects.hakmistelbach.ac.at/login.php">hier klicken</a>', 'text/html')
     ;
 
     $result = $mailer->send($message);

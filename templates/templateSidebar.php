@@ -27,9 +27,9 @@
             </ul>
         </nav>
 
-        <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
+        <!--<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.7/lib/darkmode-js.min.js"></script>
         <script>
-            const options = {
+          /*  const options = {
                 bottom: '64px', // default: '32px'
                 right: '32px', // default: '32px'
                 left: 'unset', // default: 'unset'
@@ -46,8 +46,8 @@
             const darkmode = new Darkmode(options);
             darkmode.showWidget();
 
-            new Darkmode(options), showWidget();
-        </script>
+            new Darkmode(options), showWidget();*/
+        </script>-->
 
         <!-- Footer -->
         <footer id="footer">

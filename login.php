@@ -39,8 +39,8 @@ if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
             header("location: profil.php");
             break;
             case 'admin': $user_ist_ = 'admin';
-           // header("location: admin.php");
-           echo("<script>location.href='/festlplaner/admin.php';</script>");
+            header("location: admin.php");
+           //echo("<script>location.href='/admin.php';</script>");
             break;
     }
     exit;
@@ -118,8 +118,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             {
                                 $user_ist="admin";
                                 $_SESSION["user_ist"]=$user_ist;
-                                //header("location: admin.php");
-                                echo("<script>location.href='/festlplaner/admin.php';</script>");
+                                header("location: admin.php");
+                                //echo("<script>location.href='/festlplaner/admin.php';</script>");
 
                             }
                             else if($bgid == 1)

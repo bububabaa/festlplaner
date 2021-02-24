@@ -3,9 +3,13 @@
 require_once __DIR__.'/config/database.php';
 session_start();
 
-$username = "root";
+/*$username = "root";
 $password = "";
-$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";
+$dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";*/
+
+$username = "c31festlplaner";
+$password = "Festlplaner2020";
+$dsn = "mysql:host=projects.hakmistelbach.ac.at;dbname=c31festlplaner;charset=utf8";
 
 
 $db = new PDO($dsn,$username,$password);

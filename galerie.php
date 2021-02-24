@@ -13,9 +13,13 @@ else
 $password = "";
 $dsn = "mysql:host=localhost;dbname=festlplaner;charset=utf8";*/
 
-$username = "digbizm_1";
+/*$username = "digbizm_1";
 $password = "2021##Fireme";
-$dsn = "mysql:host=sql349.your-server.de;dbname=festlpage;charset=utf8";
+$dsn = "mysql:host=sql349.your-server.de;dbname=festlpage;charset=utf8";*/
+
+$username = "c31festlplaner";
+$password = "Festlplaner2020";
+$dsn = "mysql:host=projects.hakmistelbach.ac.at;dbname=c31festlplaner;charset=utf8";
 
 
 $db = new PDO($dsn,$username,$password);
@@ -110,7 +114,7 @@ $count =0;
                                                     }
                                                     $count++;
 
-                                                }?>
+                                                } ?>
 
                                             <!-- ### start of the gallery definition ### -->
                                             <div id="galerie" data-nanogallery2='{
@@ -122,14 +126,11 @@ $count =0;
                                                 "galleryDisplayTransition": "slideDown"
                                                 }'>
 
-
-
-
-
                                                 <!-- gallery content -->
                                                 <a href="assets/images/house_of_pain.jpg" "assets/images/house_of_pain.jpg" data-ngThumb="assets/images/house_of_pain.jpg"> House of Pain 12.10.19</a>
                                                 <a href="assets/images/meterparty.jpg" data-ngThumb="assets/images/meterparty.jpg"> Meterparty 28.12.19</a>
                                                 <a href="assets/images/u25.jpg" data-ngThumb="assets/images/u25.jpg"> Ü25 9.11.19 </a>
+                                                        <a href="" data-ngThumb=""> Festl Beispiel</a>
                                                 <a href="" data-ngThumb=""> Festl Beispiel</a>
                                                 <a href="" data-ngThumb=""> Festl Beispiel</a>
                                                 <a href="" data-ngThumb=""> Festl Beispiel</a>
@@ -154,7 +155,7 @@ $count =0;
                                                 <a href="" data-ngThumb=""> Festl Beispiel</a>
                                                 <a href="" data-ngThumb=""> Festl Beispiel</a>
                                                 <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
+
                                             </div>
                                             <!-- ### end of the gallery definition ### -->
 
