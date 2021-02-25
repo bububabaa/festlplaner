@@ -142,7 +142,7 @@ else
                                                 <div class="row">
                                                     <div class="column">
                                                         <div class="card">
-                                                            <img src="assets/images/mehmet_foto.jpg" alt="Mehmet" style="width:100%">
+                                                            <img src="assets/images/icon.jpg" alt="Mehmet">
                                                             <div class="container">
                                                                 <h2>Mehmet Dönmez</h2>
                                                                 <p class="title">Teammitglied</p>
@@ -152,7 +152,7 @@ else
 
                                                     <div class="column">
                                                         <div class="card">
-                                                            <img src="assets/images/portraitfinn.jpg" alt="Finn" style="width:100%">
+                                                            <img src="assets/images/portraitfinn.jpg" alt="Finn">
                                                             <div class="container">
                                                                 <h2>Finnick Homa</h2>
                                                                 <p class="title">Projektleiter</p>
@@ -162,7 +162,7 @@ else
 
                                                     <div class="column">
                                                         <div class="card">
-                                                            <img src="assets/images/ren%C3%A9_foto.jpg" alt="René" style="width:100%">
+                                                            <img src="assets/images/icon.jpg" alt="René">
                                                             <div class="container">
                                                                 <h2>René Wolf</h2>
                                                                 <p class="title">Teammitglied</p>
@@ -179,6 +179,21 @@ else
                             </div>
                         </div>
 
+                    </div>
+                </section>
+                <section class="top-image">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!--<img src="assets/images/top-image.jpg" alt="">-->
+                                <div class="down-content">
+                                    <h3 id="vorwort">Das Festlplaner-Team:</h3>
+                                    <h5 id="vorwort">„Unser grundlegendes Ziel war von Anfang an, das Problem der komplizierten „Festl“-Suche aus der Welt zu schaffen und die fehlende Übersicht über die breit gefächerten Party-Angebote zu garantieren. Durch eine übersichtliche Gestaltung sollte die Suche nach Veranstaltungen möglichst unkompliziert verlaufen und auch die Möglichkeit geboten werden, auf Neues aufmerksam zu werden.
+                                    Dank eines wohl durchdachten Konzepts ist für eine vorteilhafte Nutzung durch Veranstaltungsinteressierten, Veranstaltungsanbietern und Administratoren gesorgt.“
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </section>
                 <!--bis hier Code einfügen-->
@@ -202,6 +217,22 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <script src="assets/js/transition.js"></script>
     <script src="assets/js/owl-carousel.js"></script>
     <script src="assets/js/custom.js"></script>
+
+    <style>
+        img{
+            width: 100%;
+            height: 400px;
+        }
+        h5#vorwort
+        {
+            text-align: center;
+        }
+        h3#vorwort
+        {
+            text-align: center;
+        }
+
+    </style>
 </body>
 
 </html>

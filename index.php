@@ -125,9 +125,9 @@ $card_item=0;
                                         <div class="col-md-12">
                                             <div class="banner-caption">
                                                 <h4>Willkommen auf unserer Seite <em>Festlplaner</em></h4>
-                                                <span>Super Website &amp; Mit den besten Websitedesignern</span>
+                                                <br>
                                                 <div class="primary-button">
-                                                    <a href="festleintrag.php">Mehr anzeigen</a>
+                                                    <a href="festleintrag.php">Zu den Festln</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -186,9 +186,56 @@ $card_item=0;
                             </div>
                     </section>
 
-                <!-- Top Image -->
 
-
+                <!-- Left Image -->
+                <section class="left-image">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <img src="assets/images/calendar-1559935_960_720.png" alt="" id="feature">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="right-content">
+                                    <h2 id="feature">Kalender</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>
+                </section>
+                <section class="right-image">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3"> </div>
+                            <div class="col-md-3">
+                                <div class="left-content">
+                                    <h2 id="feature">Karte</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <img src="assets/images/map3.png" alt="" id="feature">
+                            </div>
+                            <div class="col-md-3"> </div>
+                        </div>
+                    </div>
+                </section>
+                <section class="left-image">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-3">
+                                <img src="assets/images/gallery2.png" alt="" id="feature">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="right-content">
+                                    <h2 id="feature">Gallerie</h2>
+                                </div>
+                            </div>
+                            <div class="col-md-3"></div>
+                        </div>
+                    </div>
+                </section>
             </div>
         </div>
 
@@ -274,6 +321,16 @@ require __DIR__.'/templates/templateSidebar.php'?>
    background-position: 0px;
    background-size: 200px;
 }
+    img#feature
+    {
+        width: 200px;
+        height: 200px;
+    }
+    h2#feature
+    {
+        position: center;
+
+    }
 
     </style>
 </body>

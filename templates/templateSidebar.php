@@ -51,7 +51,7 @@
 
         <!-- Footer -->
         <footer id="footer">
-            <p class="copyright">Copyright &copy; 2021 Festlplaner &amp; Co. KG
+            <p class="copyright">Copyright &copy; 2021 Festlplaner
                 <br>Erstellt von <a rel="nofollow" href="ueberuns.php">Uns</a>
                 <br><a rel="nofollow" href="DSGVO.php">DSGVO</a>
             </p>

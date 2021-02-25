@@ -12,7 +12,7 @@ input, select, textarea {
 }
 
 a:hover {
-	color: #535ba0;
+	color: #FF7E7E;
 	text-decoration: none;
 }
 
@@ -43,7 +43,7 @@ button {
     background-color: transparent;
 	display: inline-block;
 	padding: 8px 20px;
-	color: #535ba0;
+	color: #292929;
 	border: 2px solid #292929;
 	transition: all 0.5s;
 }
@@ -125,7 +125,7 @@ section {
 
 .main-banner .banner-content .banner-caption em {
 	font-style: normal;
-	color: #535ba0;
+	color: #DA2121;
 }
 
 .main-banner .banner-content .banner-caption span {
@@ -277,11 +277,11 @@ section {
 	margin-top: 30px;
 }
 
-/* Right Image */
+/* Right Image
 section.right-image {
 	border-bottom: none;
 	padding-bottom: 0px;
-}
+}*/
 
 .right-image {
 	margin-top: 100px;
@@ -383,7 +383,7 @@ section.contact-form {
     padding: 8px 20px;
     color: #292929;
     background-color: transparent;
-    border: 2px solid #535ba0;
+    border: 2px solid #FF7E7E;
     transition: all 0.5s;
     cursor: pointer;
 }
@@ -702,7 +702,7 @@ section.buttons .container-fluid {
     background-color: rgba(83,91,160,1);
 }
 .filled-rectangle-button a:hover {
-    color: #535ba0;
+    color: #FF7E7E;
     background-color: rgba(83,91,160,0.25);
 }
 
@@ -741,7 +741,7 @@ section.buttons .container-fluid {
     text-align: center;
     letter-spacing: 0.5px;
     color: #fff;
-    border: 2px solid #535ba0;
+    border: 2px solid #FF7E7E;
     transition: all 0.5s;
     background-color: #292929;
     border-radius: 5px;
@@ -763,8 +763,8 @@ section.buttons .container-fluid {
     width: 100%;
     text-align: center;
     letter-spacing: 0.5px;
-    color: #535ba0;
-    border: 2px solid #535ba0;
+    color: #DA2121;
+    border: 2px solid #DA2121;
     transition: all 0.5s;
     background-color: rgba(83,91,160,0.0);
     border-radius: 5px;
@@ -809,7 +809,7 @@ section.buttons .container-fluid {
     width: 100%;
     text-align: center;
     letter-spacing: 0.5px;
-    color: #535ba0;
+    color: #DA2121;
     border: 2px solid #292929;
     transition: all 0.5s;
     background-color: rgba(83,91,160,0.0);
@@ -861,8 +861,8 @@ section.buttons .container-fluid {
     width: 100%;
     text-align: center;
     letter-spacing: 0.5px;
-    color: #535ba0;
-    border: 2px solid #535ba0;
+    color: #FF7E7E;
+    border: 2px solid #FF7E7E;
     transition: all 0.5s;
     background-color: rgba(83,91,160,0.0);
     border-radius: 20px;
@@ -1267,7 +1267,7 @@ section.buttons .container-fluid {
 
 #menu ul a:hover,
 #menu ul span:hover {
-    color: #535ba0;
+    color: #FF7E7E;
 }
 
 #menu ul a.opener,
