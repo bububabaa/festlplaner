@@ -20,7 +20,19 @@ $dsn = "mysql:host=projects.hakmistelbach.ac.at;dbname=c31festlplaner;charset=ut
 
 $db = new PDO($dsn,$username,$password);
 
-$sql = "SELECT * FROM festl";
+$timestamp=time();
+
+$dtNow = new DateTime();
+// Set a non-default timezone if needed
+$dtNow->setTimezone(new DateTimeZone('Europe/Vienna'));
+$dtNow->setTimestamp($timestamp);
+
+$beginOfDay = clone $dtNow;
+$beginOfDay->modify('today');
+
+$heutedatum = $beginOfDay->format('Y-m-d H:i:s');
+
+$sql = "SELECT * FROM festl Where Datum>='".$heutedatum."'";
 $result = $db->query($sql);
 $i=0;
 
@@ -105,7 +117,7 @@ require __DIR__.'/templates/templateHead.php'?>
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <form id="map">
-                                                <div id='map' style='width: auto; height: 1010px;'></div>
+                                                <div id='map' style='width: auto; height: 550px ;'></div>
                                                 <script>
                                                     //Map
                                                     mapboxgl.accessToken = 'pk.eyJ1IjoiZmVzdGxwbGFuZXJoYWsxIiwiYSI6ImNraHhlbHJxdjBoeWoydm5icnl0cG12dHkifQ.j_lmlCu_KtaqM6J-p15oVQ';

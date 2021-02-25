@@ -101,7 +101,7 @@ $count =0;
                                     <div class="col-md-12">
                                         <div class="banner-caption">
                                             <?php
-                                                foreach ($festln as $festl) {
+                                               /* foreach ($festln as $festl) {
                                                     if($arrfoto[$count]==null)
                                                     {
 
@@ -114,7 +114,8 @@ $count =0;
                                                     }
                                                     $count++;
 
-                                                } ?>
+                                                } */
+                                            ?>
 
                                             <!-- ### start of the gallery definition ### -->
                                             <div id="galerie" data-nanogallery2='{
