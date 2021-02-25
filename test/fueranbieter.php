@@ -56,27 +56,26 @@ while($row1 = $result1->fetch()){
   <tr>
     <th scope="row">Name</th>
     <td><?php echo $arrname[0] ?></td>
-
   </tr>
   <tr>
     <th scope="row">Postleitzahl und Ort</th>
     <td><?php echo $arrplz[0]; echo " "; echo $arrort[0]; ?></td>
-
   </tr>
     <tr>
     <th scope="row">Straße und Hausnummer</th>
     <td><?php echo $arrstrasse[0] ?></td>
-
   </tr>
     <tr>
     <th scope="row">Ansprechperson</th>
     <td><?php echo $arransprechsperson[0] ?></td>
-
   </tr>
      <tr>
     <th scope="row">Email</th>
     <td><?php echo $arremail[0] ?></td>
-
+  </tr>
+    <tr>
+    <th scope="row">Telefon</th>
+    <td><?php echo $arrtelefon[0] ?></td>
   </tr>
 
 </table>
