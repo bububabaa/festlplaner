@@ -93,7 +93,7 @@ while($row = $result->fetch()){
                                                 <h1>Hi, <b><?php echo $arrbenutzervorname[0];echo " "; echo $arrbenutzernachname[0]; ?></b>. Willkommen auf Ihrem Profil.</h1>
                                             </div>
                                             <p>
-                                                <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a>
+                                                <a href="reset-password-user.php" class="btn btn-warning">Passwort zurücksetzen</a>
                                                 <a href="logout.php" class="btn btn-danger">Logout</a>
                                             </p>
                                         </div>

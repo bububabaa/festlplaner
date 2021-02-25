@@ -40,16 +40,16 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Check input errors before updating the database
     if(empty($new_psw_err) && empty($confirm_psw_err)){
         // Prepare an update statement
-        $sql = "UPDATE anbieter SET Passwort = :psw WHERE AID = :id";
+        $sql = "UPDATE benutzer SET Passwort = :psw WHERE BID = :bid";
 
         if($stmt = $pdo->prepare($sql)){
             // Bind variables to the prepared statement as parameters
             $stmt->bindParam(":psw", $param_psw, PDO::PARAM_STR);
-            $stmt->bindParam(":id", $param_id, PDO::PARAM_INT);
+            $stmt->bindParam(":bid", $param_id, PDO::PARAM_INT);
 
             // Set parameters
             $param_psw = password_hash($new_psw, PASSWORD_DEFAULT);
-            $param_id = $_SESSION["id"];
+            $param_id = $_SESSION["bid"];
 
             // Attempt to execute the prepared statement
             if($stmt->execute()){

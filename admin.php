@@ -99,7 +99,7 @@ while($row = $result->fetch()){
                                             <br><br>
 
                                             <p>
-                                                <a href="reset-password.php" class="btn btn-warning">Passwort zurücksetzen</a>
+                                                <a href="reset-password-user.php" class="btn btn-warning">Passwort zurücksetzen</a>
                                                 <a href="logout.php" class="btn btn-danger">Logout</a>
                                             </p>
                                         </div>
