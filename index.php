@@ -86,7 +86,6 @@ $card_item=0;
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
 
     <title>Festlplaner</title>
-   <link rel="icon" type="image/x-icon" href="/assets/images/icon.ico">
 
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -188,6 +187,9 @@ $card_item=0;
 
 
                 <!-- Left Image -->
+                <section class="feature-banner">
+                    <h1><b><u>Features:</u></b></h1>
+                </section>
                 <section class="left-image">
                     <div class="container-fluid">
                         <div class="row">
@@ -331,7 +333,29 @@ require __DIR__.'/templates/templateSidebar.php'?>
         position: center;
 
     }
+    section.feature-banner
+    {
+        border-bottom: none;
+	   padding-bottom: 0px;
+    }
+    /* Right Image
+section.right-image {
+	border-bottom: none;
+	padding-bottom: 0px;
+}*/
 
+.feature-banner {
+	margin-top: 100px;
+}
+
+.feature-banner .container-fluid {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+
+.feature-banner .left-content {
+	margin-right: 15px;
+}
     </style>
 </body>
 
