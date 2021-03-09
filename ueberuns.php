@@ -221,7 +221,7 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <style>
         img{
             width: 100%;
-            height: 400px;
+            height: auto;
         }
         h5#vorwort
         {

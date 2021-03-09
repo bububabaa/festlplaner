@@ -54,6 +54,7 @@ $count =0;
 <!DOCTYPE html>
 <html lang="de">
 <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -71,7 +72,38 @@ $count =0;
     <link rel="stylesheet" href="assets/css/templatemo-style.css">
     <link rel="stylesheet" href="assets/css/owl.css">
 
+    <style>
+        #image {
+                vertical-align: top;
+            display: inline-block;
+    /* To horizontally center images and caption */
+            text-align: center;
 
+        }
+
+        .text {
+           display: block;
+
+        }
+
+        .zoom {
+            width: 600px;
+            height: auto;
+            transition: transform ease-in-out 0.3s;
+            display: inline-block;
+            float: left;
+            vertical-align: top;
+            display: inline-block;
+    /* To horizontally center images and caption */
+            text-align: center;
+
+        }
+
+        .zoom:hover {
+            transform: scale(1.2);
+        }
+        }
+    </style>
 </head>
 
 <body class="is-preload">
@@ -100,66 +132,24 @@ $count =0;
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="banner-caption">
-                                            <?php
-                                               /* foreach ($festln as $festl) {
+                                            <div class="item">
+                                                <?php
+                                                foreach ($festln as $festl) {
                                                     if($arrfoto[$count]==null)
                                                     {
 
                                                     }
                                                     else
                                                     {
-                                                         echo '<h1>'.$festl['Bezeichnung'] . '</h1>';
-                                                       echo '<img src="data:image/jpeg;base64,' . base64_encode($festl['Titelbild']) . '">';
-
+                                                       echo '<img class="zoom" id="image" src="data:image/jpeg;base64,' . base64_encode($festl['Titelbild']) . '" alt="" style="padding-left: 50px; padding-bottom: 50px; width: 422px; height: 237px;">';
+                                                      /* echo '<p class="text">'.$festl['Bezeichnung'] . '</p>'; */
                                                     }
                                                     $count++;
 
-                                                } */
+                                                }
                                             ?>
 
-                                            <!-- ### start of the gallery definition ### -->
-                                            <div id="galerie" data-nanogallery2='{
-                                                "thumbnailHeight": 200,
-                                                "thumbnailWidth": 200,
-                                                "itemsBaseURL": "",
-                                                "thumbnailDisplayTransition": "scaleDown",
-                                                "thumbnailHoverEffect2": "imageGrayOn|scale120",
-                                                "galleryDisplayTransition": "slideDown"
-                                                }'>
-
-                                                <!-- gallery content -->
-                                                <a href="assets/images/house_of_pain.jpg" "assets/images/house_of_pain.jpg" data-ngThumb="assets/images/house_of_pain.jpg"> House of Pain 12.10.19</a>
-                                                <a href="assets/images/meterparty.jpg" data-ngThumb="assets/images/meterparty.jpg"> Meterparty 28.12.19</a>
-                                                <a href="assets/images/u25.jpg" data-ngThumb="assets/images/u25.jpg"> Ü25 9.11.19 </a>
-                                                        <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-                                                <a href="" data-ngThumb=""> Festl Beispiel</a>
-
                                             </div>
-                                            <!-- ### end of the gallery definition ### -->
-
                                         </div>
                                     </div>
                                 </div>
@@ -183,11 +173,6 @@ require __DIR__.'/templates/templateSidebar.php'?>
 
     <!-- jQuery -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js" type="text/javascript"></script>
-
-    <!-- nanogallery2 -->
-    <link href="https://cdn.jsdelivr.net/npm/nanogallery2@3/dist/css/nanogallery2.min.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/nanogallery2@3/dist/jquery.nanogallery2.min.js"></script>
-
 
     <script src="assets/js/bootstrap.bundle.min.js"></script>
 

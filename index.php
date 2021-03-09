@@ -77,7 +77,8 @@ $card_item=0;
 
 <!DOCTYPE html>
 <html lang="de">
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -95,6 +96,18 @@ $card_item=0;
     <link rel="stylesheet" href="assets/css/templatemo-style.css">
     <link rel="stylesheet" href="assets/css/owl.css">
 
+    <style>
+        /* This is used to "clear" the floated elements */
+        .images {
+            overflow: hidden;
+            width: 100%
+        }
+
+        /* float the elements so that white space does not matter */
+        .images img {
+            float: left;
+        }
+    </style>
 </head>
 
 <body class="is-preload">
@@ -139,51 +152,54 @@ $card_item=0;
                 <section class="cards">
                     <div class="card-deck">
 
-                                 <div class="card">
+                        <div class="card">
 
 
-                                     <div class="card-body">
+                            <div class="card-body">
 
-                                         <div class="icon"> <img src="assets/images/logostraight.png"> </div>
-                                            <br>
-                                        <h4><?php echo $arrbezeichnung[$rdm1] ?></h4>
-                                         <p><?php echo $converted_date1 ?><br>
-                                         <?php echo $arrstrasse[$rdm1]; echo" "; echo $arrhausnummer[$rdm1] ?><br>
-                                         <?php echo $arrplz[$rdm1]; echo" "; echo $arrort[$rdm1] ?><br>
-                                         <a href="details1.php">Details</a></p>
-                                             </div>
-                                     </div>
+                                <div class="icon"> <img src="assets/images/logostraight.png"> </div>
+                                <br>
+                                <h4><?php echo $arrbezeichnung[$rdm1] ?></h4>
+                                <p><?php echo $converted_date1 ?><br>
+                                    <?php echo $arrstrasse[$rdm1]; echo" "; echo $arrhausnummer[$rdm1] ?><br>
+                                    <?php echo $arrplz[$rdm1]; echo" "; echo $arrort[$rdm1] ?><br>
+                                    <a href="details1.php">Details</a>
+                                </p>
+                            </div>
+                        </div>
 
-                                <div class="card">
+                        <div class="card">
 
-                                     <div class="card-body">
-                                          <div class="icon"> <img src="assets/images/logostraight.png"> </div>
-                                         <br>
-                                         <div class="text">
-                                        <h4><?php echo $arrbezeichnung[$rdm2] ?></h4>
-                                         <p><?php echo $converted_date2 ?><br>
-                                         <?php echo $arrstrasse[$rdm2]; echo" "; echo $arrhausnummer[$rdm2] ?><br>
-                                         <?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?><br>
-                                         <a href="details2.php">Details</a></p>
-                                         </div>
-                                     </div>
-                                </div>
-                                <div class="card">
-
-                                     <div class="card-body">
-                                          <div class="icon"> <img src="assets/images/logostraight.png"> </div>
-                                         <br>
-                                         <div class="text">
-                                        <h4><?php echo $arrbezeichnung[$rdm3] ?></h4>
-                                         <p><?php echo $converted_date3 ?><br>
-                                         <?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?><br>
-                                         <?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?><br>
-                                         <a href="details3.php">Details</a></p>
-                                         </div>
-                                     </div>
+                            <div class="card-body">
+                                <div class="icon"> <img src="assets/images/logostraight.png"> </div>
+                                <br>
+                                <div class="text">
+                                    <h4><?php echo $arrbezeichnung[$rdm2] ?></h4>
+                                    <p><?php echo $converted_date2 ?><br>
+                                        <?php echo $arrstrasse[$rdm2]; echo" "; echo $arrhausnummer[$rdm2] ?><br>
+                                        <?php echo $arrplz[$rdm2]; echo" "; echo $arrort[$rdm2] ?><br>
+                                        <a href="details2.php">Details</a>
+                                    </p>
                                 </div>
                             </div>
-                    </section>
+                        </div>
+                        <div class="card">
+
+                            <div class="card-body">
+                                <div class="icon"> <img src="assets/images/logostraight.png"> </div>
+                                <br>
+                                <div class="text">
+                                    <h4><?php echo $arrbezeichnung[$rdm3] ?></h4>
+                                    <p><?php echo $converted_date3 ?><br>
+                                        <?php echo $arrstrasse[$rdm3]; echo" "; echo $arrhausnummer[$rdm3] ?><br>
+                                        <?php echo $arrplz[$rdm3]; echo" "; echo $arrort[$rdm3] ?><br>
+                                        <a href="details3.php">Details</a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
 
 
                 <!-- Left Image -->
@@ -260,102 +276,106 @@ require __DIR__.'/templates/templateSidebar.php'?>
     <script src="assets/js/custom.js"></script>
 
 
-<style>
+    <style>
+        .card {
+            margin-top: 100px;
+            margin-bottom: 3px;
+            background-color: #eaebef;
+            padding: 50px;
+            text-align: center;
+            transition: all 0.5s ease;
+            height: 370px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
+            border: 2px solid rgba(7, 7, 7, 0.12);
+            align-items: center;
 
-    .card{
-        margin-top: 100px;
-        margin-bottom: 3px;
-        background-color: #eaebef;
-        padding: 50px;
-        text-align: center;
-        transition: all 0.5s ease;
-        height: 370px;
-        box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.24);
-        border: 2px solid rgba(7, 7, 7, 0.12);
-        align-items: center;
+        }
 
-    }
-    .card:hover{
-        background-color: #292929;
-    }
-    .card:hover h4,
-    .card:hover p {
-	   color: #fff;
-    }
+        .card:hover {
+            background-color: #292929;
+        }
 
-    .card:hover {
-   height: 390px;
-}
+        .card:hover h4,
+        .card:hover p {
+            color: #fff;
+        }
 
-.card:hover .info {
-   height: 90%;
-}
+        .card:hover {
+            height: 390px;
+        }
 
-.card:hover .text {
-   transition: all 0.3s ease;
-   opacity: 1;
-   max-height:40px;
-}
-.card:hover .icon {
-   background-position: -120px;
-   transition: all 0.3s ease;
-}
+        .card:hover .info {
+            height: 90%;
+        }
 
-.card:hover .icon i {
-   background: linear-gradient(90deg, #FF7E7E, #FF4848);
-   -webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
-   opacity: 1;
-   transition: all 0.3s ease;
-}
-    .icon {
-   margin: 0 auto;
-   width: 100%;
-   height: 80px;
-   max-width:80px;
-   background: linear-gradient(90deg, #FF7E7E 0%, #FF4848 40%, rgba(0, 0, 0, 0.28) 60%);
-   border-radius: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   color: white;
-   transition: all 0.8s ease;
-   background-position: 0px;
-   background-size: 200px;
-}
-    img#feature
-    {
-        width: 200px;
-        height: 200px;
-    }
-    h2#feature
-    {
-        position: center;
+        .card:hover .text {
+            transition: all 0.3s ease;
+            opacity: 1;
+            max-height: 40px;
+        }
 
-    }
-    section.feature-banner
-    {
-        border-bottom: none;
-	   padding-bottom: 0px;
-    }
-    /* Right Image
+        .card:hover .icon {
+            background-position: -120px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover .icon i {
+            background: linear-gradient(90deg, #FF7E7E, #FF4848);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 1;
+            transition: all 0.3s ease;
+        }
+
+        .icon {
+            margin: 0 auto;
+            width: 100%;
+            height: 80px;
+            max-width: 80px;
+            background: linear-gradient(90deg, #FF7E7E 0%, #FF4848 40%, rgba(0, 0, 0, 0.28) 60%);
+            border-radius: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            transition: all 0.8s ease;
+            background-position: 0px;
+            background-size: 200px;
+        }
+
+        img#feature {
+            width: 200px;
+            height: 200px;
+        }
+
+        h2#feature {
+            position: center;
+
+        }
+
+        section.feature-banner {
+            border-bottom: none;
+            padding-bottom: 0px;
+        }
+
+        /* Right Image
 section.right-image {
 	border-bottom: none;
 	padding-bottom: 0px;
 }*/
 
-.feature-banner {
-	margin-top: 100px;
-}
+        .feature-banner {
+            margin-top: 100px;
+        }
 
-.feature-banner .container-fluid {
-	padding-left: 0px;
-	padding-right: 0px;
-}
+        .feature-banner .container-fluid {
+            padding-left: 0px;
+            padding-right: 0px;
+        }
 
-.feature-banner .left-content {
-	margin-right: 15px;
-}
+        .feature-banner .left-content {
+            margin-right: 15px;
+        }
     </style>
 </body>
 
